@@ -14,7 +14,9 @@ const Home = () => {
             {/* Hero & Search Combined for Layout */}
             <div className="relative">
                 <HeroSlider />
-                <SearchForm />
+                <div className="-mt-20 relative z-30">
+                    <SearchForm />
+                </div>
             </div>
 
             {/* Ticket Listing */}

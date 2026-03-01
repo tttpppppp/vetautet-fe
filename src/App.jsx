@@ -7,6 +7,7 @@ import Register from './pages/Register'
 import Explore from './pages/Explore'
 import Orders from './pages/Orders'
 import Profile from './pages/Profile'
+import SearchResults from './pages/SearchResults'
 import './App.css'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </div>
     </Router>
