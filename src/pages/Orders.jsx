@@ -17,7 +17,7 @@ const Orders = () => {
 
     const orders = [
         {
-            id: 'TET2026-X89J',
+            id: 'VT2026-X89J',
             date: '25/01/2026',
             train: 'SE1',
             from: 'Hà Nội',
@@ -30,7 +30,7 @@ const Orders = () => {
             isTet: true
         },
         {
-            id: 'TET2026-P42K',
+            id: 'VT2026-P42K',
             date: '15/02/2026',
             train: 'SE3',
             from: 'Sài Gòn',
@@ -43,7 +43,7 @@ const Orders = () => {
             isTet: false
         },
         {
-            id: 'TET2026-C11M',
+            id: 'VT2026-C11M',
             date: '10/01/2026',
             train: 'TN1',
             from: 'Hải Phòng',
@@ -158,7 +158,7 @@ const Orders = () => {
                                                     <div className="flex items-center gap-3">
                                                         <h3 className="text-2xl font-black text-gray-900 group-hover:text-tet-red transition-colors">{order.train}</h3>
                                                         {order.isTet && (
-                                                            <span className="bg-red-50 text-tet-red text-[8px] font-black px-2 py-0.5 rounded-lg uppercase tracking-widest border border-red-100">Vé Tết 2026</span>
+                                                            <span className="bg-red-50 text-tet-red text-[8px] font-black px-2 py-0.5 rounded-lg uppercase tracking-widest border border-red-100">Ưu tiên</span>
                                                         )}
                                                     </div>
                                                     <div className="flex items-center gap-3 text-lg font-bold text-gray-700">

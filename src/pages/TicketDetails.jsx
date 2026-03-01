@@ -77,7 +77,7 @@ const TicketDetails = () => {
                             </div>
                             <div>
                                 <div className="flex items-center gap-2 mb-0.5">
-                                    <span className="px-1.5 py-0.5 bg-tet-red text-white text-[8px] font-black rounded-md uppercase tracking-wider">Xuân 2026</span>
+                                    <span className="px-1.5 py-0.5 bg-tet-red text-white text-[8px] font-black rounded-md uppercase tracking-wider">2026</span>
                                     <h2 className="text-lg font-black text-gray-900 tracking-tight">{ticket.trainId}</h2>
                                 </div>
                                 <p className="text-gray-400 font-bold flex items-center gap-2 text-[10px] uppercase tracking-wider">
@@ -245,7 +245,7 @@ const TicketDetails = () => {
                             <AlertTriangle className="text-tet-red" size={16} />
                         </div>
                         <div>
-                            <h4 className="font-black text-tet-red text-[10px] uppercase tracking-widest mb-0.5 leading-tight">Lưu ý dịp Tết</h4>
+                            <h4 className="font-black text-tet-red text-[10px] uppercase tracking-widest mb-0.5 leading-tight">Lưu ý quan trọng</h4>
                             <p className="text-red-900/60 text-[10px] font-bold leading-relaxed">
                                 Tối đa 04 vé/khách. Thanh toán trong 15ph.
                             </p>
@@ -310,7 +310,7 @@ const TicketDetails = () => {
                 <div className="bg-red-50 rounded-3xl p-6 border border-red-100 flex gap-4">
                     <AlertCircle className="text-tet-red shrink-0" size={24} />
                     <p className="text-xs text-red-700 font-bold leading-relaxed">
-                        Thông tin hành khách phải trùng khớp với giấy tờ tùy thân. Vé tàu Tết sẽ được kiểm tra CCCD/Hộ chiếu khi lên tàu.
+                        Thông tin hành khách phải trùng khớp với giấy tờ tùy thân. Vé tàu sẽ được kiểm tra CCCD/Hộ chiếu khi lên tàu.
                     </p>
                 </div>
             </div>
@@ -466,7 +466,7 @@ const TicketDetails = () => {
             <div className="space-y-4">
                 <h2 className="text-4xl font-black text-gray-900">Đặt vé thành công!</h2>
                 <p className="text-gray-500 font-bold text-lg">
-                    Cảm ơn bạn đã tin tưởng dịch vụ Vé Tàu Tết. Mã đặt chỗ của bạn là: <span className="text-tet-red font-black">TET2026-X89J</span>
+                    Cảm ơn bạn đã tin tưởng dịch vụ Vé Tàu. Mã đặt chỗ của bạn là: <span className="text-tet-red font-black">VT2026-X89J</span>
                 </p>
             </div>
 
@@ -475,7 +475,7 @@ const TicketDetails = () => {
                 <div className="flex justify-between items-start border-b border-gray-100 pb-10 relative z-10">
                     <div>
                         <div className="inline-flex items-center gap-2 bg-red-50 px-3 py-1 rounded-full text-[10px] font-black text-tet-red uppercase tracking-widest mb-4">
-                            Vé điện tử xuân bính ngọ
+                            Vé điện tử
                         </div>
                         <p className="text-3xl font-black text-gray-900 leading-tight">
                             {ticket.trainId}: <span className="text-tet-red underline decoration-dashed decoration-2 underline-offset-8 transition-all hover:decoration-solid cursor-default">{ticket.from}</span> - {ticket.to}
@@ -512,7 +512,7 @@ const TicketDetails = () => {
                             <span className="text-[10px] font-black text-gray-300 tracking-[0.3em] uppercase animate-pulse">Scan QR Code</span>
                         </div>
                     </div>
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.5em] mt-4">VETAUTET2026-X89J</p>
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.5em] mt-4">VETAU2026-X89J</p>
                 </div>
             </div>
 

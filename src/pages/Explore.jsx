@@ -134,7 +134,7 @@ const Explore = () => {
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
                         <div>
                             <h2 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Tuyến đường phổ biến</h2>
-                            <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Hành trình được lựa chọn nhiều nhất trong dịp Tết</p>
+                            <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Hành trình được lựa chọn nhiều nhất</p>
                         </div>
                         <div className="flex gap-4">
                             {['all', 'Bắc', 'Trung', 'Nam'].map(region => (

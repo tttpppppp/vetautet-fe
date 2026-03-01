@@ -47,12 +47,12 @@ const Header = () => {
                             "text-lg font-black tracking-tighter leading-none transition-colors",
                             isScrolled ? "text-gray-900" : "text-white"
                         )}>
-                            VÉ TÀU <span className="text-tet-red group-hover:text-tet-yellow transition-colors">TẾT</span>
+                            VÉ <span className="text-tet-red group-hover:text-tet-yellow transition-colors">TÀU</span>
                         </span>
                         <span className={cn(
                             "text-[7px] font-bold uppercase tracking-[0.25em] transition-opacity mt-0.5",
                             isScrolled ? "text-gray-400" : "text-white/60"
-                        )}>Hành trình sum họp</span>
+                        )}>Đặt vé trực tuyến</span>
                     </div>
                 </Link>
 

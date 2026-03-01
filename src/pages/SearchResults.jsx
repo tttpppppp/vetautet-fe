@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import SearchForm from '@/components/SearchForm';
 import TicketCard from '@/components/TicketCard';
 import Footer from '@/components/Footer';
-import { LayoutGrid, ListFilter, ChevronRight, Train, Clock, CreditCard, Star, Filter, X, Check } from 'lucide-react';
+import { LayoutGrid, ListFilter, ChevronRight, ChevronLeft, Train, Clock, CreditCard, Star, Filter, X, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -93,6 +93,38 @@ const SearchResults = () => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [viewType, setViewType] = useState('list');
     const [selectedTrains, setSelectedTrains] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const ITEMS_PER_PAGE = 3;
+    const totalPages = Math.ceil(dummyTickets.length / ITEMS_PER_PAGE);
+    const paginatedTickets = dummyTickets.slice(
+        (currentPage - 1) * ITEMS_PER_PAGE,
+        currentPage * ITEMS_PER_PAGE
+    );
+    const startItem = (currentPage - 1) * ITEMS_PER_PAGE + 1;
+    const endItem = Math.min(currentPage * ITEMS_PER_PAGE, dummyTickets.length);
+
+    const goToPage = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+            window.scrollTo({ top: 400, behavior: 'smooth' });
+        }
+    };
+
+    const getPageNumbers = () => {
+        const pages = [];
+        if (totalPages <= 5) {
+            for (let i = 1; i <= totalPages; i++) pages.push(i);
+        } else {
+            pages.push(1);
+            if (currentPage > 3) pages.push('...');
+            for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+                pages.push(i);
+            }
+            if (currentPage < totalPages - 2) pages.push('...');
+            pages.push(totalPages);
+        }
+        return pages;
+    };
 
     const toggleTrain = (type) => {
         setSelectedTrains(prev =>
@@ -104,7 +136,7 @@ const SearchResults = () => {
         <main className="min-h-screen bg-white">
             <Header />
 
-            <div className="pt-32 pb-24 bg-gray-900 relative overflow-hidden">
+            <div className="pt-28 pb-12 bg-gray-900 relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-red-950/40 to-black" />
 
@@ -113,22 +145,22 @@ const SearchResults = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                     >
-                        <h1 className="text-4xl md:text-5xl font-black text-white mb-3 tracking-tighter">Kết quả tìm kiếm</h1>
-                        <div className="flex items-center gap-3">
-                            <span className="px-3 py-1 bg-tet-red/20 text-tet-red rounded-full text-[10px] font-black uppercase tracking-widest border border-tet-red/30">Hành trình Tết 2026</span>
-                            <p className="text-gray-400 font-bold text-sm">Tìm thấy {dummyTickets.length} chuyến tàu phù hợp</p>
+                        <h1 className="text-2xl md:text-3xl font-black text-white mb-2 tracking-tighter">Kết quả tìm kiếm</h1>
+                        <div className="flex items-center gap-2">
+                            <span className="px-2 py-0.5 bg-tet-red/20 text-tet-red rounded-full text-[9px] font-black uppercase tracking-widest border border-tet-red/30">Tìm kiếm chuyến tàu</span>
+                            <p className="text-gray-400 font-bold text-xs">Tìm thấy {dummyTickets.length} chuyến tàu phù hợp</p>
                         </div>
                     </motion.div>
                 </div>
             </div>
 
-            <div className="relative mt-6 mb-16 px-4">
+            <div className="relative mt-4 mb-8 px-4">
                 <SearchForm />
             </div>
 
-            <section className="pb-24 bg-white">
+            <section className="pb-16 bg-white">
                 <div className="max-w-7xl mx-auto px-6 md:px-12">
-                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
                         {/* Sidebar Filters */}
                         <aside className={cn(
                             "lg:col-span-1 space-y-6 lg:block",
@@ -141,15 +173,15 @@ const SearchResults = () => {
                                 </button>
                             </div>
 
-                            <div className="bg-white rounded-3xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100/50">
-                                <h4 className="flex items-center gap-2 text-xs font-black text-gray-900 uppercase tracking-widest mb-6">
-                                    <Train size={14} className="text-tet-red" /> Loại tàu
+                            <div className="bg-white rounded-2xl p-4 shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100/50">
+                                <h4 className="flex items-center gap-2 text-[9px] font-black text-gray-900 uppercase tracking-widest mb-4">
+                                    <Train size={12} className="text-tet-red" /> Loại tàu
                                 </h4>
-                                <div className="space-y-4">
+                                <div className="space-y-3">
                                     {['Tàu SE (Express)', 'Tàu TN (Thống Nhất)', 'Tàu 5 Sao'].map((type) => (
-                                        <label key={type} className="flex items-center gap-3 cursor-pointer group" onClick={() => toggleTrain(type)}>
+                                        <label key={type} className="flex items-center gap-2 cursor-pointer group" onClick={() => toggleTrain(type)}>
                                             <div className={cn(
-                                                "w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all",
+                                                "w-4 h-4 rounded flex items-center justify-center transition-all",
                                                 selectedTrains.includes(type)
                                                     ? "bg-tet-red border-tet-red"
                                                     : "border-gray-200 group-hover:border-tet-red/50"
@@ -157,7 +189,7 @@ const SearchResults = () => {
                                                 {selectedTrains.includes(type) && <Check size={12} className="text-white" />}
                                             </div>
                                             <span className={cn(
-                                                "text-sm font-bold transition-colors",
+                                                "text-xs font-bold transition-colors",
                                                 selectedTrains.includes(type) ? "text-gray-900" : "text-gray-500 group-hover:text-gray-900"
                                             )}>{type}</span>
                                         </label>
@@ -165,25 +197,25 @@ const SearchResults = () => {
                                 </div>
                             </div>
 
-                            <div className="bg-white rounded-3xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100/50">
-                                <h4 className="flex items-center gap-2 text-xs font-black text-gray-900 uppercase tracking-widest mb-6">
-                                    <Clock size={14} className="text-tet-red" /> Thời gian đi
+                            <div className="bg-white rounded-2xl p-4 shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100/50">
+                                <h4 className="flex items-center gap-2 text-[9px] font-black text-gray-900 uppercase tracking-widest mb-4">
+                                    <Clock size={12} className="text-tet-red" /> Thời gian đi
                                 </h4>
-                                <div className="grid grid-cols-2 gap-2">
+                                <div className="grid grid-cols-2 gap-1.5">
                                     {['00:00 - 06:00', '06:00 - 12:00', '12:00 - 18:00', '18:00 - 00:00'].map((time) => (
-                                        <button key={time} className="w-full text-center px-2 py-3 rounded-xl border border-gray-100 text-[9px] font-black uppercase tracking-tight text-gray-400 hover:text-tet-red hover:bg-red-50 hover:border-red-100 transition-all">
+                                        <button key={time} className="w-full text-center px-1.5 py-2 rounded-lg border border-gray-100 text-[8px] font-black uppercase tracking-tight text-gray-400 hover:text-tet-red hover:bg-red-50 hover:border-red-100 transition-all">
                                             {time}
                                         </button>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="bg-white rounded-3xl p-6 shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100/50">
-                                <h4 className="flex items-center gap-2 text-xs font-black text-gray-900 uppercase tracking-widest mb-6">
-                                    <CreditCard size={14} className="text-tet-red" /> Khoảng giá
+                            <div className="bg-white rounded-2xl p-4 shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100/50">
+                                <h4 className="flex items-center gap-2 text-[9px] font-black text-gray-900 uppercase tracking-widest mb-4">
+                                    <CreditCard size={12} className="text-tet-red" /> Khoảng giá
                                 </h4>
-                                <div className="px-2">
-                                    <div className="h-2 w-full bg-gray-100 rounded-full relative mb-5">
+                                <div className="px-1">
+                                    <div className="h-1.5 w-full bg-gray-100 rounded-full relative mb-4">
                                         <div className="absolute left-[15%] right-[25%] h-full bg-gradient-to-r from-tet-red to-red-600 rounded-full"></div>
                                         <div className="absolute left-[15%] top-1/2 -translate-y-1/2 w-5 h-5 bg-white border-[3px] border-tet-red rounded-full shadow-lg cursor-pointer"></div>
                                         <div className="absolute right-[25%] top-1/2 -translate-y-1/2 w-5 h-5 bg-white border-[3px] border-tet-red rounded-full shadow-lg cursor-pointer"></div>
@@ -195,13 +227,13 @@ const SearchResults = () => {
                                 </div>
                             </div>
 
-                            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-                                <h4 className="flex items-center gap-2 text-xs font-black text-gray-900 uppercase tracking-widest mb-6">
-                                    <Star size={14} className="text-tet-red" /> Tiện ích
+                            <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+                                <h4 className="flex items-center gap-2 text-[9px] font-black text-gray-900 uppercase tracking-widest mb-4">
+                                    <Star size={12} className="text-tet-red" /> Tiện ích
                                 </h4>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-1.5">
                                     {['Wifi', 'Ăn uống', 'Điều hòa', 'Sạc pin'].map((s) => (
-                                        <button key={s} className="px-4 py-2 bg-gray-50 rounded-lg text-xs font-bold text-gray-500 hover:bg-gray-900 hover:text-white transition-all">
+                                        <button key={s} className="px-3 py-1.5 bg-gray-50 rounded-md text-[10px] font-bold text-gray-500 hover:bg-gray-900 hover:text-white transition-all">
                                             {s}
                                         </button>
                                     ))}
@@ -214,7 +246,7 @@ const SearchResults = () => {
                             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 px-2">
                                 <div className="flex items-center gap-3">
                                     <div className="w-1.5 h-6 bg-tet-red rounded-full" />
-                                    <p className="text-xs font-black text-gray-900 uppercase tracking-widest">Hiển thị {dummyTickets.length} kết quả</p>
+                                    <p className="text-xs font-black text-gray-900 uppercase tracking-widest">Hiển thị {startItem}-{endItem} / {dummyTickets.length} kết quả</p>
                                     <button
                                         onClick={() => setIsFilterOpen(!isFilterOpen)}
                                         className="lg:hidden flex items-center gap-2 px-3 py-1.5 bg-gray-900 text-white rounded-lg text-[10px] font-black"
@@ -246,18 +278,74 @@ const SearchResults = () => {
 
                             <div className={cn(
                                 "grid gap-6 transition-all duration-300",
-                                viewType === 'grid' ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"
+                                viewType === 'grid' ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1"
                             )}>
-                                {dummyTickets.map((ticket) => (
+                                {paginatedTickets.map((ticket) => (
                                     <TicketCard key={ticket.id} ticket={ticket} viewType={viewType} />
                                 ))}
                             </div>
 
-                            <div className="mt-12 text-center">
-                                <button className="px-8 py-4 bg-white border border-gray-200 rounded-2xl font-black text-xs uppercase tracking-widest hover:border-tet-red transition-all">
-                                    Xem thêm kết quả
-                                </button>
-                            </div>
+                            {/* Pagination */}
+                            {totalPages > 1 && (
+                                <div className="mt-8 flex flex-col items-center gap-3">
+                                    <div className="flex items-center gap-1.5">
+                                        {/* Prev Button */}
+                                        <button
+                                            onClick={() => goToPage(currentPage - 1)}
+                                            disabled={currentPage === 1}
+                                            className={cn(
+                                                "w-8 h-8 rounded-lg flex items-center justify-center transition-all font-bold text-xs border",
+                                                currentPage === 1
+                                                    ? "border-gray-100 text-gray-200 cursor-not-allowed bg-gray-50/50"
+                                                    : "border-gray-200 text-gray-500 hover:border-tet-red hover:text-tet-red hover:bg-red-50 active:scale-95 bg-white"
+                                            )}
+                                        >
+                                            <ChevronLeft size={14} />
+                                        </button>
+
+                                        {/* Page Numbers */}
+                                        {getPageNumbers().map((page, index) => (
+                                            page === '...' ? (
+                                                <span key={`ellipsis-${index}`} className="w-8 h-8 flex items-center justify-center text-gray-300 font-bold text-xs">
+                                                    ···
+                                                </span>
+                                            ) : (
+                                                <button
+                                                    key={page}
+                                                    onClick={() => goToPage(page)}
+                                                    className={cn(
+                                                        "w-8 h-8 rounded-lg flex items-center justify-center transition-all font-bold text-xs border",
+                                                        currentPage === page
+                                                            ? "bg-tet-red border-tet-red text-white shadow-md shadow-tet-red/20"
+                                                            : "bg-white border-gray-200 text-gray-500 hover:border-tet-red hover:text-tet-red hover:bg-red-50 active:scale-95"
+                                                    )}
+                                                >
+                                                    {page}
+                                                </button>
+                                            )
+                                        ))}
+
+                                        {/* Next Button */}
+                                        <button
+                                            onClick={() => goToPage(currentPage + 1)}
+                                            disabled={currentPage === totalPages}
+                                            className={cn(
+                                                "w-8 h-8 rounded-lg flex items-center justify-center transition-all font-bold text-xs border",
+                                                currentPage === totalPages
+                                                    ? "border-gray-100 text-gray-200 cursor-not-allowed bg-gray-50/50"
+                                                    : "border-gray-200 text-gray-500 hover:border-tet-red hover:text-tet-red hover:bg-red-50 active:scale-95 bg-white"
+                                            )}
+                                        >
+                                            <ChevronRight size={14} />
+                                        </button>
+                                    </div>
+
+                                    {/* Page Info */}
+                                    <p className="text-[9px] font-bold text-gray-300 uppercase tracking-[0.2em]">
+                                        Trang {currentPage} / {totalPages} — {startItem}-{endItem} trên {dummyTickets.length} chuyến
+                                    </p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -55,14 +55,14 @@ const Register = () => {
                             <div className="w-12 h-12 bg-tet-red rounded-2xl flex items-center justify-center shadow-lg shadow-tet-red/20">
                                 <Train className="text-white" size={28} />
                             </div>
-                            <h1 className="text-3xl font-black text-gray-900 tracking-tighter">VÉ TÀU <span className="text-tet-red">TẾT</span></h1>
+                            <h1 className="text-3xl font-black text-gray-900 tracking-tighter">VÉ <span className="text-tet-red">TÀU</span></h1>
                         </div>
                         <h2 className="text-5xl font-black text-gray-900 leading-tight mb-6">
                             Hành trình về quê <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-tet-red via-tet-yellow to-tet-red bg-[length:200%_auto] animate-gradient whitespace-nowrap">Sum họp & Bình an</span>
                         </h2>
                         <p className="text-xl text-gray-500 font-medium leading-relaxed max-w-md">
-                            Tham gia cùng hàng triệu người Việt trong hành trình đón Tết cổ truyền. Đặt vé nhanh chóng, an toàn và bảo mật.
+                            Tham gia cùng hàng triệu hành khách trên khắp Việt Nam. Đặt vé nhanh chóng, an toàn và bảo mật.
                         </p>
                     </motion.div>
 

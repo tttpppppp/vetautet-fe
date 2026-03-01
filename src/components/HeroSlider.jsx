@@ -13,12 +13,12 @@ import 'swiper/css/effect-fade';
 const slides = [
     {
         image: 'https://images.unsplash.com/photo-1590490333550-617882208035?auto=format&fit=crop&q=80&w=2000', // Vietnam train
-        title: 'Đặt Vé Tàu Tết 2026',
-        subtitle: 'Nhanh chóng, an toàn và ngập tràn ưu đãi cho hành trình về quê sum họp.',
+        title: 'Đặt Vé Tàu Trực Tuyến',
+        subtitle: 'Nhanh chóng, an toàn và ngập tràn ưu đãi cho mọi hành trình của bạn.',
         highlight: 'Sum họp'
     },
     {
-        image: 'https://images.unsplash.com/photo-1562232537-88d447f5a502?auto=format&fit=crop&q=80&w=2000', // Vietnam Tet vibes
+        image: 'https://images.unsplash.com/photo-1562232537-88d447f5a502?auto=format&fit=crop&q=80&w=2000', // Vietnam scenery
         title: 'Kết Nối Mọi Miền Tổ Quốc',
         subtitle: 'Hệ thống đặt vé thông minh giúp bạn tìm được chuyến đi ưng ý nhất chỉ trong vài cú click.',
         highlight: 'Thông minh'
@@ -120,7 +120,7 @@ const HeroSlider = () => {
                                             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-4 py-1.5 rounded-full mb-6"
                                         >
                                             <span className="w-1.5 h-1.5 rounded-full bg-tet-yellow shadow-[0_0_8px_#FFC107]" />
-                                            <span className="text-white font-bold uppercase tracking-widest text-[10px]">Xuân Bính Ngọ 2026</span>
+                                            <span className="text-white font-bold uppercase tracking-widest text-[10px]">Hệ thống đặt vé tàu</span>
                                         </motion.div>
 
                                         <motion.h1
@@ -157,7 +157,7 @@ const HeroSlider = () => {
                                             className="flex flex-wrap items-center gap-5"
                                         >
                                             <button className="bg-tet-red hover:bg-tet-red-dark text-white px-8 py-4 rounded-2xl font-black text-lg flex items-center gap-3 shadow-xl shadow-tet-red/30 transition-all transform hover:scale-105 active:scale-95 group">
-                                                Đặt vé Tết ngay <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+                                                Đặt vé ngay <ChevronRight className="group-hover:translate-x-1 transition-transform" />
                                             </button>
                                             <button className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white px-8 py-4 rounded-2xl font-bold text-lg flex items-center gap-3 transition-all">
                                                 <Train size={22} /> Xem lịch trình
@@ -171,7 +171,7 @@ const HeroSlider = () => {
                 ))}
             </Swiper>
 
-            {/* Tet Branch Decoration (Clean) */}
+            {/* Branch Decoration (Clean) */}
             <div className="absolute top-0 right-0 z-30 pointer-events-none opacity-40 mix-blend-screen">
                 <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M400 0C320 40 220 120 180 320" stroke="#FFC107" strokeWidth="1.5" strokeDasharray="10 10" />

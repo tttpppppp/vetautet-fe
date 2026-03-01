@@ -4,7 +4,7 @@ import { Gift, Zap, Smartphone, ArrowRight } from 'lucide-react';
 const PromotionSection = () => {
     return (
         <section className="py-24 bg-white overflow-hidden relative">
-            {/* Decorative Tet Background Pattern */}
+            {/* Decorative Background Pattern */}
             <div className="absolute top-0 right-0 w-1/3 h-full bg-red-50/50 clip-path-tet -z-10" />
 
             <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -18,10 +18,10 @@ const PromotionSection = () => {
                                 <Gift className="text-red-900" size={32} />
                             </div>
                             <h3 className="text-4xl font-black text-white mb-4 leading-tight">
-                                Giảm Giá 20% <br /> <span className="text-tet-yellow italic">Vé Tàu Tết</span>
+                                Giảm Giá 20% <br /> <span className="text-tet-yellow italic">Vé Tàu Sớm</span>
                             </h3>
                             <p className="text-red-50 mb-8 text-lg font-medium opacity-80">
-                                Nhập mã "TETSUMHOP" để nhận ngay ưu đãi khi đặt vé sớm trước ngày 15/12.
+                                Nhập mã "VETAUSOM" để nhận ngay ưu đãi khi đặt vé sớm trước ngày 15/12.
                             </p>
                             <button className="bg-white text-tet-red px-8 py-4 rounded-2xl font-bold flex items-center gap-2 w-fit hover:bg-tet-yellow hover:text-red-900 transition-all transform hover:translate-x-2">
                                 Nhận ưu đãi ngay <ArrowRight size={20} />

@@ -14,7 +14,7 @@ const Footer = () => {
                                 <span className="text-white font-bold text-xl">V</span>
                             </div>
                             <span className="text-2xl font-bold tracking-tight">
-                                Vé Tàu <span className="text-tet-yellow italic">Tết</span>
+                                Vé <span className="text-tet-yellow italic">Tàu</span>
                             </span>
                         </div>
                         <p className="text-gray-400 font-medium leading-relaxed mb-8">
@@ -62,7 +62,7 @@ const Footer = () => {
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="text-tet-red shrink-0" size={20} />
-                                <span className="text-gray-400 font-medium">support@vetautet.vn</span>
+                                <span className="text-gray-400 font-medium">support@vetau.vn</span>
                             </li>
                         </ul>
                     </div>
@@ -90,7 +90,7 @@ const Footer = () => {
                 {/* Bottom Footer */}
                 <div className="border-t border-white/10 pt-12 flex flex-col md:flex-row items-center justify-between gap-6">
                     <p className="text-gray-500 text-sm font-medium">
-                        © 2026 Vé Tàu Tết. Bản quyền thuộc về Senior Frontend Dev Antigravity.
+                        © 2026 Vé Tàu Việt Nam. Bản quyền thuộc về Senior Frontend Dev Antigravity.
                     </p>
                     <div className="flex items-center gap-8">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Payment-card-icon.png/1200px-Payment-card-icon.png" alt="Payments" className="h-6 grayscale opacity-30 invert" />

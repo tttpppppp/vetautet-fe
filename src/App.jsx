@@ -8,6 +8,7 @@ import Explore from './pages/Explore'
 import Orders from './pages/Orders'
 import Profile from './pages/Profile'
 import SearchResults from './pages/SearchResults'
+import Schedules from './pages/Schedules'
 import './App.css'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/schedules" element={<Schedules />} />
         </Routes>
       </div>
     </Router>

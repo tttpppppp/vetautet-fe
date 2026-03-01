@@ -1,6 +1,7 @@
 import * as React from 'react';
 import TicketCard from './TicketCard';
 import { LayoutGrid, ListFilter, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const dummyTickets = [
     {
@@ -95,10 +96,10 @@ const TicketList = () => {
                             <span className="text-tet-red font-black text-[10px] uppercase tracking-[0.2em]">Khám phá ngay</span>
                         </div>
                         <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
-                            Vé Tàu Tết <span className="text-tet-red">Phổ Biến</span> Nhất
+                            Vé Tàu <span className="text-tet-red">Phổ Biến</span> Nhất
                         </h2>
                         <p className="text-gray-500 font-medium max-w-lg">
-                            Các chuyến tàu được nhiều người lựa chọn nhất trong mùa Tết năm nay.
+                            Các chuyến tàu được nhiều người lựa chọn nhất hiện nay.
                         </p>
                     </div>
 
@@ -121,10 +122,10 @@ const TicketList = () => {
 
                 {/* View All Button */}
                 <div className="mt-16 text-center">
-                    <button className="px-10 py-5 bg-white border border-gray-100 text-gray-900 font-black rounded-2xl shadow-sm hover:shadow-md transition-all inline-flex items-center gap-3 group">
+                    <Link to="/schedules" className="px-10 py-5 bg-white border border-gray-100 text-gray-900 font-black rounded-2xl shadow-sm hover:shadow-md transition-all inline-flex items-center gap-3 group">
                         Xem tất cả lịch trình
                         <ChevronRight className="group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>
