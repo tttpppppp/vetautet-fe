@@ -8,6 +8,7 @@ import {
     Clock, ChevronRight, Info, AlertCircle
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 const Explore = () => {

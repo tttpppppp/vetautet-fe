@@ -91,6 +91,8 @@ const dummyTickets = [
 ];
 
 const SearchResults = () => {
+    const fromGa = "Hà Nội";
+    const toGa = "Sài Gòn";
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [viewType, setViewType] = useState('list');
     const [selectedTrains, setSelectedTrains] = useState([]);

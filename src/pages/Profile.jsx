@@ -9,6 +9,7 @@ import {
     Train, Ticket, Star, Zap, Edit3,
     CheckCircle2, Globe, Heart, ArrowRight
 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { Helmet } from 'react-helmet-async';
 
 const Profile = () => {
