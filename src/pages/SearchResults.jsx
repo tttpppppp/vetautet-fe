@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import { LayoutGrid, ListFilter, ChevronRight, ChevronLeft, Train, Clock, CreditCard, Star, Filter, X, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { Helmet } from 'react-helmet-async';
 
 const dummyTickets = [
     {
@@ -134,6 +135,10 @@ const SearchResults = () => {
 
     return (
         <main className="min-h-screen bg-white">
+            <Helmet>
+                <title>{`Tìm vé tàu từ ${fromGa} đi ${toGa} | Vé Tàu Việt Nam`}</title>
+                <meta name="description" content={`Danh sách các chuyến tàu từ ${fromGa} đi ${toGa}. Xem lịch trình, giá vé và đặt chỗ trực tuyến ngay hôm nay.`} />
+            </Helmet>
             <Header />
 
             <div className="pt-24 md:pt-28 pb-8 md:pb-12 bg-gray-900 relative overflow-hidden transition-all duration-300">

@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Train } from 'lucide-react'
+import { HelmetProvider, Helmet } from 'react-helmet-async'
 import ScrollToTop from './components/ScrollToTop'
 import './App.css'
 
@@ -74,24 +75,30 @@ const PageLoader = () => (
 
 function App() {
   return (
-    <Router shadow-red-500>
-      <ScrollToTop />
-      <Suspense fallback={<PageLoader />}>
-        <div className="bg-[#fcfcfc] min-h-screen">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/ticket/:id" element={<TicketDetails />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/search" element={<SearchResults />} />
-            <Route path="/schedules" element={<Schedules />} />
-          </Routes>
-        </div>
-      </Suspense>
-    </Router>
+    <HelmetProvider>
+      <Router shadow-red-500>
+        <Helmet>
+          <title>Vé Tàu Việt Nam - Đặt vé trực tuyến nhanh chóng</title>
+          <meta name="description" content="Hệ thống đặt vé tàu hỏa trực tuyến hàng đầu Việt Nam. An toàn, tiện lợi, giá tốt." />
+        </Helmet>
+        <ScrollToTop />
+        <Suspense fallback={<PageLoader />}>
+          <div className="bg-[#fcfcfc] min-h-screen">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/ticket/:id" element={<TicketDetails />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/explore" element={<Explore />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/search" element={<SearchResults />} />
+              <Route path="/schedules" element={<Schedules />} />
+            </Routes>
+          </div>
+        </Suspense>
+      </Router>
+    </HelmetProvider>
   )
 }
 

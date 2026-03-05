@@ -9,7 +9,7 @@ import {
     Train, Ticket, Star, Zap, Edit3,
     CheckCircle2, Globe, Heart, ArrowRight
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Helmet } from 'react-helmet-async';
 
 const Profile = () => {
     const [activeSection, setActiveSection] = useState('profile');
@@ -70,6 +70,10 @@ const Profile = () => {
 
     return (
         <main className="min-h-screen bg-[#F8F9FB] flex flex-col selection:bg-tet-red selection:text-white">
+            <Helmet>
+                <title>Trang cá nhân - Vé Tàu Việt Nam</title>
+                <meta name="description" content="Quản lý thông tin tài khoản, điểm thưởng và các cài đặt cá nhân của bạn tại hệ thống đặt vé tàu trực tuyến." />
+            </Helmet>
             <Header />
 
             {/* Premium Header/Cover */}

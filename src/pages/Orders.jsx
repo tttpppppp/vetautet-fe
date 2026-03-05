@@ -9,7 +9,7 @@ import {
     ArrowRight, MoreHorizontal, Download
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Orders = () => {
     const [activeTab, setActiveTab] = useState('all');
@@ -71,6 +71,10 @@ const Orders = () => {
 
     return (
         <main className="min-h-screen bg-[#FDFDFD] flex flex-col">
+            <Helmet>
+                <title>Lịch sử đơn hàng - Vé Tàu Việt Nam</title>
+                <meta name="description" content="Quản lý các vé tàu đã đặt, theo dõi lịch trình và tải vé điện tử của bạn tại hệ thống Vé Tàu Việt Nam." />
+            </Helmet>
             <Header />
 
             <section className="pt-52 pb-24">

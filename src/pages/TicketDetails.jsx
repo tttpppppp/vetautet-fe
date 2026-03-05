@@ -11,6 +11,8 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+import { Helmet } from 'react-helmet-async';
+
 const TicketDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -527,6 +529,10 @@ const TicketDetails = () => {
 
     return (
         <main className="min-h-screen bg-[#FDFDFD] flex flex-col">
+            <Helmet>
+                <title>{`Vé Tàu ${ticket.trainId}: ${ticket.from} - ${ticket.to} | Vé Tàu Việt Nam`}</title>
+                <meta name="description" content={`Đặt vé tàu ${ticket.trainId} từ ${ticket.from} đi ${ticket.to} ngày ${ticket.date}. Giá vé ưu đãi, thủ tục nhanh chóng.`} />
+            </Helmet>
             <div className="flex-grow">
                 <Header />
 

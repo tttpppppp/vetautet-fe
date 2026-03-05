@@ -7,6 +7,7 @@ import { Train, MapPin, Clock, ChevronLeft, ChevronRight, Search, SlidersHorizon
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const allSchedules = [
     {
@@ -219,6 +220,10 @@ const Schedules = () => {
 
     return (
         <main className="min-h-screen bg-white">
+            <Helmet>
+                <title>Lịch trình tàu hỏa toàn quốc - Vé Tàu Việt Nam</title>
+                <meta name="description" content="Tra cứu toàn bộ lịch trình các chuyến tàu Bắc - Nam, xem giờ khởi hành, giá vé và tình trạng chỗ ngồi thời gian thực." />
+            </Helmet>
             <Header />
 
             {/* Hero Section */}

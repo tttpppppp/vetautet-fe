@@ -8,7 +8,7 @@ import {
     Clock, ChevronRight, Info, AlertCircle
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Explore = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -66,6 +66,10 @@ const Explore = () => {
 
     return (
         <main className="min-h-screen bg-[#FAFAFA] flex flex-col">
+            <Helmet>
+                <title>Khám phá hành trình - Vé Tàu Việt Nam</title>
+                <meta name="description" content="Tìm kiếm lịch trình các tuyến tàu phổ biến: Sài Gòn - Đà Nẵng, Hà Nội - Lào Cai, Huế và nhiều điểm đến du lịch hấp dẫn khác." />
+            </Helmet>
             <Header />
 
             {/* Hero Section */}
@@ -117,7 +121,7 @@ const Explore = () => {
                         className="w-64 h-80 bg-white rounded-[3rem] shadow-2xl p-6 border border-gray-100/50 backdrop-blur-sm -rotate-6"
                     >
                         <div className="w-full h-40 bg-gray-100 rounded-2xl mb-4 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="" />
+                            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Hành trình tàu hỏa" loading="lazy" />
                         </div>
                         <div className="space-y-2">
                             <div className="h-4 w-2/3 bg-gray-100 rounded-full" />
@@ -165,7 +169,7 @@ const Explore = () => {
                                     className="group cursor-pointer"
                                 >
                                     <div className="relative rounded-[2.5rem] overflow-hidden mb-6 aspect-[4/5] shadow-xl group-hover:shadow-2xl transition-all duration-500">
-                                        <img src={route.image} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt={route.to} />
+                                        <img src={route.image} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt={`Tuyến đường ${route.to}`} loading="lazy" />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                                         <div className="absolute top-5 left-5">
                                             <span className="bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-tet-red uppercase tracking-widest ">

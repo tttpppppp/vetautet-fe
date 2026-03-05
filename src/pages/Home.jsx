@@ -6,9 +6,16 @@ import TicketList from '@/components/TicketList';
 import PromotionSection from '@/components/PromotionSection';
 import Footer from '@/components/Footer';
 
+import { Helmet } from 'react-helmet-async';
+
 const Home = () => {
     return (
         <main className="min-h-screen bg-white">
+            <Helmet>
+                <title>Vé Tàu Việt Nam - Trang chủ đặt vé tàu chính thức</title>
+                <meta name="description" content="Khám phá lịch trình, giá vé tàu hỏa và đặt vé trực tuyến dễ dàng. Hệ thống hỗ trợ thanh toán đa kênh, an toàn và nhanh chóng." />
+            </Helmet>
+            <h1 className="sr-only">Hệ thống đặt vé tàu hỏa trực tuyến Việt Nam</h1>
             <Header />
 
             {/* Hero & Search Combined for Layout */}

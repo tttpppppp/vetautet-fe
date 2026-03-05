@@ -12,6 +12,8 @@ const loginSchema = yup.object({
     password: yup.string().min(6, 'Mật khẩu phải ít nhất 6 ký tự').required('Vui lòng nhập mật khẩu'),
 }).required();
 
+import { Helmet } from 'react-helmet-async';
+
 const Login = () => {
     const navigate = useNavigate();
 
@@ -26,6 +28,10 @@ const Login = () => {
 
     return (
         <div className="min-h-screen w-full flex items-center justify-center relative overflow-hidden bg-white">
+            <Helmet>
+                <title>Đăng nhập - Vé Tàu Việt Nam</title>
+                <meta name="description" content="Đăng nhập tài khoản Vé Tàu Việt Nam để quản lý đơn hàng, theo dõi lịch trình và nhận ưu đãi đặt vé sớm nhất." />
+            </Helmet>
             {/* Background Decorative Elements */}
             <div className="absolute top-0 left-0 w-full h-full z-0">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-tet-red/[0.03] rounded-full blur-[120px] animate-pulse" />
