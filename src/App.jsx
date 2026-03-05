@@ -9,11 +9,13 @@ import Orders from './pages/Orders'
 import Profile from './pages/Profile'
 import SearchResults from './pages/SearchResults'
 import Schedules from './pages/Schedules'
+import ScrollToTop from './components/ScrollToTop'
 import './App.css'
 
 function App() {
   return (
     <Router shadow-red-500>
+      <ScrollToTop />
       <div className="bg-[#fcfcfc] min-h-screen">
         <Routes>
           <Route path="/" element={<Home />} />

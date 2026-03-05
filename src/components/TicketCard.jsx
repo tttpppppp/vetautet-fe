@@ -7,7 +7,7 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
 
     if (viewType === 'list') {
         return (
-            <div className="bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-xl hover:shadow-red-500/5 transition-all duration-300 group relative overflow-hidden flex gap-6">
+            <div className="bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-xl hover:shadow-red-500/5 transition-all duration-300 group relative overflow-hidden flex flex-col sm:flex-row gap-4 sm:gap-6">
                 {/* Popular Badge */}
                 {ticket.popular && (
                     <div className="absolute top-0 left-0 bg-tet-yellow text-red-900 text-[8px] font-black px-2 py-0.5 rounded-br-lg uppercase tracking-widest shadow-sm z-10">
@@ -16,11 +16,11 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
                 )}
 
                 {/* Left: Train Icon & Price */}
-                <div className="flex flex-col items-center justify-center p-4 bg-gray-50/50 rounded-xl min-w-[120px]">
-                    <div className="w-10 h-10 bg-white text-tet-red rounded-xl flex items-center justify-center group-hover:bg-tet-red group-hover:text-white transition-colors duration-500 shadow-sm mb-3">
-                        <Train size={20} />
+                <div className="flex flex-row sm:flex-col items-center justify-between sm:justify-center p-3 sm:p-4 bg-gray-50/50 rounded-xl sm:min-w-[120px]">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white text-tet-red rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-tet-red group-hover:text-white transition-colors duration-500 shadow-sm">
+                        <Train size={18} />
                     </div>
-                    <span className="text-lg font-black text-tet-red">
+                    <span className="text-base sm:text-lg font-black text-tet-red mt-0 sm:mt-3">
                         {ticket.price.toLocaleString('vi-VN')}
                         <span className="text-[10px] font-bold ml-0.5">đ</span>
                     </span>
@@ -28,12 +28,12 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
 
                 {/* Middle: Details & Route */}
                 <div className="flex-1 py-1">
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
                         <div>
                             <h3 className="font-bold text-gray-900 group-hover:text-tet-red transition-colors text-sm">{ticket.trainName}</h3>
                             <p className="text-[10px] text-gray-500 font-bold uppercase tracking-[0.15em] mt-0.5">{ticket.seatType}</p>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3 sm:gap-4">
                             <div className="flex items-center gap-1.5 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
                                 <Armchair size={12} className="text-tet-red" />
                                 <span className="text-[10px] font-black text-gray-700">{ticket.remainingSeats} chỗ</span>
@@ -45,28 +45,28 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-8">
-                        <div className="flex items-center gap-4">
-                            <div className="text-center">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+                        <div className="flex items-center justify-between sm:justify-start gap-4 sm:gap-8 flex-1">
+                            <div className="text-center sm:text-left">
                                 <p className="text-lg font-black text-gray-900 leading-none">{ticket.departureTime}</p>
-                                <p className="text-[10px] font-bold text-gray-400 mt-1 uppercase mt-1">{ticket.from}</p>
+                                <p className="text-[10px] font-bold text-gray-400 mt-1 uppercase">{ticket.from}</p>
                             </div>
-                            <div className="flex flex-col items-center min-w-[60px]">
+                            <div className="flex flex-col items-center min-w-[50px] sm:min-w-[60px]">
                                 <div className="w-full border-t border-gray-200 relative">
                                     <Clock size={10} className="absolute -top-1.5 left-1/2 -translate-x-1/2 bg-white px-1 text-gray-300" />
                                 </div>
                                 <span className="text-[8px] font-black text-gray-400 mt-1 uppercase tracking-tighter">{ticket.duration}</span>
                             </div>
-                            <div className="text-center">
+                            <div className="text-center sm:text-right">
                                 <p className="text-lg font-black text-gray-900 leading-none">{ticket.arrivalTime}</p>
-                                <p className="text-[10px] font-bold text-gray-400 mt-1 uppercase mt-1">{ticket.to}</p>
+                                <p className="text-[10px] font-bold text-gray-400 mt-1 uppercase">{ticket.to}</p>
                             </div>
                         </div>
 
-                        <div className="flex-1 flex justify-end">
+                        <div className="flex justify-stretch sm:justify-end mt-2 sm:mt-0">
                             <button
                                 onClick={() => navigate(`/ticket/${ticket.id}`)}
-                                className="bg-gray-900 text-white px-6 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-tet-red transition-all shadow-lg shadow-gray-200 flex items-center gap-2"
+                                className="w-full sm:w-auto bg-gray-900 text-white px-6 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-tet-red transition-all shadow-lg shadow-gray-200 flex items-center justify-center gap-2"
                             >
                                 Chọn vé <ChevronRight size={14} />
                             </button>

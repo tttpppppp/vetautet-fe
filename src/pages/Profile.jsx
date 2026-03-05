@@ -73,104 +73,104 @@ const Profile = () => {
             <Header />
 
             {/* Premium Header/Cover */}
-            <div className="relative pt-24 h-48 overflow-hidden">
+            <div className="relative pt-24 h-32 md:h-48 overflow-hidden transition-all duration-500">
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-red-950 to-black" />
                 <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
-                <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#F8F9FB] to-transparent" />
+                <div className="absolute bottom-0 left-0 w-full h-16 md:h-24 bg-gradient-to-t from-[#F8F9FB] to-transparent" />
 
                 {/* Decorative Elements */}
-                <div className="absolute top-16 left-10 w-48 h-48 bg-tet-red/20 rounded-full blur-[80px] animate-pulse" />
-                <div className="absolute bottom-16 right-10 w-64 h-64 bg-tet-yellow/10 rounded-full blur-[100px] animate-pulse delay-700" />
+                <div className="absolute top-8 md:top-16 left-5 md:left-10 w-24 md:w-48 h-24 md:h-48 bg-tet-red/20 rounded-full blur-[60px] md:blur-[80px] animate-pulse" />
+                <div className="absolute bottom-8 md:bottom-16 right-5 md:right-10 w-32 md:w-64 h-32 md:h-64 bg-tet-yellow/10 rounded-full blur-[80px] md:blur-[100px] animate-pulse delay-700" />
             </div>
 
-            <section className="-mt-16 pb-24 relative z-10">
-                <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <section className="-mt-4 md:-mt-16 pb-24 relative z-10">
+                <div className="max-w-7xl mx-auto px-4 md:px-12">
 
                     {/* Main Container */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
 
                         {/* LEFT: Profile Overview Card */}
                         <div className="lg:col-span-4 space-y-4">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="bg-white rounded-[1.8rem] p-5 shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-white relative overflow-hidden group"
+                                className="bg-white rounded-[1.5rem] md:rounded-[1.8rem] p-4 md:p-5 shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-white relative overflow-hidden group"
                             >
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-red-50/50 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform duration-700" />
+                                <div className="absolute top-0 right-0 w-20 md:w-24 h-20 md:h-24 bg-red-50/50 rounded-full -mr-10 md:-mr-12 -mt-10 md:-mt-12 group-hover:scale-110 transition-transform duration-700" />
 
                                 <div className="relative flex flex-col items-center text-center">
                                     <div className="relative mb-3">
-                                        <div className="w-20 h-20 rounded-[1.8rem] overflow-hidden border-[3px] border-white shadow-xl relative">
+                                        <div className="w-16 h-16 md:w-20 md:h-20 rounded-[1.5rem] md:rounded-[1.8rem] overflow-hidden border-[3px] border-white shadow-xl relative">
                                             <img src={user.avatar} className="w-full h-full object-cover" alt={user.name} />
                                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
-                                                <Camera className="text-white" size={16} />
+                                                <Camera className="text-white" size={14} />
                                             </div>
                                         </div>
                                         <motion.div
                                             animate={{ scale: [1, 1.2, 1], rotate: [0, 10, 0] }}
                                             transition={{ duration: 4, repeat: Infinity }}
-                                            className="absolute -bottom-1 -right-1 w-9 h-9 bg-tet-red rounded-xl flex items-center justify-center text-white shadow-lg border-[3px] border-white"
+                                            className="absolute -bottom-1 -right-1 w-7 h-7 md:w-9 md:h-9 bg-tet-red rounded-lg md:rounded-xl flex items-center justify-center text-white shadow-lg border-[2px] md:border-[3px] border-white"
                                         >
-                                            <Zap size={16} fill="currentColor" />
+                                            <Zap size={14} fill="currentColor" />
                                         </motion.div>
                                     </div>
 
-                                    <h2 className="text-lg font-black text-gray-900 mb-0.5 tracking-tight">{user.name}</h2>
+                                    <h2 className="text-base md:text-lg font-black text-gray-900 mb-0.5 tracking-tight">{user.name}</h2>
                                     <div className="flex items-center gap-1.5 mb-4">
-                                        <Award size={12} className="text-tet-red" />
-                                        <span className="text-tet-red font-black text-[9px] uppercase tracking-[0.15em]">{user.level}</span>
+                                        <Award size={10} className="text-tet-red" />
+                                        <span className="text-tet-red font-black text-[8px] md:text-[9px] uppercase tracking-[0.15em]">{user.level}</span>
                                     </div>
 
                                     {/* Quick Stats Wrap */}
                                     <div className="grid grid-cols-2 gap-2 w-full pt-3 border-t border-gray-50">
-                                        <div className="p-2.5 bg-gray-50/50 rounded-xl">
-                                            <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Điểm thưởng</p>
-                                            <p className="text-base font-black text-gray-900">{user.points}</p>
+                                        <div className="p-2 md:p-2.5 bg-gray-50/50 rounded-lg md:rounded-xl">
+                                            <p className="text-[7px] md:text-[8px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Điểm thưởng</p>
+                                            <p className="text-sm md:text-base font-black text-gray-900">{user.points}</p>
                                         </div>
-                                        <div className="p-2.5 bg-gray-50/50 rounded-xl">
-                                            <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Chuyến đi</p>
-                                            <p className="text-base font-black text-gray-900">{user.trips}</p>
+                                        <div className="p-2 md:p-2.5 bg-gray-50/50 rounded-lg md:rounded-xl">
+                                            <p className="text-[7px] md:text-[8px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Chuyến đi</p>
+                                            <p className="text-sm md:text-base font-black text-gray-900">{user.trips}</p>
                                         </div>
                                     </div>
                                 </div>
                             </motion.div>
 
-                            {/* Sidebar Menu */}
+                            {/* Sidebar Menu - Tabs on Mobile */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="bg-white rounded-[1.8rem] p-2.5 shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-white"
+                                className="bg-white rounded-[1.5rem] md:rounded-[1.8rem] p-1.5 md:p-2.5 shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-white"
                             >
-                                <nav className="space-y-1">
+                                <nav className="flex lg:flex-col overflow-x-auto lg:overflow-x-visible no-scrollbar pb-1 md:pb-0 gap-1 md:gap-1">
                                     {sidebarItems.map(item => (
                                         <button
                                             key={item.id}
                                             onClick={() => setActiveSection(item.id)}
                                             className={cn(
-                                                "w-full flex items-center gap-3 p-3 rounded-xl transition-all relative group overflow-hidden",
+                                                "flex-shrink-0 lg:w-full flex items-center gap-2 md:gap-3 p-2.5 md:p-3 rounded-lg md:rounded-xl transition-all relative group overflow-hidden",
                                                 activeSection === item.id
                                                     ? "bg-gray-900 text-white shadow-lg shadow-gray-200"
-                                                    : "text-gray-500 hover:bg-gray-50"
+                                                    : "text-gray-500 hover:bg-gray-50 bg-gray-50/30 lg:bg-transparent"
                                             )}
                                         >
                                             <div className={cn(
-                                                "w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors",
-                                                activeSection === item.id ? "bg-white/10" : "bg-gray-50 group-hover:bg-white"
+                                                "w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors",
+                                                activeSection === item.id ? "bg-white/10" : "bg-white group-hover:bg-gray-100"
                                             )}>
-                                                <item.icon size={16} className={activeSection === item.id ? "text-tet-yellow" : "text-gray-400 group-hover:text-gray-900"} />
+                                                <item.icon size={14} className={activeSection === item.id ? "text-tet-yellow" : "text-gray-400 group-hover:text-gray-900"} />
                                             </div>
                                             <div className="text-left">
-                                                <p className="font-black text-xs">{item.label}</p>
-                                                <p className={cn("text-[8px] font-bold tracking-tight uppercase", activeSection === item.id ? "text-white/40" : "text-gray-300")}>{item.desc}</p>
+                                                <p className="font-black text-[10px] md:text-xs whitespace-nowrap">{item.label}</p>
+                                                <p className={cn("hidden md:block text-[8px] font-bold tracking-tight uppercase", activeSection === item.id ? "text-white/40" : "text-gray-300")}>{item.desc}</p>
                                             </div>
                                             {activeSection === item.id && (
-                                                <motion.div layoutId="activePill" className="absolute right-3 w-1 h-5 bg-tet-yellow rounded-full" />
+                                                <motion.div layoutId="activePill" className="absolute bottom-0 left-0 right-0 h-0.5 lg:bottom-1/2 lg:translate-y-1/2 lg:right-3 lg:left-auto lg:w-1 lg:h-5 bg-tet-yellow rounded-full" />
                                             )}
                                         </button>
                                     ))}
 
-                                    <div className="pt-2 mt-2 border-t border-gray-50">
+                                    <div className="hidden lg:block pt-2 mt-2 border-t border-gray-50">
                                         <button className="w-full flex items-center gap-3 p-3 rounded-xl text-red-500 font-black hover:bg-red-50 transition-all">
                                             <div className="w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center shrink-0">
                                                 <LogOut size={16} />

@@ -68,84 +68,84 @@ const TicketDetails = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-8 space-y-6">
                 {/* Summary Card */}
-                <div className="bg-white rounded-3xl p-5 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 relative overflow-hidden group">
+                <div className="bg-white rounded-2xl md:rounded-3xl p-4 md:p-5 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-tet-red/[0.02] rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700" />
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-gradient-to-br from-red-50 to-white rounded-2xl flex items-center justify-center text-tet-red shrink-0 shadow-sm border border-red-100/50">
-                                <Train size={24} className="drop-shadow-sm" />
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 relative z-10">
+                        <div className="flex items-center gap-3 md:gap-4">
+                            <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-red-50 to-white rounded-xl md:rounded-2xl flex items-center justify-center text-tet-red shrink-0 shadow-sm border border-red-100/50">
+                                <Train size={20} className="md:size-24 drop-shadow-sm" />
                             </div>
                             <div>
                                 <div className="flex items-center gap-2 mb-0.5">
-                                    <span className="px-1.5 py-0.5 bg-tet-red text-white text-[8px] font-black rounded-md uppercase tracking-wider">2026</span>
-                                    <h2 className="text-lg font-black text-gray-900 tracking-tight">{ticket.trainId}</h2>
+                                    <span className="px-1.5 py-0.5 bg-tet-red text-white text-[7px] md:text-[8px] font-black rounded-md uppercase tracking-wider">2026</span>
+                                    <h2 className="text-base md:text-lg font-black text-gray-900 tracking-tight">{ticket.trainId}</h2>
                                 </div>
-                                <p className="text-gray-400 font-bold flex items-center gap-2 text-[10px] uppercase tracking-wider">
-                                    <Calendar size={10} className="text-tet-red" /> {ticket.date} <span className="w-1 h-1 rounded-full bg-gray-300" /> {ticket.type}
+                                <p className="text-gray-400 font-bold flex items-center gap-1.5 md:gap-2 text-[9px] md:text-[10px] uppercase tracking-wider">
+                                    <Calendar size={8} className="text-tet-red md:size-10" /> {ticket.date} <span className="w-1 h-1 rounded-full bg-gray-300" /> {ticket.type}
                                 </p>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-6 md:gap-8 bg-gray-50/50 px-5 py-3 rounded-2xl border border-gray-100/50 backdrop-blur-sm">
+                        <div className="flex items-center gap-4 md:gap-8 bg-gray-50/50 px-4 py-2.5 rounded-xl md:rounded-2xl border border-gray-100/50 backdrop-blur-sm">
                             <div className="text-center">
-                                <p className="text-lg font-black text-gray-900 mb-0.5">{ticket.departureTime}</p>
-                                <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest">{ticket.from}</p>
+                                <p className="text-base md:text-lg font-black text-gray-900 mb-0.5">{ticket.departureTime}</p>
+                                <p className="text-[7px] md:text-[8px] font-black text-gray-400 uppercase tracking-widest">{ticket.from}</p>
                             </div>
-                            <div className="flex flex-col items-center gap-1">
-                                <span className="text-[7px] font-black text-tet-red uppercase tracking-widest bg-red-50 px-1.5 py-0.5 rounded-full">{ticket.duration}</span>
+                            <div className="flex flex-col items-center gap-0.5 md:gap-1">
+                                <span className="text-[6px] md:text-[7px] font-black text-tet-red uppercase tracking-widest bg-red-50 px-1 py-0.5 rounded-full">{ticket.duration}</span>
                                 <div className="flex items-center gap-1">
                                     <div className="w-1 h-1 rounded-full border border-tet-red bg-white" />
-                                    <div className="w-8 h-[1px] bg-gradient-to-r from-tet-red via-tet-red/50 to-gray-200" />
+                                    <div className="w-6 md:w-8 h-[1px] bg-gradient-to-r from-tet-red via-tet-red/50 to-gray-200" />
                                     <div className="w-1 h-1 rounded-full bg-gray-200" />
                                 </div>
                             </div>
                             <div className="text-center">
-                                <p className="text-lg font-black text-gray-900 mb-0.5">{ticket.arrivalTime}</p>
-                                <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest">{ticket.to}</p>
+                                <p className="text-base md:text-lg font-black text-gray-900 mb-0.5">{ticket.arrivalTime}</p>
+                                <p className="text-[7px] md:text-[8px] font-black text-gray-400 uppercase tracking-widest">{ticket.to}</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Car Selection */}
-                <div className="space-y-4">
-                    <h3 className="flex items-center gap-2 text-lg font-black text-gray-900 group">
-                        <div className="w-8 h-8 bg-red-50 text-tet-red rounded-lg flex items-center justify-center transition-transform group-hover:rotate-12 shadow-sm">
-                            <Train size={16} />
+                <div className="space-y-3">
+                    <h3 className="flex items-center gap-2 text-base font-black text-gray-900 group">
+                        <div className="w-7 h-7 bg-red-50 text-tet-red rounded-lg flex items-center justify-center transition-transform group-hover:rotate-12 shadow-sm">
+                            <Train size={14} />
                         </div>
                         Chọn toa tàu
                     </h3>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2">
                         {cars.map((car) => (
                             <button
                                 key={car.id}
                                 onClick={() => setSelectedCar(car.id)}
                                 className={cn(
-                                    "px-6 py-4 rounded-2xl font-bold transition-all flex items-center gap-2 shadow-sm border-2 text-sm",
+                                    "px-4 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2 shadow-sm border-2 text-xs",
                                     selectedCar === car.id
                                         ? "bg-white border-tet-red text-tet-red shadow-lg shadow-tet-red/5 -translate-y-0.5"
                                         : "bg-white border-gray-50 text-gray-400 hover:border-gray-200 hover:text-gray-600 hover:bg-gray-50/50"
                                 )}
                             >
                                 <div className={cn(
-                                    "w-2.5 h-2.5 rounded-full",
+                                    "w-2 h-2 rounded-full",
                                     selectedCar === car.id ? "bg-tet-red animate-pulse" : "bg-gray-200"
                                 )} />
-                                Toa {car.id}: {car.type}
+                                T{car.id}: {car.type}
                             </button>
                         ))}
                     </div>
                 </div>
 
                 {/* Seat Map */}
-                <div className="bg-white rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col items-center relative overflow-hidden">
+                <div className="bg-white rounded-2xl md:rounded-[2.5rem] p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col items-center relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gray-100 to-transparent" />
                     <div className="w-full max-w-xl">
                         <div className="w-full h-10 bg-gray-50 rounded-t-[3rem] border-x-4 border-t-4 border-gray-100 flex items-center justify-center mb-10 relative shadow-inner">
                             <span className="text-[9px] font-black text-gray-300 tracking-[0.4em] uppercase">Phòng Điều Hành / Đầu Tàu</span>
                         </div>
-                        <div className="grid grid-cols-4 gap-4 bg-gray-50/30 p-8 rounded-[2rem] border border-dashed border-gray-200">
-                            {[...Array(28)].map((_, i) => {
+                        <div className="grid grid-cols-8 gap-1.5 md:gap-2 justify-items-center">
+                            {Array.from({ length: 32 }).map((_, i) => {
                                 const seatId = `${selectedCar}-${i + 1}`;
                                 const isSelected = selectedSeats.includes(seatId);
                                 const isOccupied = i % 7 === 2 || i % 9 === 0;
@@ -155,33 +155,33 @@ const TicketDetails = () => {
                                         disabled={isOccupied}
                                         onClick={() => toggleSeat(seatId)}
                                         className={cn(
-                                            "aspect-square rounded-xl transition-all relative flex items-center justify-center font-black text-xs",
+                                            "w-7 h-7 md:w-9 md:h-9 rounded-lg transition-all relative flex items-center justify-center font-black text-[10px]",
                                             isOccupied ? "bg-gray-100 text-gray-300 cursor-not-allowed" :
                                                 isSelected
-                                                    ? "bg-tet-red text-white shadow-xl shadow-tet-red/30 scale-105 ring-2 ring-white"
-                                                    : "bg-white text-gray-500 border border-gray-100 hover:border-tet-red hover:text-tet-red hover:shadow-lg hover:-translate-y-1 shadow-sm"
+                                                    ? "bg-tet-red text-white shadow-lg shadow-tet-red/30 scale-105 ring-2 ring-white"
+                                                    : "bg-white text-gray-500 border border-gray-100 hover:border-tet-red hover:text-tet-red hover:shadow-md hover:-translate-y-0.5 shadow-sm"
                                         )}
                                     >
                                         {i + 1}
-                                        {isSelected && <CheckCircle2 size={12} className="absolute -top-1 -right-1 text-white fill-tet-red" />}
+                                        {isSelected && <CheckCircle2 size={10} className="absolute -top-1 -right-1 text-white fill-tet-red" />}
                                     </button>
                                 );
                             })}
                         </div>
                     </div>
 
-                    <div className="mt-8 flex flex-wrap justify-center gap-6">
-                        <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 rounded bg-white border border-gray-200 shadow-sm" />
-                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Trống</span>
+                    <div className="mt-6 flex flex-wrap justify-center gap-4">
+                        <div className="flex items-center gap-1.5">
+                            <div className="w-3 h-3 rounded bg-white border border-gray-200 shadow-sm" />
+                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Trống</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 rounded bg-gray-100" />
-                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Đã đặt</span>
+                        <div className="flex items-center gap-1.5">
+                            <div className="w-3 h-3 rounded bg-gray-100" />
+                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Đã đặt</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 rounded bg-tet-red shadow-lg shadow-tet-red/20" />
-                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Đang chọn</span>
+                        <div className="flex items-center gap-1.5">
+                            <div className="w-3 h-3 rounded bg-tet-red shadow-lg shadow-tet-red/20" />
+                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Đang chọn</span>
                         </div>
                     </div>
                 </div>
@@ -189,49 +189,49 @@ const TicketDetails = () => {
 
             {/* Selection Summary Sidebar */}
             <div className="lg:col-span-4">
-                <div className="sticky top-40 space-y-4">
-                    <div className="bg-white rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100">
-                        <h3 className="text-xl font-black text-gray-900 mb-6 flex items-center justify-between">
+                <div className="sticky top-40 space-y-3">
+                    <div className="bg-white rounded-2xl md:rounded-[2rem] p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100">
+                        <h3 className="text-lg font-black text-gray-900 mb-5 flex items-center justify-between">
                             Chi tiết đặt chỗ
-                            <div className="w-8 h-8 bg-gray-50 rounded-lg flex items-center justify-center">
-                                <ShoppingBag size={16} className="text-gray-400" />
+                            <div className="w-7 h-7 bg-gray-50 rounded-lg flex items-center justify-center">
+                                <ShoppingBag size={14} className="text-gray-400" />
                             </div>
                         </h3>
 
                         {selectedSeats.length === 0 ? (
-                            <div className="py-12 text-center space-y-3 bg-gray-50/50 rounded-3xl border border-dashed border-gray-200">
-                                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mx-auto shadow-sm">
-                                    <Info size={24} className="text-gray-200" />
+                            <div className="py-8 text-center space-y-2 bg-gray-50/50 rounded-2xl border border-dashed border-gray-200">
+                                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mx-auto shadow-sm">
+                                    <Info size={20} className="text-gray-200" />
                                 </div>
-                                <p className="text-gray-300 font-black text-[10px] uppercase tracking-[0.2em] px-6">Vui lòng chọn chỗ ngồi</p>
+                                <p className="text-gray-300 font-black text-[9px] uppercase tracking-[0.2em] px-4">Vui lòng chọn chỗ ngồi</p>
                             </div>
                         ) : (
-                            <div className="space-y-4">
-                                <div className="space-y-2">
+                            <div className="space-y-3">
+                                <div className="max-h-48 overflow-y-auto pr-1 space-y-2 custom-scrollbar">
                                     {selectedSeats.map(id => (
-                                        <div key={id} className="flex items-center justify-between p-3 bg-gray-50/50 rounded-xl border border-gray-100 group hover:bg-white hover:shadow-md transition-all">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-tet-red font-black text-xs shadow-sm group-hover:scale-110 transition-transform">
+                                        <div key={id} className="flex items-center justify-between p-2.5 bg-gray-50/50 rounded-xl border border-gray-100 group hover:bg-white hover:shadow-md transition-all">
+                                            <div className="flex items-center gap-2.5">
+                                                <div className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-tet-red font-black text-[10px] shadow-sm group-hover:scale-110 transition-transform">
                                                     {id.split('-')[1]}
                                                 </div>
                                                 <div>
-                                                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Toa {id.split('-')[0]}</p>
-                                                    <p className="font-bold text-gray-900 text-xs">Ghế {id.split('-')[1]}</p>
+                                                    <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Toa {id.split('-')[0]}</p>
+                                                    <p className="font-bold text-gray-900 text-[11px]">Ghế {id.split('-')[1]}</p>
                                                 </div>
                                             </div>
-                                            <span className="font-black text-gray-900 text-sm">{(ticket.pricePerSeat / 1000000).toFixed(1)}M</span>
+                                            <span className="font-black text-gray-900 text-xs">{(ticket.pricePerSeat / 1000000).toFixed(1)}M</span>
                                         </div>
                                     ))}
                                 </div>
 
-                                <div className="pt-4 border-t border-dashed border-gray-200 space-y-4">
+                                <div className="pt-3 border-t border-dashed border-gray-200 space-y-3">
                                     <div className="flex justify-between items-center px-1">
-                                        <span className="font-bold text-gray-400 text-sm">Tổng tiền</span>
-                                        <span className="text-2xl font-black text-tet-red">{(selectedSeats.length * ticket.pricePerSeat / 1000000).toFixed(2)}M VNĐ</span>
+                                        <span className="font-bold text-gray-400 text-[10px]">Tổng cộng</span>
+                                        <span className="text-xl font-black text-tet-red">{(selectedSeats.length * ticket.pricePerSeat / 1000000).toFixed(2)}M</span>
                                     </div>
                                     <button
                                         onClick={nextStep}
-                                        className="w-full bg-tet-yellow hover:bg-[#FFB300] text-red-900 font-black py-4 rounded-xl shadow-xl shadow-tet-yellow/20 transition-all transform hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest text-xs"
+                                        className="w-full bg-tet-yellow hover:bg-[#FFB300] text-red-900 font-black py-3.5 rounded-xl shadow-lg shadow-tet-yellow/10 transition-all transform hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest text-[10px]"
                                     >
                                         Tiếp tục đặt vé
                                     </button>
@@ -240,13 +240,13 @@ const TicketDetails = () => {
                         )}
                     </div>
 
-                    <div className="bg-red-50/70 backdrop-blur-sm p-6 rounded-[1.8rem] border border-red-100 shadow-sm flex items-start gap-3">
-                        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shrink-0 shadow-sm shadow-red-200">
-                            <AlertTriangle className="text-tet-red" size={16} />
+                    <div className="bg-red-50/60 p-4 rounded-2xl border border-red-100 shadow-sm flex items-start gap-3">
+                        <div className="w-7 h-7 bg-white rounded-lg flex items-center justify-center shrink-0 shadow-sm shadow-red-200">
+                            <AlertTriangle className="text-tet-red" size={14} />
                         </div>
                         <div>
-                            <h4 className="font-black text-tet-red text-[10px] uppercase tracking-widest mb-0.5 leading-tight">Lưu ý quan trọng</h4>
-                            <p className="text-red-900/60 text-[10px] font-bold leading-relaxed">
+                            <h4 className="font-black text-tet-red text-[9px] uppercase tracking-widest mb-0.5 leading-tight">Lưu ý</h4>
+                            <p className="text-red-900/60 text-[9px] font-bold leading-relaxed">
                                 Tối đa 04 vé/khách. Thanh toán trong 15ph.
                             </p>
                         </div>
@@ -259,10 +259,10 @@ const TicketDetails = () => {
     // Step 2: Passenger Info View
     const renderPassengerInfo = () => (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-8 space-y-6">
-                <h3 className="text-2xl font-black text-gray-900 mb-8 flex items-center gap-4">
-                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center border border-gray-100 shadow-sm">
-                        <Users className="text-tet-red" size={24} />
+            <div className="lg:col-span-8 space-y-4">
+                <h3 className="text-xl font-black text-gray-900 mb-6 flex items-center gap-3">
+                    <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-gray-100 shadow-sm">
+                        <Users className="text-tet-red" size={20} />
                     </div>
                     Thông tin hành khách
                 </h3>
@@ -272,34 +272,34 @@ const TicketDetails = () => {
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: index * 0.1 }}
                         key={seatId}
-                        className="bg-white rounded-[1.8rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 relative overflow-hidden group"
+                        className="bg-white rounded-2xl p-4 md:p-5 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 relative overflow-hidden group"
                     >
-                        <div className="absolute top-0 right-0 p-6">
-                            <span className="px-3 py-1.5 bg-gray-50 text-gray-300 text-[8px] font-black rounded-lg uppercase tracking-widest shadow-inner">
-                                Ghế {seatId.split('-')[1]} • Toa {seatId.split('-')[0]}
+                        <div className="absolute top-0 right-0 p-4">
+                            <span className="px-2 py-1 bg-gray-50 text-gray-300 text-[7px] font-black rounded-md uppercase tracking-widest shadow-inner">
+                                G{seatId.split('-')[1]} • T{seatId.split('-')[0]}
                             </span>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-                            <div className="space-y-2">
-                                <label className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] px-1 flex items-center gap-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
+                            <div className="space-y-1.5">
+                                <label className="text-[8px] font-black text-gray-400 uppercase tracking-[0.2em] px-1 flex items-center gap-1.5">
                                     <div className="w-1 h-1 rounded-full bg-tet-red" /> Họ và tên
                                 </label>
                                 <input
                                     type="text"
-                                    placeholder="Vd: NGUYỄN VĂN A"
-                                    className="w-full bg-gray-50/50 border-2 border-transparent focus:border-tet-red focus:bg-white focus:ring-4 focus:ring-tet-red/5 rounded-xl px-4 py-3 outline-none font-bold text-sm text-gray-900 transition-all placeholder:text-gray-300 shadow-inner"
+                                    placeholder="NGUYỄN VĂN A"
+                                    className="w-full bg-gray-50/50 border-2 border-transparent focus:border-tet-red focus:bg-white focus:ring-4 focus:ring-tet-red/5 rounded-lg px-3 py-2 outline-none font-bold text-xs text-gray-900 transition-all placeholder:text-gray-300 shadow-inner"
                                     value={passengers[seatId]?.name || ''}
                                     onChange={(e) => handlePassengerChange(seatId, 'name', e.target.value)}
                                 />
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] px-1 flex items-center gap-2">
-                                    <div className="w-1 h-1 rounded-full bg-tet-red" /> Số CMND / CCCD
+                            <div className="space-y-1.5">
+                                <label className="text-[8px] font-black text-gray-400 uppercase tracking-[0.2em] px-1 flex items-center gap-1.5">
+                                    <div className="w-1 h-1 rounded-full bg-tet-red" /> Số định danh
                                 </label>
                                 <input
                                     type="text"
-                                    placeholder="Số định danh"
-                                    className="w-full bg-gray-50/50 border-2 border-transparent focus:border-tet-red focus:bg-white focus:ring-4 focus:ring-tet-red/5 rounded-xl px-4 py-3 outline-none font-bold text-sm text-gray-900 transition-all placeholder:text-gray-300 shadow-inner"
+                                    placeholder="CCCD / Hộ chiếu"
+                                    className="w-full bg-gray-50/50 border-2 border-transparent focus:border-tet-red focus:bg-white focus:ring-4 focus:ring-tet-red/5 rounded-lg px-3 py-2 outline-none font-bold text-xs text-gray-900 transition-all placeholder:text-gray-300 shadow-inner"
                                     value={passengers[seatId]?.idCard || ''}
                                     onChange={(e) => handlePassengerChange(seatId, 'idCard', e.target.value)}
                                 />
@@ -307,10 +307,10 @@ const TicketDetails = () => {
                         </div>
                     </motion.div>
                 ))}
-                <div className="bg-red-50 rounded-3xl p-6 border border-red-100 flex gap-4">
-                    <AlertCircle className="text-tet-red shrink-0" size={24} />
-                    <p className="text-xs text-red-700 font-bold leading-relaxed">
-                        Thông tin hành khách phải trùng khớp với giấy tờ tùy thân. Vé tàu sẽ được kiểm tra CCCD/Hộ chiếu khi lên tàu.
+                <div className="bg-red-50/50 rounded-2xl p-4 border border-red-100/50 flex gap-3">
+                    <AlertCircle className="text-tet-red shrink-0" size={18} />
+                    <p className="text-[10px] text-red-700/80 font-bold leading-relaxed">
+                        Thông tin hành khách phải trùng khớp với giấy tờ tùy thân.
                     </p>
                 </div>
             </div>
@@ -352,18 +352,18 @@ const TicketDetails = () => {
 
     // Step 3: Payment
     const renderPayment = () => (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-8 space-y-8">
-                <div className="bg-white rounded-[3rem] p-12 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-tet-yellow/[0.03] rounded-full -mr-32 -mt-32" />
-                    <h3 className="text-2xl font-black text-gray-900 mb-10 flex items-center gap-4 relative z-10">
-                        <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center border border-gray-100 shadow-sm">
-                            <CreditCard className="text-tet-red" size={24} />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div className="lg:col-span-8 space-y-4">
+                <div className="bg-white rounded-[1.5rem] p-5 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-tet-yellow/[0.03] rounded-full -mr-24 -mt-24" />
+                    <h3 className="text-lg md:text-xl font-black text-gray-900 mb-5 md:mb-8 flex items-center gap-3 relative z-10">
+                        <div className="w-9 h-9 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl flex items-center justify-center border border-gray-100 shadow-sm">
+                            <CreditCard className="text-tet-red" size={18} />
                         </div>
                         Phương thức thanh toán
                     </h3>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 relative z-10">
                         {[
                             { id: 'momo', name: 'Ví MoMo', icon: 'M', color: 'bg-[#A30065]' },
                             { id: 'vnpay', name: 'VNPay', icon: 'V', color: 'bg-[#005BAA]' },
@@ -374,25 +374,25 @@ const TicketDetails = () => {
                                 key={method.id}
                                 onClick={() => setPaymentMethod(method.id)}
                                 className={cn(
-                                    "p-8 rounded-[2rem] border-2 transition-all flex items-center gap-6 group relative overflow-hidden",
+                                    "p-3.5 md:p-5 rounded-xl md:rounded-[1.5rem] border-2 transition-all flex items-center gap-3 md:gap-4 group relative overflow-hidden",
                                     paymentMethod === method.id
-                                        ? "border-tet-red bg-white shadow-xl shadow-tet-red/5 -translate-y-1"
+                                        ? "border-tet-red bg-white shadow-lg shadow-tet-red/5 -translate-y-0.5"
                                         : "border-gray-50 bg-gray-50/50 hover:border-gray-200 hover:bg-white"
                                 )}
                             >
                                 <div className={cn(
-                                    "w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl font-black shadow-lg shadow-black/10 group-hover:scale-110 transition-transform",
+                                    "w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center text-white text-lg md:text-xl font-black shadow-lg shadow-black/10 group-hover:scale-110 transition-transform",
                                     method.color
                                 )}>
                                     {method.icon}
                                 </div>
                                 <div className="text-left">
-                                    <p className="font-black text-gray-900 text-lg mb-1">{method.name}</p>
-                                    <p className="text-xs font-black text-gray-400 uppercase tracking-widest">Miễn phí giao dịch</p>
+                                    <p className="font-black text-gray-900 text-sm md:text-base mb-0.5">{method.name}</p>
+                                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Miễn phí giao dịch</p>
                                 </div>
                                 {paymentMethod === method.id && (
-                                    <div className="absolute top-4 right-4 text-tet-red">
-                                        <CheckCircle2 size={24} />
+                                    <div className="absolute top-2.5 right-2.5 md:top-3 md:right-3 text-tet-red">
+                                        <CheckCircle2 size={18} />
                                     </div>
                                 )}
                             </button>
@@ -400,49 +400,49 @@ const TicketDetails = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 flex items-center gap-5 shadow-sm">
-                        <div className="w-14 h-14 bg-green-50 text-green-500 rounded-2xl flex items-center justify-center shrink-0">
-                            <ShieldCheck size={28} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-white p-4 md:p-6 rounded-2xl md:rounded-[2rem] border border-gray-100 flex items-center gap-3 md:gap-4 shadow-sm">
+                        <div className="w-8 h-8 md:w-12 md:h-12 bg-green-50 text-green-500 rounded-lg md:rounded-xl flex items-center justify-center shrink-0">
+                            <ShieldCheck size={20} />
                         </div>
                         <div>
-                            <p className="font-black text-gray-900 text-sm mb-1 uppercase tracking-tight">Thanh toán an toàn</p>
-                            <p className="text-gray-400 text-xs font-bold leading-relaxed">Dữ liệu của bạn được mã hóa 256-bit chuẩn quốc tế.</p>
+                            <p className="font-black text-gray-900 text-[10px] md:text-xs mb-0.5 uppercase tracking-tight">Thanh toán an toàn</p>
+                            <p className="text-gray-400 text-[9px] md:text-[10px] font-bold leading-tight md:leading-relaxed">Mã hóa 256-bit chuẩn quốc tế.</p>
                         </div>
                     </div>
-                    <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 flex items-center gap-5 shadow-sm">
-                        <div className="w-14 h-14 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center shrink-0">
-                            <Zap size={28} />
+                    <div className="bg-white p-4 md:p-6 rounded-2xl md:rounded-[2rem] border border-gray-100 flex items-center gap-3 md:gap-4 shadow-sm">
+                        <div className="w-8 h-8 md:w-12 md:h-12 bg-blue-50 text-blue-500 rounded-lg md:rounded-xl flex items-center justify-center shrink-0">
+                            <Zap size={20} />
                         </div>
                         <div>
-                            <p className="font-black text-gray-900 text-sm mb-1 uppercase tracking-tight">Xử lý tức thì</p>
-                            <p className="text-gray-400 text-xs font-bold leading-relaxed">Nhận vé điện tử ngay sau khi hoàn tất thanh toán.</p>
+                            <p className="font-black text-gray-900 text-[10px] md:text-xs mb-0.5 uppercase tracking-tight">Xử lý tức thì</p>
+                            <p className="text-gray-400 text-[9px] md:text-[10px] font-bold leading-tight md:leading-relaxed">Nhận vé ngay sau khi thanh toán.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="lg:col-span-4 space-y-6">
-                <div className="bg-white rounded-[2.5rem] p-10 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 sticky top-48">
-                    <h3 className="text-2xl font-black text-gray-900 mb-8 uppercase tracking-widest text-xs">Tổng kết thanh toán</h3>
-                    <div className="space-y-4">
-                        <div className="flex justify-between items-center text-sm font-bold text-gray-400 px-2">
+            <div className="lg:col-span-4 space-y-4">
+                <div className="bg-white rounded-2xl md:rounded-[2rem] p-5 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 sticky top-48">
+                    <h3 className="text-[9px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-5 md:mb-6">Tổng kết thanh toán</h3>
+                    <div className="space-y-2.5 md:space-y-3">
+                        <div className="flex justify-between items-center text-[11px] md:text-xs font-bold text-gray-400 px-0.5">
                             <span>Giá vé ({selectedSeats.length} người)</span>
                             <span className="text-gray-900">{(selectedSeats.length * ticket.pricePerSeat / 1000000).toFixed(2)}M VNĐ</span>
                         </div>
-                        <div className="flex justify-between items-center text-sm font-bold text-gray-400 px-2">
+                        <div className="flex justify-between items-center text-[11px] md:text-xs font-bold text-gray-400 px-0.5">
                             <span>Phí dịch vụ</span>
                             <span className="text-green-500">Miễn phí</span>
                         </div>
-                        <div className="pt-6 border-t border-dashed border-gray-200 mt-6">
-                            <div className="flex justify-between items-center mb-8 px-2">
-                                <span className="font-black text-gray-900 uppercase text-xs tracking-widest">Tổng cộng</span>
-                                <span className="text-3xl font-black text-tet-red">{(selectedSeats.length * ticket.pricePerSeat / 1000000).toFixed(2)}M</span>
+                        <div className="pt-3 md:pt-5 border-t border-dashed border-gray-200 mt-3 md:mt-5">
+                            <div className="flex justify-between items-center mb-5 md:mb-6 px-0.5">
+                                <span className="font-black text-gray-900 uppercase text-[9px] md:text-[10px] tracking-widest">Tổng cộng</span>
+                                <span className="text-xl md:text-2xl font-black text-tet-red">{(selectedSeats.length * ticket.pricePerSeat / 1000000).toFixed(2)}M</span>
                             </div>
                             <button
                                 onClick={nextStep}
                                 disabled={!paymentMethod}
-                                className="w-full bg-tet-red hover:bg-tet-red-dark text-white font-black py-5 rounded-2xl disabled:opacity-50 disabled:grayscale transition-all shadow-xl shadow-tet-red/20 transform hover:scale-[1.02] active:scale-[0.98] uppercase tracking-[0.2em] text-sm"
+                                className="w-full bg-tet-red hover:bg-tet-red-dark text-white font-black py-3.5 md:py-4 rounded-xl md:rounded-[1.2rem] disabled:opacity-50 disabled:grayscale transition-all shadow-lg shadow-tet-red/10 transform hover:scale-[1.02] active:scale-[0.98] uppercase tracking-[0.2em] text-[10px] md:text-xs"
                             >
                                 Thanh toán ngay
                             </button>
@@ -458,61 +458,61 @@ const TicketDetails = () => {
         <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="max-w-2xl mx-auto text-center space-y-8 py-10"
+            className="max-w-xl mx-auto text-center space-y-6 py-4"
         >
-            <div className="w-24 h-24 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto shadow-2xl animate-bounce">
-                <CheckCircle2 size={56} />
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto shadow-xl animate-bounce">
+                <CheckCircle2 size={40} className="md:size-48" />
             </div>
-            <div className="space-y-4">
-                <h2 className="text-4xl font-black text-gray-900">Đặt vé thành công!</h2>
-                <p className="text-gray-500 font-bold text-lg">
-                    Cảm ơn bạn đã tin tưởng dịch vụ Vé Tàu. Mã đặt chỗ của bạn là: <span className="text-tet-red font-black">VT2026-X89J</span>
+            <div className="space-y-2">
+                <h2 className="text-2xl md:text-3xl font-black text-gray-900">Đặt vé thành công!</h2>
+                <p className="text-gray-500 font-bold text-sm md:text-base">
+                    Mã đặt chỗ của bạn là: <span className="text-tet-red font-black">VT2026-X89J</span>
                 </p>
             </div>
 
-            <div className="bg-white rounded-[3rem] p-12 shadow-2xl border-2 border-gray-100 relative overflow-hidden text-left space-y-10 group">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-tet-red/5 rounded-full -mr-20 -mt-20 blur-2xl group-hover:scale-150 transition-transform duration-1000" />
-                <div className="flex justify-between items-start border-b border-gray-100 pb-10 relative z-10">
+            <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 shadow-xl border border-gray-100 relative overflow-hidden text-left space-y-6 md:space-y-8 group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-tet-red/5 rounded-full -mr-16 -mt-16 blur-2xl" />
+                <div className="flex justify-between items-start border-b border-gray-100 pb-6 md:pb-8 relative z-10">
                     <div>
-                        <div className="inline-flex items-center gap-2 bg-red-50 px-3 py-1 rounded-full text-[10px] font-black text-tet-red uppercase tracking-widest mb-4">
+                        <div className="inline-flex items-center gap-2 bg-red-50 px-2.5 py-1 rounded-full text-[9px] font-black text-tet-red uppercase tracking-widest mb-3">
                             Vé điện tử
                         </div>
-                        <p className="text-3xl font-black text-gray-900 leading-tight">
-                            {ticket.trainId}: <span className="text-tet-red underline decoration-dashed decoration-2 underline-offset-8 transition-all hover:decoration-solid cursor-default">{ticket.from}</span> - {ticket.to}
+                        <p className="text-xl md:text-2xl font-black text-gray-900 leading-tight">
+                            {ticket.trainId}: <span className="text-tet-red underline decoration-dashed decoration-2 underline-offset-4">{ticket.from}</span> - {ticket.to}
                         </p>
                     </div>
                     <div className="text-right">
-                        <p className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em] mb-2">Ngày đi</p>
-                        <p className="text-2xl font-black text-gray-900">{ticket.date}</p>
+                        <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em] mb-1">Ngày đi</p>
+                        <p className="text-lg md:text-xl font-black text-gray-900">{ticket.date}</p>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-12 relative z-10">
-                    <div className="space-y-2">
-                        <p className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">Hành khách</p>
-                        <div className="space-y-1">
+                <div className="grid grid-cols-2 gap-6 relative z-10">
+                    <div className="space-y-1">
+                        <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em]">Hành khách</p>
+                        <div className="space-y-0.5">
                             {selectedSeats.map(id => (
-                                <p key={id} className="font-black text-gray-900 text-lg">{passengers[id]?.name || 'KHÁCH HÀNG'}</p>
+                                <p key={id} className="font-black text-gray-900 text-sm md:text-base">{passengers[id]?.name || 'KHÁCH HÀNG'}</p>
                             ))}
                         </div>
                     </div>
-                    <div className="space-y-2">
-                        <p className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">Toa / Chỗ</p>
-                        <div className="space-y-1">
+                    <div className="space-y-1">
+                        <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em]">Toa / Chỗ</p>
+                        <div className="space-y-0.5">
                             {selectedSeats.map(id => (
-                                <p key={id} className="font-black text-gray-900 text-lg">Toa {id.split('-')[0]} - Số {id.split('-')[1]}</p>
+                                <p key={id} className="font-black text-gray-900 text-sm md:text-base">Toa {id.split('-')[0]} - Số {id.split('-')[1]}</p>
                             ))}
                         </div>
                     </div>
                 </div>
 
-                <div className="pt-10 flex flex-col items-center gap-6 relative z-10">
-                    <div className="p-4 bg-gray-50 rounded-[2.5rem] border border-gray-100 shadow-inner group/qr">
-                        <div className="w-56 h-56 bg-white rounded-[2rem] flex items-center justify-center shadow-lg border-2 border-dashed border-gray-100 group-hover/qr:scale-[1.02] transition-transform duration-500">
-                            <span className="text-[10px] font-black text-gray-300 tracking-[0.3em] uppercase animate-pulse">Scan QR Code</span>
+                <div className="pt-6 md:pt-8 flex flex-col items-center gap-4 relative z-10">
+                    <div className="p-3 bg-gray-50 rounded-[1.5rem] md:rounded-[2rem] border border-gray-100">
+                        <div className="w-32 h-32 md:w-44 md:h-44 bg-white rounded-xl md:rounded-2xl flex items-center justify-center border border-dashed border-gray-100">
+                            <span className="text-[8px] font-black text-gray-300 tracking-[0.2em] uppercase">QR Code</span>
                         </div>
                     </div>
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.5em] mt-4">VETAU2026-X89J</p>
+                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.4em]">VETAU2026-X89J</p>
                 </div>
             </div>
 
@@ -531,16 +531,16 @@ const TicketDetails = () => {
                 <Header />
 
                 {/* Multi-step Header - Sticky below fixed main header */}
-                <div className="pt-[140px] pb-5 bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-40">
-                    <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-wrap items-center justify-between gap-4">
+                <div className="pt-[100px] md:pt-[140px] pb-4 md:pb-5 bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-40 transition-all duration-300">
+                    <div className="max-w-7xl mx-auto px-4 md:px-12 flex flex-wrap items-center justify-between gap-3 md:gap-4">
                         <button
                             onClick={() => step === 1 ? navigate(-1) : prevStep()}
-                            className="flex items-center gap-1.5 text-gray-400 hover:text-tet-red transition-all font-bold group bg-white px-3 py-1.5 rounded-lg border border-gray-100 shadow-sm text-[11px] uppercase tracking-wider"
+                            className="flex items-center gap-1.5 text-gray-400 hover:text-tet-red transition-all font-bold group bg-white px-2.5 py-1.5 md:px-3 md:py-1.5 rounded-lg border border-gray-100 shadow-sm text-[10px] md:text-[11px] uppercase tracking-wider"
                         >
-                            <ChevronLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" /> Quay lại
+                            <ChevronLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" /> <span className="hidden xs:inline">Quay lại</span>
                         </button>
 
-                        <div className="flex items-center gap-4 text-xs">
+                        <div className="flex items-center gap-2 md:gap-4">
                             {[
                                 { s: 1, n: 'Chọn chỗ' },
                                 { s: 2, n: 'Thông tin' },
@@ -548,25 +548,25 @@ const TicketDetails = () => {
                             ].map((item, i) => (
                                 <React.Fragment key={item.s}>
                                     <div className={cn(
-                                        "flex items-center gap-2 font-bold transition-all",
+                                        "flex items-center gap-1.5 md:gap-2 font-bold transition-all",
                                         step === item.s ? "text-tet-red scale-105" : step > item.s ? "text-green-500" : "text-gray-300"
                                     )}>
                                         <span className={cn(
-                                            "w-7 h-7 rounded-lg flex items-center justify-center text-[10px] transition-all shadow-sm",
+                                            "w-6 h-6 md:w-7 md:h-7 rounded-md md:rounded-lg flex items-center justify-center text-[9px] md:text-[10px] transition-all shadow-sm",
                                             step === item.s ? "bg-tet-red text-white shadow-tet-red/20 rotate-12" : step > item.s ? "bg-green-500 text-white" : "bg-gray-50 text-gray-400"
                                         )}>
-                                            {step > item.s ? <CheckCircle2 size={14} /> : item.s}
+                                            {step > item.s ? <CheckCircle2 size={12} /> : item.s}
                                         </span>
                                         <span className="hidden sm:inline uppercase tracking-widest text-[9px]">{item.n}</span>
                                     </div>
-                                    {i < 2 && <div className={cn("h-px w-6 transition-colors", step > item.s ? "bg-green-500" : "bg-gray-100")} />}
+                                    {i < 2 && <div className={cn("h-px w-3 md:w-6 transition-colors", step > item.s ? "bg-green-500" : "bg-gray-100")} />}
                                 </React.Fragment>
                             ))}
                         </div>
                     </div>
                 </div>
 
-                <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
+                <div className="max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-10">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={step}

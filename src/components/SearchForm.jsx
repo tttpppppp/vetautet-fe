@@ -98,53 +98,57 @@ const SearchForm = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-30">
+        <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-30">
             <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="bg-white/95 backdrop-blur-2xl border border-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)] rounded-2xl p-4 md:p-5"
+                className="bg-white/95 backdrop-blur-2xl border border-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)] rounded-2xl p-4 md:p-6"
             >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 items-end">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-3 items-end">
 
                     {/* From Station */}
-                    <CustomSelect
-                        label="Ga đi"
-                        icon={MapPin}
-                        placeholder="Chọn ga đi"
-                        value={from}
-                        onChange={setFrom}
-                        options={fromOptions}
-                    />
+                    <div className="lg:col-span-3">
+                        <CustomSelect
+                            label="Ga đi"
+                            icon={MapPin}
+                            placeholder="Chọn ga đi"
+                            value={from}
+                            onChange={setFrom}
+                            options={fromOptions}
+                        />
+                    </div>
 
-                    {/* Swap Button (Desktop) */}
-                    <div className="hidden lg:flex lg:col-span-1 justify-center pb-1">
+                    {/* Swap Button */}
+                    <div className="flex lg:col-span-1 justify-center pb-0 md:pb-1">
                         <button
                             onClick={swapStations}
-                            className="w-8 h-8 bg-red-50 hover:bg-tet-red text-tet-red hover:text-white rounded-full transition-all transform hover:rotate-180 duration-500 shadow-sm border border-red-100 flex items-center justify-center group"
+                            className="w-10 h-10 md:w-8 md:h-8 bg-red-50 hover:bg-tet-red text-tet-red hover:text-white rounded-full transition-all transform hover:rotate-180 duration-500 shadow-sm border border-red-100 flex items-center justify-center group"
                         >
-                            <ArrowRightLeft size={13} className="group-hover:scale-110 transition-transform" />
+                            <ArrowRightLeft size={14} className="group-hover:scale-110 transition-transform rotate-90 lg:rotate-0" />
                         </button>
                     </div>
 
                     {/* To Station */}
-                    <CustomSelect
-                        label="Ga đến"
-                        icon={MapPin}
-                        placeholder="Chọn ga đến"
-                        value={to}
-                        onChange={setTo}
-                        options={toOptions}
-                    />
+                    <div className="lg:col-span-3">
+                        <CustomSelect
+                            label="Ga đến"
+                            icon={MapPin}
+                            placeholder="Chọn ga đến"
+                            value={to}
+                            onChange={setTo}
+                            options={toOptions}
+                        />
+                    </div>
 
                     {/* Date Picker */}
-                    <div className="lg:col-span-2 space-y-1">
+                    <div className="md:col-span-1 lg:col-span-2 space-y-1">
                         <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1.5 px-1">
                             <CalendarIcon size={11} className="text-tet-red" /> Ngày đi
                         </label>
                         <div className="relative group">
                             <input
                                 type="date"
-                                className="w-full bg-white border border-gray-200 focus:border-tet-red focus:ring-2 focus:ring-tet-red/10 rounded-lg py-2 px-3 outline-none font-bold text-sm text-gray-900 transition-all cursor-pointer group-hover:border-tet-red/30 [&::-webkit-calendar-picker-indicator]:opacity-0"
+                                className="w-full bg-white border border-gray-200 focus:border-tet-red focus:ring-2 focus:ring-tet-red/10 rounded-lg py-2.5 px-3 md:py-2 outline-none font-bold text-sm text-gray-900 transition-all cursor-pointer group-hover:border-tet-red/30 [&::-webkit-calendar-picker-indicator]:opacity-0"
                                 value={date}
                                 onChange={(e) => setDate(e.target.value)}
                             />
@@ -153,7 +157,7 @@ const SearchForm = () => {
                     </div>
 
                     {/* Passengers */}
-                    <div className="lg:col-span-1 space-y-1">
+                    <div className="md:col-span-1 lg:col-span-1 space-y-1">
                         <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1.5 px-1">
                             <Users size={11} className="text-tet-red" /> HK
                         </label>
@@ -163,14 +167,15 @@ const SearchForm = () => {
                             max="4"
                             value={passengers}
                             onChange={(e) => setPassengers(e.target.value)}
-                            className="w-full bg-white border border-gray-200 focus:border-tet-red focus:ring-2 focus:ring-tet-red/10 rounded-lg py-2 px-2 pr-1 outline-none font-black text-sm text-center text-gray-900 transition-all hover:border-tet-red/30"
+                            className="w-full bg-white border border-gray-200 focus:border-tet-red focus:ring-2 focus:ring-tet-red/10 rounded-lg py-2.5 px-2 pr-1 md:py-2 outline-none font-black text-sm text-center text-gray-900 transition-all hover:border-tet-red/30"
                         />
                     </div>
 
-                    <div className="lg:col-span-2">
+                    {/* Search Button */}
+                    <div className="md:col-span-2 lg:col-span-2">
                         <button
                             onClick={handleSearch}
-                            className="w-full bg-tet-yellow hover:bg-[#FFB300] text-red-900 font-black py-2 rounded-lg flex items-center justify-center gap-2 shadow-[0_8px_24px_-4px_rgba(255,193,7,0.3)] transition-all transform hover:scale-[1.02] active:scale-[0.98] text-xs uppercase tracking-tight"
+                            className="w-full bg-tet-yellow hover:bg-[#FFB300] text-red-900 font-black py-3 md:py-2 rounded-lg flex items-center justify-center gap-2 shadow-[0_8px_24px_-4px_rgba(255,193,7,0.3)] transition-all transform hover:scale-[1.02] active:scale-[0.98] text-xs md:text-[11px] uppercase tracking-tight"
                         >
                             <Search size={14} className="stroke-[3]" /> Tìm kiếm
                         </button>
@@ -178,21 +183,23 @@ const SearchForm = () => {
                 </div>
 
                 {/* Quick Filters / Popular Routes */}
-                <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-gray-50 pt-3">
-                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-wider">Gợi ý:</span>
-                    {['Sài Gòn → Hà Nội', 'Sài Gòn → Đà Nẵng', 'Hà Nội → Vinh'].map((route) => (
-                        <button
-                            key={route}
-                            onClick={() => {
-                                const parts = route.split(' → ');
-                                setFrom(parts[0]);
-                                setTo(parts[parts.length - 1]);
-                            }}
-                            className="text-[9px] font-bold px-3 py-1.5 bg-gray-50 text-gray-600 hover:bg-tet-red/5 hover:text-tet-red rounded-md transition-all border border-transparent hover:border-tet-red/20"
-                        >
-                            {route}
-                        </button>
-                    ))}
+                <div className="mt-6 md:mt-4 flex flex-wrap items-center gap-2 border-t border-gray-50 pt-4 md:pt-3">
+                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-wider block w-full md:w-auto mb-1 md:mb-0">Gợi ý:</span>
+                    <div className="flex flex-wrap gap-2">
+                        {['Sài Gòn → Hà Nội', 'Sài Gòn → Đà Nẵng', 'Hà Nội → Vinh'].map((route) => (
+                            <button
+                                key={route}
+                                onClick={() => {
+                                    const parts = route.split(' → ');
+                                    setFrom(parts[0]);
+                                    setTo(parts[parts.length - 1]);
+                                }}
+                                className="text-[9px] font-bold px-3 py-1.5 bg-gray-50 text-gray-600 hover:bg-tet-red/5 hover:text-tet-red rounded-md transition-all border border-transparent hover:border-tet-red/20"
+                            >
+                                {route}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </motion.div>
         </div>

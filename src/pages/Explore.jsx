@@ -69,39 +69,39 @@ const Explore = () => {
             <Header />
 
             {/* Hero Section */}
-            <section className="relative pt-52 pb-24 overflow-hidden bg-white">
+            <section className="relative pt-32 md:pt-52 pb-16 md:pb-24 overflow-hidden bg-white">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-tet-red/[0.03] -skew-x-12 transform translate-x-20" />
-                <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-0">
+                <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="max-w-3xl"
                     >
-                        <span className="inline-flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full text-xs font-black text-tet-red uppercase tracking-widest mb-6">
+                        <span className="inline-flex items-center gap-2 bg-red-50 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[9px] md:text-xs font-black text-tet-red uppercase tracking-widest mb-4 md:mb-6">
                             <Compass size={14} className="animate-spin-slow" /> Khám phá hành trình
                         </span>
-                        <h1 className="text-5xl md:text-7xl font-black text-gray-900 mb-8 leading-[1.1]">
-                            Tìm kiếm <span className="text-tet-red">Hành trình</span><br />Yêu thích của bạn
+                        <h1 className="text-3xl md:text-7xl font-black text-gray-900 mb-4 md:mb-8 leading-[1.1] md:leading-[1.1]">
+                            Tìm kiếm <span className="text-tet-red">Hành trình</span><br className="hidden md:block" /> Yêu thích của bạn
                         </h1>
-                        <p className="text-gray-500 text-lg md:text-xl font-medium mb-12 max-w-xl leading-relaxed">
+                        <p className="text-gray-500 text-base md:text-xl font-medium mb-8 md:mb-12 max-w-xl leading-relaxed">
                             Khám phá hàng trăm tuyến đường từ Bắc chí Nam. Check lịch tàu, giá vé và các điểm dừng chân tuyệt đẹp trên dải đất hình chữ S.
                         </p>
 
                         {/* Search Bar */}
                         <div className="relative group max-w-2xl">
-                            <div className="absolute -inset-1 bg-gradient-to-r from-tet-red to-tet-yellow rounded-[2.5rem] blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
-                            <div className="relative flex bg-white rounded-[2.2rem] shadow-xl overflow-hidden border border-gray-100">
-                                <div className="flex items-center pl-8 text-gray-400">
-                                    <Search size={24} />
+                            <div className="absolute -inset-1 bg-gradient-to-r from-tet-red to-tet-yellow rounded-2xl md:rounded-[2.5rem] blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+                            <div className="relative flex flex-col sm:flex-row bg-white rounded-2xl md:rounded-[2.2rem] shadow-xl overflow-hidden border border-gray-100 p-1.5 sm:p-0">
+                                <div className="hidden sm:flex items-center pl-8 text-gray-400">
+                                    <Search size={22} />
                                 </div>
                                 <input
                                     type="text"
-                                    placeholder="Tìm kiếm ga đi, ga đến hoặc mã tàu..."
-                                    className="w-full px-6 py-6 outline-none font-bold text-gray-800 placeholder:text-gray-300 transition-all"
+                                    placeholder="Tìm kiếm ga đi, ga đến..."
+                                    className="w-full px-5 py-4 sm:px-6 sm:py-6 outline-none font-bold text-gray-800 placeholder:text-gray-300 text-sm md:text-base transition-all"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
-                                <button className="bg-tet-red hover:bg-black text-white px-10 m-2 rounded-[1.8rem] font-black transition-all shadow-lg active:scale-95">
+                                <button className="bg-tet-red hover:bg-black text-white py-4 sm:px-10 sm:m-2 rounded-xl md:rounded-[1.8rem] font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-lg active:scale-95">
                                     Tìm ngay
                                 </button>
                             </div>
@@ -129,21 +129,21 @@ const Explore = () => {
             </section>
 
             {/* Popular Routes */}
-            <section className="py-24 bg-white border-t border-gray-50">
-                <div className="max-w-7xl mx-auto px-6 md:px-12">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+            <section className="py-16 md:py-24 bg-white border-t border-gray-50">
+                <div className="max-w-7xl mx-auto px-4 md:px-12">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
                         <div>
-                            <h2 className="text-4xl font-black text-gray-900 mb-4 tracking-tight">Tuyến đường phổ biến</h2>
-                            <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Hành trình được lựa chọn nhiều nhất</p>
+                            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-2 md:mb-4 tracking-tight">Tuyến đường phổ biến</h2>
+                            <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Hành trình được lựa chọn nhiều nhất</p>
                         </div>
-                        <div className="flex gap-4">
+                        <div className="flex flex-wrap gap-2 md:gap-4">
                             {['all', 'Bắc', 'Trung', 'Nam'].map(region => (
                                 <button
                                     key={region}
                                     onClick={() => setSelectedRegion(region)}
                                     className={cn(
-                                        "px-6 py-2 rounded-full font-black text-xs uppercase tracking-widest transition-all",
-                                        selectedRegion === region ? "bg-tet-red text-white shadow-lg" : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                                        "px-4 py-2 md:px-6 md:py-2 rounded-full font-black text-[10px] md:text-xs uppercase tracking-widest transition-all",
+                                        selectedRegion === region ? "bg-tet-red text-white shadow-lg" : "bg-gray-100 text-gray-400 hover:bg-gray-200"
                                     )}
                                 >
                                     {region === 'all' ? 'Tất cả' : region}
@@ -197,23 +197,23 @@ const Explore = () => {
             </section>
 
             {/* Schedule Table Section */}
-            <section className="py-24 bg-[#FAFAFA]">
-                <div className="max-w-7xl mx-auto px-6 md:px-12">
-                    <div className="bg-white rounded-[3rem] p-10 md:p-16 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 overflow-hidden relative">
+            <section className="py-16 md:py-24 bg-[#FAFAFA]">
+                <div className="max-w-7xl mx-auto px-4 md:px-12">
+                    <div className="bg-white rounded-3xl md:rounded-[3rem] p-6 md:p-16 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 overflow-hidden relative">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-tet-red/[0.01] rounded-full -mr-32 -mt-32" />
 
-                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-12 relative z-10">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8 mb-8 md:mb-12 relative z-10">
                             <div>
-                                <h2 className="text-3xl font-black text-gray-900 mb-2">Tất cả lịch trình hôm nay</h2>
-                                <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Cập nhật thời gian thực từ hệ thống</p>
+                                <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">Tất cả lịch trình hôm nay</h2>
+                                <p className="text-gray-400 font-bold uppercase tracking-widest text-[9px]">Cập nhật thời gian thực từ hệ thống</p>
                             </div>
-                            <button className="flex items-center gap-3 bg-gray-50 px-6 py-3 rounded-2xl border border-gray-100 text-gray-500 font-bold hover:bg-white hover:shadow-lg transition-all group">
-                                <Filter size={18} className="group-hover:rotate-180 transition-transform" />
+                            <button className="flex items-center justify-center gap-3 bg-gray-50 px-5 py-3 md:px-6 md:py-3 rounded-xl md:rounded-2xl border border-gray-100 text-gray-500 font-bold text-xs md:text-sm hover:bg-white hover:shadow-lg transition-all group">
+                                <Filter size={16} className="group-hover:rotate-180 transition-transform" />
                                 Lọc theo trạm ga
                             </button>
                         </div>
 
-                        <div className="overflow-x-auto relative z-10">
+                        <div className="overflow-x-auto relative z-10 -mx-6 md:mx-0 px-6 md:px-0">
                             <table className="w-full">
                                 <thead>
                                     <tr className="border-b border-gray-100 text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">
@@ -271,21 +271,24 @@ const Explore = () => {
             </section>
 
             {/* Newsletter/Footer Info Section */}
-            <section className="py-24 bg-white">
-                <div className="max-w-7xl mx-auto px-6 md:px-12">
-                    <div className="bg-tet-yellow rounded-[3.5rem] p-12 md:p-20 relative overflow-hidden flex flex-col items-center text-center">
+            <section className="py-16 md:py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-4 md:px-12">
+                    <div className="bg-tet-yellow rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-20 relative overflow-hidden flex flex-col items-center text-center">
                         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             className="relative z-10"
                         >
-                            <h2 className="text-4xl md:text-5xl font-black text-red-900 mb-8 leading-tight">Ghé thăm những miền di sản</h2>
-                            <p className="text-red-800/60 text-lg font-bold mb-12 max-w-2xl leading-relaxed uppercase tracking-wider">
+                            <h2 className="text-2xl md:text-5xl font-black text-red-900 mb-4 md:mb-8 leading-tight">Ghé thăm những miền di sản</h2>
+                            <p className="text-red-800/60 text-sm md:text-lg font-bold mb-8 md:mb-12 max-w-2xl leading-relaxed uppercase tracking-wider">
                                 Khám phá vẻ đẹp truyền thống Việt Nam qua khung cửa sổ toa tàu.
-                                <br />Bắt đầu cuộc hành trình xuân ý nghĩa ngay hôm nay.
+                                <br className="hidden md:block" />Bắt đầu cuộc hành trình xuân ý nghĩa ngay hôm nay.
                             </p>
-                            <button className="bg-red-900 text-white px-12 py-5 rounded-full font-black text-xl hover:bg-black transition-all shadow-2xl active:scale-95">
+                            <button
+                                onClick={() => navigate('/')}
+                                className="bg-red-900 text-white px-8 py-4 md:px-12 md:py-5 rounded-full font-black text-base md:text-xl hover:bg-black transition-all shadow-2xl active:scale-95"
+                            >
                                 Quay lại trang chủ
                             </button>
                         </motion.div>

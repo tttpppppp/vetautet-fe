@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Train, User, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -31,26 +32,26 @@ const Header = () => {
         >
             <div
                 className={cn(
-                    "flex items-center justify-between px-6 transition-all duration-500 rounded-full",
+                    "flex items-center justify-between px-4 md:px-6 transition-all duration-500 rounded-full",
                     isScrolled
                         ? "bg-white/90 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.08)] py-2"
                         : "bg-black/20 backdrop-blur-md border border-white/10 py-3"
                 )}
             >
                 {/* Logo Section */}
-                <Link to="/" className="flex items-center gap-2 group">
-                    <div className="w-8 h-8 bg-gradient-to-br from-tet-red to-red-600 rounded-xl flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-transform duration-500">
-                        <Train className="text-white" size={18} />
+                <Link to="/" className="flex items-center gap-1.5 md:gap-2 group shrink-0">
+                    <div className="w-7 h-7 md:w-8 md:h-8 bg-gradient-to-br from-tet-red to-red-600 rounded-lg md:rounded-xl flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-transform duration-500">
+                        <Train className="text-white" size={16} />
                     </div>
                     <div className="flex flex-col">
                         <span className={cn(
-                            "text-lg font-black tracking-tighter leading-none transition-colors",
+                            "text-base md:text-lg font-black tracking-tighter leading-none transition-colors",
                             isScrolled ? "text-gray-900" : "text-white"
                         )}>
                             VÉ <span className="text-tet-red group-hover:text-tet-yellow transition-colors">TÀU</span>
                         </span>
                         <span className={cn(
-                            "text-[7px] font-bold uppercase tracking-[0.25em] transition-opacity mt-0.5",
+                            "text-[6px] md:text-[7px] font-bold uppercase tracking-[0.2em] md:tracking-[0.25em] transition-opacity mt-0.5",
                             isScrolled ? "text-gray-400" : "text-white/60"
                         )}>Đặt vé trực tuyến</span>
                     </div>
@@ -74,18 +75,18 @@ const Header = () => {
                 </nav>
 
                 {/* Right Actions */}
-                <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-6">
-                        <Link to="/profile" className="flex items-center gap-2 text-[13px] font-black text-gray-500 hover:text-tet-red transition-all group">
+                <div className="flex items-center gap-2 md:gap-4">
+                    <div className="flex items-center gap-3 md:gap-6">
+                        <Link to="/profile" className="flex items-center gap-2 text-[12px] md:text-[13px] font-black text-gray-500 hover:text-tet-red transition-all group">
                             <div className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center group-hover:bg-red-50 group-hover:shadow-md transition-all">
                                 <User size={14} className="group-hover:scale-110 transition-transform" />
                             </div>
                             <span className="hidden sm:inline">Phạm Kỳ Anh</span>
                         </Link>
-                        <button className="bg-gradient-to-r from-tet-red to-red-600 text-white pl-6 pr-4 py-2 rounded-full font-black text-xs uppercase tracking-wider flex items-center gap-3 hover:translate-x-1 transition-all shadow-lg shadow-tet-red/20 active:scale-95 group">
+                        <button className="hidden sm:flex bg-gradient-to-r from-tet-red to-red-600 text-white pl-5 pr-3 py-1.5 md:pl-6 md:pr-4 md:py-2 rounded-full font-black text-[10px] md:text-xs uppercase tracking-wider items-center gap-2 md:gap-3 hover:translate-x-1 transition-all shadow-lg shadow-tet-red/20 active:scale-95 group">
                             Đặt ngay
-                            <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-tet-red transition-all">
-                                <ChevronRight size={12} />
+                            <div className="w-4 h-4 md:w-5 md:h-5 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-tet-red transition-all">
+                                <ChevronRight size={10} />
                             </div>
                         </button>
                     </div>
@@ -98,37 +99,53 @@ const Header = () => {
                         )}
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
-                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
                     </button>
                 </div>
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div className={cn(
-                "fixed inset-x-0 top-[110%] bg-white/95 backdrop-blur-2xl rounded-3xl border border-gray-100 shadow-2xl p-6 lg:hidden transition-all duration-500 origin-top transform",
-                isMobileMenuOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-4 pointer-events-none"
-            )}>
-                <nav className="flex flex-col gap-2">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            to={link.href}
-                            className="text-lg font-black text-gray-800 p-4 rounded-2xl hover:bg-red-50 hover:text-tet-red transition-all"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                    <div className="h-px bg-gray-100 my-4" />
-                    <Link
-                        to="/login"
-                        className="w-full bg-gray-100 text-gray-800 font-bold py-4 rounded-2xl hover:bg-gray-200 transition-all flex items-center justify-center gap-2"
-                        onClick={() => setIsMobileMenuOpen(false)}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95, y: -20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="fixed inset-x-0 top-[110%] bg-white/95 backdrop-blur-2xl rounded-3xl border border-gray-100 shadow-2xl p-6 lg:hidden origin-top"
                     >
-                        <User size={20} /> Đăng nhập / Đăng ký
-                    </Link>
-                </nav>
-            </div>
+                        <nav className="flex flex-col gap-2">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.name}
+                                    to={link.href}
+                                    className="text-lg font-black text-gray-800 p-4 rounded-2xl hover:bg-red-50 hover:text-tet-red transition-all flex items-center justify-between group"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    {link.name}
+                                    <ChevronRight size={18} className="text-gray-300 group-hover:text-tet-red group-hover:translate-x-1 transition-all" />
+                                </Link>
+                            ))}
+                            <div className="h-px bg-gray-100 my-4" />
+                            <div className="space-y-3">
+                                <Link
+                                    to="/login"
+                                    className="w-full bg-gray-50 text-gray-800 font-bold py-4 rounded-2xl hover:bg-gray-100 transition-all flex items-center justify-center gap-2 border border-gray-100"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    <User size={20} /> Đăng nhập / Đăng ký
+                                </Link>
+                                <button
+                                    className="w-full bg-tet-red text-white font-black py-4 rounded-2xl hover:bg-tet-red-dark transition-all flex items-center justify-center gap-2 shadow-lg shadow-tet-red/20"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    Đặt vé ngay <ChevronRight size={18} />
+                                </button>
+                            </div>
+                        </nav>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </header>
     );
 };

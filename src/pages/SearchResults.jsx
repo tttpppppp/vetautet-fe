@@ -136,30 +136,30 @@ const SearchResults = () => {
         <main className="min-h-screen bg-white">
             <Header />
 
-            <div className="pt-28 pb-12 bg-gray-900 relative overflow-hidden">
+            <div className="pt-24 md:pt-28 pb-8 md:pb-12 bg-gray-900 relative overflow-hidden transition-all duration-300">
                 <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-red-950/40 to-black" />
 
-                <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+                <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                     >
-                        <h1 className="text-2xl md:text-3xl font-black text-white mb-2 tracking-tighter">Kết quả tìm kiếm</h1>
+                        <h1 className="text-xl md:text-3xl font-black text-white mb-2 tracking-tighter">Kết quả tìm kiếm</h1>
                         <div className="flex items-center gap-2">
-                            <span className="px-2 py-0.5 bg-tet-red/20 text-tet-red rounded-full text-[9px] font-black uppercase tracking-widest border border-tet-red/30">Tìm kiếm chuyến tàu</span>
-                            <p className="text-gray-400 font-bold text-xs">Tìm thấy {dummyTickets.length} chuyến tàu phù hợp</p>
+                            <span className="px-2 py-0.5 bg-tet-red/20 text-tet-red rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-widest border border-tet-red/30">Chuyến tàu</span>
+                            <p className="text-gray-400 font-bold text-[10px] md:text-xs">Tìm thấy {dummyTickets.length} chuyến tàu phù hợp</p>
                         </div>
                     </motion.div>
                 </div>
             </div>
 
-            <div className="relative mt-4 mb-8 px-4">
+            <div className="relative -mt-6 md:mt-4 mb-6 md:mb-8 px-2 md:px-4">
                 <SearchForm />
             </div>
 
             <section className="pb-16 bg-white">
-                <div className="max-w-7xl mx-auto px-6 md:px-12">
+                <div className="max-w-7xl mx-auto px-4 md:px-12">
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
                         {/* Sidebar Filters */}
                         <aside className={cn(

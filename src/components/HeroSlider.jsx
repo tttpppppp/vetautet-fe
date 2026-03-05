@@ -33,20 +33,20 @@ const slides = [
 
 const HeroSlider = () => {
     return (
-        <section className="relative h-[95vh] w-full overflow-hidden bg-gray-900">
+        <section className="relative h-[80vh] md:h-[95vh] w-full overflow-hidden bg-gray-900">
             {/* Ambient Background Glows */}
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-tet-red/20 rounded-full blur-[120px] -z-10 animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-tet-yellow/10 rounded-full blur-[100px] -z-10" />
+            <div className="absolute top-0 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-tet-red/20 rounded-full blur-[120px] -z-10 animate-pulse" />
+            <div className="absolute bottom-0 right-1/4 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-tet-yellow/10 rounded-full blur-[100px] -z-10" />
 
-            {/* Continuous Falling Petals (Outside Swiper to prevent reset) */}
+            {/* Continuous Falling Petals */}
             <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-                {[...Array(15)].map((_, i) => (
+                {[...Array(10)].map((_, i) => ( // Reduced for mobile performance
                     <motion.div
                         key={i}
                         initial={{ y: -50, opacity: 0, rotate: 0 }}
                         animate={{
                             y: [0, 1000],
-                            x: [0, Math.sin(i) * 200],
+                            x: [0, Math.sin(i) * 100],
                             opacity: [0, 0.7, 0.4, 0],
                             rotate: [0, 360 * (i % 2 === 0 ? 1 : -1)],
                             scale: [0.8, 1.2, 0.9]
@@ -58,19 +58,18 @@ const HeroSlider = () => {
                             ease: "linear"
                         }}
                         className="absolute"
-                        style={{ left: `${(i * 7) % 100}%`, top: "-10%" }}
+                        style={{ left: `${(i * 10) % 100}%`, top: "-10%" }}
                     >
-                        {/* Petal Shape - alternating between Yellow (Mai) and Pink (Đào) */}
                         <div
                             className={cn(
-                                "w-4 h-5 rounded-[40%_60%_70%_30%] blur-[0.3px] transform shadow-sm",
+                                "w-3 h-4 md:w-4 md:h-5 rounded-[40%_60%_70%_30%] blur-[0.3px] transform shadow-sm",
                                 i % 2 === 0
                                     ? "bg-gradient-to-br from-[#FFD54F] to-[#FBC02D]" // Yellow Mai
                                     : "bg-gradient-to-br from-[#FF80AB] to-[#F48FB1]" // Pink Đào
                             )}
                             style={{
                                 rotate: `${i * 45}deg`,
-                                boxShadow: `0 0 10px ${i % 2 === 0 ? 'rgba(255,213,79,0.3)' : 'rgba(255,128,171,0.3)'}`
+                                boxShadow: `0 0 10px ${i % 2 === 0 ? 'rgba(255,213,79,0.2)' : 'rgba(255,128,171,0.2)'}`
                             }}
                         />
                     </motion.div>
@@ -85,7 +84,7 @@ const HeroSlider = () => {
                     clickable: true,
                     dynamicBullets: true,
                     renderBullet: (index, className) => {
-                        return `<span class="${className} !bg-tet-yellow !w-3 !h-3"></span>`;
+                        return `<span class="${className} !bg-tet-yellow !w-2 !h-2 md:!w-3 md:!h-3"></span>`;
                     }
                 }}
                 className="h-full w-full"
@@ -102,32 +101,29 @@ const HeroSlider = () => {
                                     )}
                                     style={{ backgroundImage: `url(${slide.image})` }}
                                 >
-                                    {/* Main Gradient Scrim */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent z-10" />
-                                    {/* Top Scrim for Header */}
-                                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent h-1/3 z-10" />
-                                    {/* Bottom Vignette */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent md:via-black/40 z-10" />
+                                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-transparent h-1/3 z-10" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
                                 </div>
 
                                 {/* Content Container */}
                                 <div className="max-w-7xl mx-auto px-6 md:px-12 h-full flex flex-col justify-center relative z-20">
-                                    <div className="max-w-3xl pt-12">
+                                    <div className="max-w-3xl pt-20 md:pt-12">
                                         <motion.div
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                                             transition={{ duration: 0.8, delay: 0.3 }}
-                                            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-4 py-1.5 rounded-full mb-6"
+                                            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-3 py-1 md:px-4 md:py-1.5 rounded-full mb-4 md:mb-6"
                                         >
                                             <span className="w-1.5 h-1.5 rounded-full bg-tet-yellow shadow-[0_0_8px_#FFC107]" />
-                                            <span className="text-white font-bold uppercase tracking-widest text-[10px]">Hệ thống đặt vé tàu</span>
+                                            <span className="text-white font-bold uppercase tracking-widest text-[9px] md:text-[10px]">Hệ thống đặt vé tàu</span>
                                         </motion.div>
 
                                         <motion.h1
                                             initial={{ opacity: 0, y: 30 }}
                                             animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                                             transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                                            className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tight drop-shadow-lg"
+                                            className="text-3xl sm:text-4xl md:text-7xl font-black text-white mb-4 md:mb-6 leading-[1.2] md:leading-[1.1] tracking-tight drop-shadow-lg"
                                         >
                                             {slide.title.split(slide.highlight).map((part, i, arr) => (
                                                 <React.Fragment key={i}>
@@ -145,7 +141,7 @@ const HeroSlider = () => {
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                                             transition={{ duration: 1, delay: 0.7 }}
-                                            className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-xl font-medium"
+                                            className="text-sm md:text-xl text-white/80 mb-8 md:mb-10 leading-relaxed max-w-xl font-medium"
                                         >
                                             {slide.subtitle}
                                         </motion.p>
@@ -154,13 +150,13 @@ const HeroSlider = () => {
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                                             transition={{ duration: 0.8, delay: 0.9 }}
-                                            className="flex flex-wrap items-center gap-5"
+                                            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 md:gap-5"
                                         >
-                                            <button className="bg-tet-red hover:bg-tet-red-dark text-white px-8 py-4 rounded-2xl font-black text-lg flex items-center gap-3 shadow-xl shadow-tet-red/30 transition-all transform hover:scale-105 active:scale-95 group">
+                                            <button className="bg-tet-red hover:bg-tet-red-dark text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-sm md:text-lg flex items-center justify-center gap-3 shadow-xl shadow-tet-red/30 transition-all transform hover:scale-105 active:scale-95 group">
                                                 Đặt vé ngay <ChevronRight className="group-hover:translate-x-1 transition-transform" />
                                             </button>
-                                            <button className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white px-8 py-4 rounded-2xl font-bold text-lg flex items-center gap-3 transition-all">
-                                                <Train size={22} /> Xem lịch trình
+                                            <button className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-sm md:text-lg flex items-center justify-center gap-3 transition-all">
+                                                <Train size={18} /> Xem lịch trình
                                             </button>
                                         </motion.div>
                                     </div>
@@ -171,8 +167,8 @@ const HeroSlider = () => {
                 ))}
             </Swiper>
 
-            {/* Branch Decoration (Clean) */}
-            <div className="absolute top-0 right-0 z-30 pointer-events-none opacity-40 mix-blend-screen">
+            {/* Branch Decoration */}
+            <div className="absolute top-0 right-0 z-30 pointer-events-none opacity-40 mix-blend-screen scale-75 md:scale-100 origin-top-right">
                 <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M400 0C320 40 220 120 180 320" stroke="#FFC107" strokeWidth="1.5" strokeDasharray="10 10" />
                     {[
@@ -186,7 +182,7 @@ const HeroSlider = () => {
                 </svg>
             </div>
 
-            {/* Bottom Scrim to improve Search Card connection */}
+            {/* Bottom Scrim */}
             <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-transparent to-transparent z-25 pointer-events-none" />
         </section>
     );
