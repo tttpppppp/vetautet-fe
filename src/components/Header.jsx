@@ -265,33 +265,6 @@ const Header = () => {
                             ))}
                             <div className="h-px bg-gray-100 my-4" />
 
-                            {/* Mobile Actions: Notifications & Language */}
-                            <div className="grid grid-cols-2 gap-3 mb-4">
-                                <div className="bg-gray-50 rounded-2xl p-4 flex flex-col gap-2">
-                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('header.notifications') || 'NOTIFICATIONS'}</span>
-                                    <div className="flex items-center gap-2 text-tet-red font-bold">
-                                        <Bell size={18} />
-                                        <span>3 {t('header.new') || 'New'}</span>
-                                    </div>
-                                </div>
-                                <div className="bg-gray-50 rounded-2xl p-4 flex flex-col gap-2">
-                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('header.language') || 'LANGUAGE'}</span>
-                                    <div className="flex items-center gap-3">
-                                        <button
-                                            onClick={() => changeLanguage('vi')}
-                                            className={cn("w-7 h-5 rounded-sm overflow-hidden border-2 transition-all", currentLang === 'VI' ? "border-tet-red scale-110 shadow-sm" : "border-transparent opacity-50")}
-                                        >
-                                            <img src="https://flagcdn.com/w40/vn.png" alt="VI" className="w-full h-full object-cover" />
-                                        </button>
-                                        <button
-                                            onClick={() => changeLanguage('en')}
-                                            className={cn("w-7 h-5 rounded-sm overflow-hidden border-2 transition-all", currentLang === 'EN' ? "border-tet-red scale-110 shadow-sm" : "border-transparent opacity-50")}
-                                        >
-                                            <img src="https://flagcdn.com/w40/gb.png" alt="EN" className="w-full h-full object-cover" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div className="space-y-3">
                                 <Link
