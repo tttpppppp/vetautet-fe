@@ -1,0 +1,57 @@
+{
+    "hero": {
+        "title_1": "Đặt Vé Tàu Trực Tuyến",
+        "title_2": "Kết Nối Mọi Miền Tổ Quốc",
+        "title_3": "Hành Trình Bình An",
+        "subtitle_1": "Nhanh chóng, an toàn và ngập tràn ưu đãi cho mọi hành trình của bạn.",
+        "subtitle_2": "Hệ thống đặt vé thông minh giúp bạn tìm được chuyến đi ưng ý nhất chỉ trong vài cú click.",
+        "subtitle_3": "Trải nghiệm dịch vụ tàu hỏa hiện đại, tiện nghi và chu đáo suốt cả chặng đường.",
+        "highlight_1": "Sum họp",
+        "highlight_2": "Thông minh",
+        "highlight_3": "Bình an",
+        "cta_book": "Đặt vé ngay",
+        "cta_schedule": "Xem lịch trình",
+        "system_tag": "Hệ thống đặt vé tàu",
+        "year_badge": "Bính Ngọ 2026"
+    },
+    "tickets": {
+        "tag": "Khám phá ngay",
+        "title_main": "Vé Tàu",
+        "title_highlight": "Phổ Biến",
+        "title_end": "Nhất",
+        "subtitle": "Các chuyến tàu được nhiều người lựa chọn nhất hiện nay.",
+        "view_all": "Xem tất cả lịch trình",
+        "popular_badge": "Bán chạy",
+        "seats_left": "chỗ",
+        "discount": "Giảm",
+        "select": "Chọn vé",
+        "seat_types": {
+            "sleeper_4": "Giường nằm khoang 4",
+            "sleeper_6": "Giường nằm khoang 6",
+            "soft_seat": "Ghế ngồi mềm ĐH",
+            "sleeper_4_vip": "Khoang 4 VIP",
+            "sleeper_6_normal": "Khoang 6 Thường",
+            "soft_seat_ac": "Ngồi mềm Điều hòa"
+        }
+    },
+    "promotions": {
+        "title_1": "Giảm Giá 20%",
+        "highlight_1": "Vé Tàu Sớm",
+        "desc_1": "Nhập mã \"VETAUSOM\" để nhận ngay ưu đãi khi đặt vé sớm trước ngày 15/12.",
+        "cta_1": "Nhận ưu đãi ngay",
+        "flash_sale": "Flash Sale",
+        "title_2": "Thanh toán qua App",
+        "desc_2": "Hoàn tiền lên đến 100k cho mỗi giao dịch",
+        "stats_1_val": "2tr+",
+        "stats_1_label": "Lượt đặt vé mỗi năm",
+        "stats_2_val": "99%",
+        "stats_2_label": "Khách hàng hài lòng"
+    },
+    "home": {
+        "cta_section": {
+            "title": "Sẵn sàng cho hành trình?",
+            "desc": "Hàng ngàn vé tàu đang chờ đợi bạn. Đặt vé ngay để tận hưởng hành trình tuyệt vời với mức giá tốt nhất.",
+            "button": "Đặt vé ngay bây giờ"
+        }
+    }
+}

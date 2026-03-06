@@ -1,0 +1,31 @@
+{
+    "orders": {
+        "seo_title": "Lịch sử đơn hàng - Vé Tàu Việt Nam",
+        "seo_desc": "Quản lý các vé tàu đã đặt, theo dõi lịch trình và tải vé điện tử của bạn tại hệ thống Vé Tàu Việt Nam.",
+        "manage_label": "Quản lý đơn hàng",
+        "title": "Vé tàu của bạn",
+        "desc": "Theo dõi lịch trình, tải vé điện tử hoặc quản lý các yêu cầu hoàn/hủy vé tại đây.",
+        "search_placeholder": "Tìm mã đơn hàng...",
+        "tabs": {
+            "all": "Tất cả đơn",
+            "active": "Chờ thanh toán",
+            "completed": "Đã hoàn tất",
+            "cancelled": "Đã hủy"
+        },
+        "status": {
+            "active": "Chờ thanh toán",
+            "completed": "Đã hoàn tất",
+            "cancelled": "Đã hủy"
+        },
+        "not_found": "Không tìm thấy đơn hàng",
+        "not_found_desc": "Bạn chưa có đơn hàng nào trong mục này.",
+        "find_now": "Tìm chuyến ngay",
+        "priority": "Ưu tiên",
+        "date": "Ngày đi",
+        "seat": "Chỗ ngồi",
+        "passenger_count": "{{count}} Hành khách",
+        "total_price": "Tổng tiền",
+        "vat_included": "Đã bao gồm VAT",
+        "details_cta": "Chi tiết"
+    }
+}

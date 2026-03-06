@@ -10,66 +10,70 @@ import {
 import { cn } from '@/lib/utils';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 const Explore = () => {
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedRegion, setSelectedRegion] = useState('all');
 
     const popularRoutes = [
         {
             id: 1,
-            from: 'Sài Gòn',
-            to: 'Đà Nẵng',
+            from: t('search.stations.saigon'),
+            to: t('search.stations.danang'),
             image: 'https://images.unsplash.com/photo-1559592442-7e182c8bd03c?auto=format&fit=crop&q=80&w=800',
             price: '850.000đ',
             duration: '16h 30p',
             rating: 4.8,
-            tag: 'Phổ biến nhất'
+            tag: t('explore.tags.most_popular')
         },
         {
             id: 2,
-            from: 'Hà Nội',
-            to: 'Lào Cai (Sapa)',
+            from: t('search.stations.hanoi'),
+            to: t('search.stations.laocai'),
             image: 'https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&q=80&w=800',
             price: '450.000đ',
             duration: '8h 15p',
             rating: 4.9,
-            tag: 'Yêu thích'
+            tag: t('explore.tags.favorite')
         },
         {
             id: 3,
-            from: 'Đà Nẵng',
-            to: 'Huế',
+            from: t('search.stations.danang'),
+            to: t('search.stations.hue'),
             image: 'https://images.unsplash.com/photo-1599708145801-03c46e30ef01?auto=format&fit=crop&q=80&w=800',
             price: '120.000đ',
             duration: '2h 45p',
             rating: 4.7,
-            tag: 'Cảnh đẹp'
+            tag: t('explore.tags.scenic')
         },
         {
             id: 4,
-            from: 'Hà Nội',
-            to: 'Hải Phòng',
+            from: t('search.stations.hanoi'),
+            to: t('search.stations.haiphong'),
             image: 'https://images.unsplash.com/photo-1555930141-860824641ec4?auto=format&fit=crop&q=80&w=800',
             price: '85.000đ',
             duration: '1h 50p',
             rating: 4.5,
-            tag: 'Cuối tuần'
+            tag: t('explore.tags.weekend')
         }
     ];
 
     const allSchedules = [
-        { id: 'SE1', from: 'Hà Nội', to: 'Sài Gòn', dep: '21:30', arr: '05:45', status: 'On Time', type: 'Express' },
-        { id: 'SE3', from: 'Hà Nội', to: 'Sài Gòn', dep: '19:25', arr: '04:30', status: 'On Time', type: 'Express' },
-        { id: 'SE5', from: 'Hà Nội', to: 'Sài Gòn', dep: '08:50', arr: '18:55', status: 'Delayed 10m', type: 'Normal' },
-        { id: 'TN1', from: 'Hà Nội', to: 'Sài Gòn', dep: '13:10', arr: '02:15', status: 'On Time', type: 'Economy' },
+        { id: 'SE1', from: t('search.stations.hanoi'), to: t('search.stations.saigon'), dep: '21:30', arr: '05:45', status: t('explore.schedules.status.on_time'), type: t('explore.schedules.express') },
+        { id: 'SE3', from: t('search.stations.hanoi'), to: t('search.stations.saigon'), dep: '19:25', arr: '04:30', status: t('explore.schedules.status.on_time'), type: t('explore.schedules.express') },
+        { id: 'SE5', from: t('search.stations.hanoi'), to: t('search.stations.saigon'), dep: '08:50', arr: '18:55', status: 'Delayed 10m', type: t('explore.schedules.normal') },
+        { id: 'TN1', from: t('search.stations.hanoi'), to: t('search.stations.saigon'), dep: '13:10', arr: '02:15', status: t('explore.schedules.status.on_time'), type: t('explore.schedules.economy') },
     ];
 
     return (
         <main className="min-h-screen bg-[#FAFAFA] flex flex-col">
             <Helmet>
-                <title>Khám phá hành trình - Vé Tàu Việt Nam</title>
-                <meta name="description" content="Tìm kiếm lịch trình các tuyến tàu phổ biến: Sài Gòn - Đà Nẵng, Hà Nội - Lào Cai, Huế và nhiều điểm đến du lịch hấp dẫn khác." />
+                <title>{t('explore.seo_title')}</title>
+                <meta name="description" content={t('explore.seo_desc')} />
             </Helmet>
             <Header />
 
@@ -83,13 +87,13 @@ const Explore = () => {
                         className="max-w-3xl"
                     >
                         <span className="inline-flex items-center gap-2 bg-red-50 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[9px] md:text-xs font-black text-tet-red uppercase tracking-widest mb-4 md:mb-6">
-                            <Compass size={14} className="animate-spin-slow" /> Khám phá hành trình
+                            <Compass size={14} className="animate-spin-slow" /> {t('explore.hero_tag')}
                         </span>
                         <h1 className="text-3xl md:text-7xl font-black text-gray-900 mb-4 md:mb-8 leading-[1.1] md:leading-[1.1]">
-                            Tìm kiếm <span className="text-tet-red">Hành trình</span><br className="hidden md:block" /> Yêu thích của bạn
+                            {t('explore.hero_title_1')} <span className="text-tet-red">{t('explore.hero_title_accent')}</span><br className="hidden md:block" /> {t('explore.hero_title_2')}
                         </h1>
                         <p className="text-gray-500 text-base md:text-xl font-medium mb-8 md:mb-12 max-w-xl leading-relaxed">
-                            Khám phá hàng trăm tuyến đường từ Bắc chí Nam. Check lịch tàu, giá vé và các điểm dừng chân tuyệt đẹp trên dải đất hình chữ S.
+                            {t('explore.hero_desc')}
                         </p>
 
                         {/* Search Bar */}
@@ -101,13 +105,13 @@ const Explore = () => {
                                 </div>
                                 <input
                                     type="text"
-                                    placeholder="Tìm kiếm ga đi, ga đến..."
+                                    placeholder={t('explore.search_placeholder')}
                                     className="w-full px-5 py-4 sm:px-6 sm:py-6 outline-none font-bold text-gray-800 placeholder:text-gray-300 text-sm md:text-base transition-all"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
                                 <button className="bg-tet-red hover:bg-black text-white py-4 sm:px-10 sm:m-2 rounded-xl md:rounded-[1.8rem] font-black text-xs md:text-sm uppercase tracking-widest transition-all shadow-lg active:scale-95">
-                                    Tìm ngay
+                                    {t('explore.search_cta')}
                                 </button>
                             </div>
                         </div>
@@ -138,20 +142,20 @@ const Explore = () => {
                 <div className="max-w-7xl mx-auto px-4 md:px-12">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-2 md:mb-4 tracking-tight">Tuyến đường phổ biến</h2>
-                            <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Hành trình được lựa chọn nhiều nhất</p>
+                            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-2 md:mb-4 tracking-tight">{t('explore.popular_title')}</h2>
+                            <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px]">{t('explore.popular_subtitle')}</p>
                         </div>
                         <div className="flex flex-wrap gap-2 md:gap-4">
-                            {['all', 'Bắc', 'Trung', 'Nam'].map(region => (
+                            {['all', 'north', 'central', 'south'].map(regionKey => (
                                 <button
-                                    key={region}
-                                    onClick={() => setSelectedRegion(region)}
+                                    key={regionKey}
+                                    onClick={() => setSelectedRegion(regionKey)}
                                     className={cn(
                                         "px-4 py-2 md:px-6 md:py-2 rounded-full font-black text-[10px] md:text-xs uppercase tracking-widest transition-all",
-                                        selectedRegion === region ? "bg-tet-red text-white shadow-lg" : "bg-gray-100 text-gray-400 hover:bg-gray-200"
+                                        selectedRegion === regionKey ? "bg-tet-red text-white shadow-lg" : "bg-gray-100 text-gray-400 hover:bg-gray-200"
                                     )}
                                 >
-                                    {region === 'all' ? 'Tất cả' : region}
+                                    {t(`explore.regions.${regionKey}`)}
                                 </button>
                             ))}
                         </div>
@@ -209,12 +213,12 @@ const Explore = () => {
 
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8 mb-8 md:mb-12 relative z-10">
                             <div>
-                                <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">Tất cả lịch trình hôm nay</h2>
-                                <p className="text-gray-400 font-bold uppercase tracking-widest text-[9px]">Cập nhật thời gian thực từ hệ thống</p>
+                                <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">{t('explore.schedules.title')}</h2>
+                                <p className="text-gray-400 font-bold uppercase tracking-widest text-[9px]">{t('explore.schedules.subtitle')}</p>
                             </div>
                             <button className="flex items-center justify-center gap-3 bg-gray-50 px-5 py-3 md:px-6 md:py-3 rounded-xl md:rounded-2xl border border-gray-100 text-gray-500 font-bold text-xs md:text-sm hover:bg-white hover:shadow-lg transition-all group">
                                 <Filter size={16} className="group-hover:rotate-180 transition-transform" />
-                                Lọc theo trạm ga
+                                {t('explore.schedules.filter')}
                             </button>
                         </div>
 
@@ -222,12 +226,12 @@ const Explore = () => {
                             <table className="w-full">
                                 <thead>
                                     <tr className="border-b border-gray-100 text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">
-                                        <th className="pb-6 text-left px-4">Chuyến tàu</th>
-                                        <th className="pb-6 text-left px-4">Lộ trình</th>
-                                        <th className="pb-6 text-left px-4">Xuất phát</th>
-                                        <th className="pb-6 text-left px-4">Đến nơi</th>
-                                        <th className="pb-6 text-left px-4">Trạng thái</th>
-                                        <th className="pb-6 text-right px-4">Hành động</th>
+                                        <th className="pb-6 text-left px-4">{t('explore.schedules.table.train')}</th>
+                                        <th className="pb-6 text-left px-4">{t('explore.schedules.table.route')}</th>
+                                        <th className="pb-6 text-left px-4">{t('explore.schedules.table.departure')}</th>
+                                        <th className="pb-6 text-left px-4">{t('explore.schedules.table.arrival')}</th>
+                                        <th className="pb-6 text-left px-4">{t('explore.schedules.table.status')}</th>
+                                        <th className="pb-6 text-right px-4">{t('explore.schedules.table.action')}</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-50">
@@ -239,7 +243,7 @@ const Explore = () => {
                                                         {schedule.id}
                                                     </div>
                                                     <div>
-                                                        <p className="font-black text-gray-900">{schedule.id} Express</p>
+                                                        <p className="font-black text-gray-900">{schedule.id} {t('explore.schedules.express')}</p>
                                                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{schedule.type}</p>
                                                     </div>
                                                 </div>
@@ -256,7 +260,7 @@ const Explore = () => {
                                             <td className="py-8 px-4">
                                                 <span className={cn(
                                                     "px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest",
-                                                    schedule.status === 'On Time' ? "bg-green-50 text-green-500" : "bg-red-50 text-tet-red"
+                                                    schedule.status === t('explore.schedules.status.on_time') ? "bg-green-50 text-green-500" : "bg-red-50 text-tet-red"
                                                 )}>
                                                     ● {schedule.status}
                                                 </span>
@@ -285,16 +289,15 @@ const Explore = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             className="relative z-10"
                         >
-                            <h2 className="text-2xl md:text-5xl font-black text-red-900 mb-4 md:mb-8 leading-tight">Ghé thăm những miền di sản</h2>
+                            <h2 className="text-2xl md:text-5xl font-black text-red-900 mb-4 md:mb-8 leading-tight">{t('explore.newsletter.title')}</h2>
                             <p className="text-red-800/60 text-sm md:text-lg font-bold mb-8 md:mb-12 max-w-2xl leading-relaxed uppercase tracking-wider">
-                                Khám phá vẻ đẹp truyền thống Việt Nam qua khung cửa sổ toa tàu.
-                                <br className="hidden md:block" />Bắt đầu cuộc hành trình xuân ý nghĩa ngay hôm nay.
+                                {t('explore.newsletter.desc')}
                             </p>
                             <button
                                 onClick={() => navigate('/')}
                                 className="bg-red-900 text-white px-8 py-4 md:px-12 md:py-5 rounded-full font-black text-base md:text-xl hover:bg-black transition-all shadow-2xl active:scale-95"
                             >
-                                Quay lại trang chủ
+                                {t('explore.newsletter.cta')}
                             </button>
                         </motion.div>
                     </div>

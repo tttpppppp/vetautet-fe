@@ -10,10 +10,11 @@ import {
     ShoppingBag, ShieldCheck, Zap
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 const TicketDetails = () => {
+    const { t } = useTranslation();
     const { id } = useParams();
     const navigate = useNavigate();
     const [step, setStep] = useState(1); // 1: Seats, 2: Info, 3: Payment, 4: Success
@@ -26,20 +27,20 @@ const TicketDetails = () => {
     const ticket = {
         id: id,
         trainId: 'SE1',
-        from: 'Sài Gòn',
-        to: 'Hà Nội',
+        from: t('search.stations.saigon'),
+        to: t('search.stations.hanoi'),
         date: '25/01/2026',
         departureTime: '21:30',
-        arrivalTime: '05:45 (+1 ngày)',
+        arrivalTime: `05:45 (+1 ${t('explore.schedules.table.departure') === 'Xuất phát' ? 'ngày' : 'day'})`,
         duration: '32h 15p',
         pricePerSeat: 1250000,
-        type: 'Giường nằm Khoang 4',
+        type: t('tickets.seat_types.sleeper_4'),
     };
 
     const cars = [
-        { id: 1, type: 'Khoang 4 VIP', price: 1500000 },
-        { id: 2, type: 'Khoang 6 Thường', price: 1100000 },
-        { id: 3, type: 'Ngồi mềm Điều hòa', price: 850000 },
+        { id: 1, type: t('tickets.seat_types.sleeper_4_vip'), price: 1500000 },
+        { id: 2, type: t('tickets.seat_types.sleeper_6_normal'), price: 1100000 },
+        { id: 3, type: t('tickets.seat_types.soft_seat_ac'), price: 850000 },
     ];
 
     const toggleSeat = (seatId) => {
@@ -64,6 +65,10 @@ const TicketDetails = () => {
 
     const nextStep = () => setStep(step + 1);
     const prevStep = () => setStep(step - 1);
+
+    const formatPrice = (price) => {
+        return (price / 1000000).toFixed(2) + 'M';
+    };
 
     // Step 1: Seat Selection View
     const renderSeatSelection = () => (
@@ -115,7 +120,7 @@ const TicketDetails = () => {
                         <div className="w-7 h-7 bg-red-50 text-tet-red rounded-lg flex items-center justify-center transition-transform group-hover:rotate-12 shadow-sm">
                             <Train size={14} />
                         </div>
-                        Chọn toa tàu
+                        {t('ticket_details.car.title')}
                     </h3>
                     <div className="flex flex-wrap gap-2">
                         {cars.map((car) => (
@@ -133,7 +138,7 @@ const TicketDetails = () => {
                                     "w-2 h-2 rounded-full",
                                     selectedCar === car.id ? "bg-tet-red animate-pulse" : "bg-gray-200"
                                 )} />
-                                T{car.id}: {car.type}
+                                {t('ticket_details.car.label')}{car.id}: {car.type}
                             </button>
                         ))}
                     </div>
@@ -144,7 +149,7 @@ const TicketDetails = () => {
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gray-100 to-transparent" />
                     <div className="w-full max-w-xl">
                         <div className="w-full h-10 bg-gray-50 rounded-t-[3rem] border-x-4 border-t-4 border-gray-100 flex items-center justify-center mb-10 relative shadow-inner">
-                            <span className="text-[9px] font-black text-gray-300 tracking-[0.4em] uppercase">Phòng Điều Hành / Đầu Tàu</span>
+                            <span className="text-[9px] font-black text-gray-300 tracking-[0.4em] uppercase">{t('ticket_details.seats.admin_cabin')}</span>
                         </div>
                         <div className="grid grid-cols-8 gap-1.5 md:gap-2 justify-items-center">
                             {Array.from({ length: 32 }).map((_, i) => {
@@ -175,15 +180,15 @@ const TicketDetails = () => {
                     <div className="mt-6 flex flex-wrap justify-center gap-4">
                         <div className="flex items-center gap-1.5">
                             <div className="w-3 h-3 rounded bg-white border border-gray-200 shadow-sm" />
-                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Trống</span>
+                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('ticket_details.seats.empty')}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                             <div className="w-3 h-3 rounded bg-gray-100" />
-                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Đã đặt</span>
+                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('ticket_details.seats.occupied')}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                             <div className="w-3 h-3 rounded bg-tet-red shadow-lg shadow-tet-red/20" />
-                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Đang chọn</span>
+                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('ticket_details.seats.selected')}</span>
                         </div>
                     </div>
                 </div>
@@ -194,7 +199,7 @@ const TicketDetails = () => {
                 <div className="sticky top-40 space-y-3">
                     <div className="bg-white rounded-2xl md:rounded-[2rem] p-5 md:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100">
                         <h3 className="text-lg font-black text-gray-900 mb-5 flex items-center justify-between">
-                            Chi tiết đặt chỗ
+                            {t('ticket_details.summary.title')}
                             <div className="w-7 h-7 bg-gray-50 rounded-lg flex items-center justify-center">
                                 <ShoppingBag size={14} className="text-gray-400" />
                             </div>
@@ -205,7 +210,7 @@ const TicketDetails = () => {
                                 <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mx-auto shadow-sm">
                                     <Info size={20} className="text-gray-200" />
                                 </div>
-                                <p className="text-gray-300 font-black text-[9px] uppercase tracking-[0.2em] px-4">Vui lòng chọn chỗ ngồi</p>
+                                <p className="text-gray-300 font-black text-[9px] uppercase tracking-[0.2em] px-4">{t('ticket_details.summary.please_select')}</p>
                             </div>
                         ) : (
                             <div className="space-y-3">
@@ -217,25 +222,25 @@ const TicketDetails = () => {
                                                     {id.split('-')[1]}
                                                 </div>
                                                 <div>
-                                                    <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest">Toa {id.split('-')[0]}</p>
-                                                    <p className="font-bold text-gray-900 text-[11px]">Ghế {id.split('-')[1]}</p>
+                                                    <p className="text-[8px] font-black text-gray-400 uppercase tracking-widest">{t('ticket_details.car.label')} {id.split('-')[0]}</p>
+                                                    <p className="font-bold text-gray-900 text-[11px]">{t('explore.schedules.status.economy') === 'Phổ thông' ? 'Ghế' : 'Seat'} {id.split('-')[1]}</p>
                                                 </div>
                                             </div>
-                                            <span className="font-black text-gray-900 text-xs">{(ticket.pricePerSeat / 1000000).toFixed(1)}M</span>
+                                            <span className="font-black text-gray-900 text-xs">{formatPrice(ticket.pricePerSeat)}</span>
                                         </div>
                                     ))}
                                 </div>
 
                                 <div className="pt-3 border-t border-dashed border-gray-200 space-y-3">
                                     <div className="flex justify-between items-center px-1">
-                                        <span className="font-bold text-gray-400 text-[10px]">Tổng cộng</span>
-                                        <span className="text-xl font-black text-tet-red">{(selectedSeats.length * ticket.pricePerSeat / 1000000).toFixed(2)}M</span>
+                                        <span className="font-bold text-gray-400 text-[10px]">{t('ticket_details.payment.summary_title')}</span>
+                                        <span className="text-xl font-black text-tet-red">{formatPrice(selectedSeats.length * ticket.pricePerSeat)}</span>
                                     </div>
                                     <button
                                         onClick={nextStep}
                                         className="w-full bg-tet-yellow hover:bg-[#FFB300] text-red-900 font-black py-3.5 rounded-xl shadow-lg shadow-tet-yellow/10 transition-all transform hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest text-[10px]"
                                     >
-                                        Tiếp tục đặt vé
+                                        {t('ticket_details.summary.continue')}
                                     </button>
                                 </div>
                             </div>
@@ -247,9 +252,9 @@ const TicketDetails = () => {
                             <AlertTriangle className="text-tet-red" size={14} />
                         </div>
                         <div>
-                            <h4 className="font-black text-tet-red text-[9px] uppercase tracking-widest mb-0.5 leading-tight">Lưu ý</h4>
+                            <h4 className="font-black text-tet-red text-[9px] uppercase tracking-widest mb-0.5 leading-tight">{t('ticket_details.notes.title')}</h4>
                             <p className="text-red-900/60 text-[9px] font-bold leading-relaxed">
-                                Tối đa 04 vé/khách. Thanh toán trong 15ph.
+                                {t('ticket_details.notes.text')}
                             </p>
                         </div>
                     </div>
@@ -266,7 +271,7 @@ const TicketDetails = () => {
                     <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-gray-100 shadow-sm">
                         <Users className="text-tet-red" size={20} />
                     </div>
-                    Thông tin hành khách
+                    {t('ticket_details.passengers.title')}
                 </h3>
                 {selectedSeats.map((seatId, index) => (
                     <motion.div
@@ -284,7 +289,7 @@ const TicketDetails = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
                             <div className="space-y-1.5">
                                 <label className="text-[8px] font-black text-gray-400 uppercase tracking-[0.2em] px-1 flex items-center gap-1.5">
-                                    <div className="w-1 h-1 rounded-full bg-tet-red" /> Họ và tên
+                                    <div className="w-1 h-1 rounded-full bg-tet-red" /> {t('ticket_details.passengers.fullname')}
                                 </label>
                                 <input
                                     type="text"
@@ -296,11 +301,11 @@ const TicketDetails = () => {
                             </div>
                             <div className="space-y-1.5">
                                 <label className="text-[8px] font-black text-gray-400 uppercase tracking-[0.2em] px-1 flex items-center gap-1.5">
-                                    <div className="w-1 h-1 rounded-full bg-tet-red" /> Số định danh
+                                    <div className="w-1 h-1 rounded-full bg-tet-red" /> {t('ticket_details.passengers.id_card')}
                                 </label>
                                 <input
                                     type="text"
-                                    placeholder="CCCD / Hộ chiếu"
+                                    placeholder={t('ticket_details.passengers.id_placeholder')}
                                     className="w-full bg-gray-50/50 border-2 border-transparent focus:border-tet-red focus:bg-white focus:ring-4 focus:ring-tet-red/5 rounded-lg px-3 py-2 outline-none font-bold text-xs text-gray-900 transition-all placeholder:text-gray-300 shadow-inner"
                                     value={passengers[seatId]?.idCard || ''}
                                     onChange={(e) => handlePassengerChange(seatId, 'idCard', e.target.value)}
@@ -312,26 +317,26 @@ const TicketDetails = () => {
                 <div className="bg-red-50/50 rounded-2xl p-4 border border-red-100/50 flex gap-3">
                     <AlertCircle className="text-tet-red shrink-0" size={18} />
                     <p className="text-[10px] text-red-700/80 font-bold leading-relaxed">
-                        Thông tin hành khách phải trùng khớp với giấy tờ tùy thân.
+                        {t('ticket_details.passengers.note')}
                     </p>
                 </div>
             </div>
 
             <div className="lg:col-span-4">
                 <div className="sticky top-40 bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-                    <h3 className="text-xl font-black text-gray-900 mb-6">Tóm tắt chuyến đi</h3>
+                    <h3 className="text-xl font-black text-gray-900 mb-6">{t('ticket_details.summary.trip_summary')}</h3>
                     <div className="space-y-4 mb-8">
                         <div className="flex justify-between text-sm">
-                            <span className="text-gray-500 font-bold">Chuyến tàu</span>
+                            <span className="text-gray-500 font-bold">{t('explore.schedules.table.train')}</span>
                             <span className="font-black text-gray-900">{ticket.trainId}</span>
                         </div>
                         <div className="flex justify-between text-sm">
-                            <span className="text-gray-500 font-bold">Số lượng vé</span>
-                            <span className="font-black text-gray-900">{selectedSeats.length} Người</span>
+                            <span className="text-gray-500 font-bold">{t('search_results.view.list') === 'Xem ngang' ? 'Số lượng vé' : 'Quantity'}</span>
+                            <span className="font-black text-gray-900">{t('ticket_details.summary.ticket_count', { count: selectedSeats.length })}</span>
                         </div>
                         <div className="h-px bg-gray-100" />
                         <div className="flex justify-between items-center">
-                            <span className="text-gray-500 font-bold">Tổng tiền</span>
+                            <span className="text-gray-500 font-bold">{t('ticket_details.summary.total_price')}</span>
                             <span className="text-2xl font-black text-tet-red">{(selectedSeats.length * ticket.pricePerSeat).toLocaleString()}đ</span>
                         </div>
                     </div>
@@ -339,13 +344,13 @@ const TicketDetails = () => {
                         onClick={nextStep}
                         className="w-full bg-tet-yellow hover:bg-[#FFB300] text-red-900 font-black py-5 rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-tet-yellow/20 transition-all"
                     >
-                        Tiếp tục thanh toán <ChevronRight size={20} />
+                        {t('ticket_details.summary.continue_payment')} <ChevronRight size={20} />
                     </button>
                     <button
                         onClick={prevStep}
                         className="w-full mt-3 text-gray-400 font-bold hover:text-gray-600 transition-colors py-2"
                     >
-                        Quay về chọn chỗ
+                        {t('ticket_details.summary.back_to_seats')}
                     </button>
                 </div>
             </div>
@@ -362,7 +367,7 @@ const TicketDetails = () => {
                         <div className="w-9 h-9 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl flex items-center justify-center border border-gray-100 shadow-sm">
                             <CreditCard className="text-tet-red" size={18} />
                         </div>
-                        Phương thức thanh toán
+                        {t('ticket_details.payment.title')}
                     </h3>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 relative z-10">
@@ -390,7 +395,7 @@ const TicketDetails = () => {
                                 </div>
                                 <div className="text-left">
                                     <p className="font-black text-gray-900 text-sm md:text-base mb-0.5">{method.name}</p>
-                                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">Miễn phí giao dịch</p>
+                                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none">{t('ticket_details.payment.free_fee')}</p>
                                 </div>
                                 {paymentMethod === method.id && (
                                     <div className="absolute top-2.5 right-2.5 md:top-3 md:right-3 text-tet-red">
@@ -408,8 +413,8 @@ const TicketDetails = () => {
                             <ShieldCheck size={20} />
                         </div>
                         <div>
-                            <p className="font-black text-gray-900 text-[10px] md:text-xs mb-0.5 uppercase tracking-tight">Thanh toán an toàn</p>
-                            <p className="text-gray-400 text-[9px] md:text-[10px] font-bold leading-tight md:leading-relaxed">Mã hóa 256-bit chuẩn quốc tế.</p>
+                            <p className="font-black text-gray-900 text-[10px] md:text-xs mb-0.5 uppercase tracking-tight">{t('ticket_details.payment.safe_payment')}</p>
+                            <p className="text-gray-400 text-[9px] md:text-[10px] font-bold leading-tight md:leading-relaxed">{t('ticket_details.payment.safe_desc')}</p>
                         </div>
                     </div>
                     <div className="bg-white p-4 md:p-6 rounded-2xl md:rounded-[2rem] border border-gray-100 flex items-center gap-3 md:gap-4 shadow-sm">
@@ -417,8 +422,8 @@ const TicketDetails = () => {
                             <Zap size={20} />
                         </div>
                         <div>
-                            <p className="font-black text-gray-900 text-[10px] md:text-xs mb-0.5 uppercase tracking-tight">Xử lý tức thì</p>
-                            <p className="text-gray-400 text-[9px] md:text-[10px] font-bold leading-tight md:leading-relaxed">Nhận vé ngay sau khi thanh toán.</p>
+                            <p className="font-black text-gray-900 text-[10px] md:text-xs mb-0.5 uppercase tracking-tight">{t('ticket_details.payment.instant')}</p>
+                            <p className="text-gray-400 text-[9px] md:text-[10px] font-bold leading-tight md:leading-relaxed">{t('ticket_details.payment.instant_desc')}</p>
                         </div>
                     </div>
                 </div>
@@ -426,27 +431,27 @@ const TicketDetails = () => {
 
             <div className="lg:col-span-4 space-y-4">
                 <div className="bg-white rounded-2xl md:rounded-[2rem] p-5 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 sticky top-48">
-                    <h3 className="text-[9px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-5 md:mb-6">Tổng kết thanh toán</h3>
+                    <h3 className="text-[9px] md:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-5 md:mb-6">{t('ticket_details.payment.summary_title')}</h3>
                     <div className="space-y-2.5 md:space-y-3">
                         <div className="flex justify-between items-center text-[11px] md:text-xs font-bold text-gray-400 px-0.5">
-                            <span>Giá vé ({selectedSeats.length} người)</span>
-                            <span className="text-gray-900">{(selectedSeats.length * ticket.pricePerSeat / 1000000).toFixed(2)}M VNĐ</span>
+                            <span>{t('ticket_details.payment.price_for', { count: selectedSeats.length })}</span>
+                            <span className="text-gray-900">{formatPrice(selectedSeats.length * ticket.pricePerSeat)} VNĐ</span>
                         </div>
                         <div className="flex justify-between items-center text-[11px] md:text-xs font-bold text-gray-400 px-0.5">
-                            <span>Phí dịch vụ</span>
-                            <span className="text-green-500">Miễn phí</span>
+                            <span>{t('ticket_details.payment.service_fee')}</span>
+                            <span className="text-green-500">{t('ticket_details.payment.free')}</span>
                         </div>
                         <div className="pt-3 md:pt-5 border-t border-dashed border-gray-200 mt-3 md:mt-5">
                             <div className="flex justify-between items-center mb-5 md:mb-6 px-0.5">
-                                <span className="font-black text-gray-900 uppercase text-[9px] md:text-[10px] tracking-widest">Tổng cộng</span>
-                                <span className="text-xl md:text-2xl font-black text-tet-red">{(selectedSeats.length * ticket.pricePerSeat / 1000000).toFixed(2)}M</span>
+                                <span className="font-black text-gray-900 uppercase text-[9px] md:text-[10px] tracking-widest">{t('ticket_details.summary.total')}</span>
+                                <span className="text-xl md:text-2xl font-black text-tet-red">{formatPrice(selectedSeats.length * ticket.pricePerSeat)}</span>
                             </div>
                             <button
                                 onClick={nextStep}
                                 disabled={!paymentMethod}
                                 className="w-full bg-tet-red hover:bg-tet-red-dark text-white font-black py-3.5 md:py-4 rounded-xl md:rounded-[1.2rem] disabled:opacity-50 disabled:grayscale transition-all shadow-lg shadow-tet-red/10 transform hover:scale-[1.02] active:scale-[0.98] uppercase tracking-[0.2em] text-[10px] md:text-xs"
                             >
-                                Thanh toán ngay
+                                {t('ticket_details.payment.pay_now')}
                             </button>
                         </div>
                     </div>
@@ -466,9 +471,9 @@ const TicketDetails = () => {
                 <CheckCircle2 size={40} className="md:size-48" />
             </div>
             <div className="space-y-2">
-                <h2 className="text-2xl md:text-3xl font-black text-gray-900">Đặt vé thành công!</h2>
+                <h2 className="text-2xl md:text-3xl font-black text-gray-900">{t('ticket_details.success.title')}</h2>
                 <p className="text-gray-500 font-bold text-sm md:text-base">
-                    Mã đặt chỗ của bạn là: <span className="text-tet-red font-black">VT2026-X89J</span>
+                    {t('ticket_details.success.booking_code')} <span className="text-tet-red font-black">VT2026-X89J</span>
                 </p>
             </div>
 
@@ -477,32 +482,32 @@ const TicketDetails = () => {
                 <div className="flex justify-between items-start border-b border-gray-100 pb-6 md:pb-8 relative z-10">
                     <div>
                         <div className="inline-flex items-center gap-2 bg-red-50 px-2.5 py-1 rounded-full text-[9px] font-black text-tet-red uppercase tracking-widest mb-3">
-                            Vé điện tử
+                            {t('ticket_details.success.e_ticket')}
                         </div>
                         <p className="text-xl md:text-2xl font-black text-gray-900 leading-tight">
                             {ticket.trainId}: <span className="text-tet-red underline decoration-dashed decoration-2 underline-offset-4">{ticket.from}</span> - {ticket.to}
                         </p>
                     </div>
                     <div className="text-right">
-                        <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em] mb-1">Ngày đi</p>
+                        <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em] mb-1">{t('ticket_details.success.departure_date')}</p>
                         <p className="text-lg md:text-xl font-black text-gray-900">{ticket.date}</p>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-6 relative z-10">
                     <div className="space-y-1">
-                        <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em]">Hành khách</p>
+                        <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em]">{t('ticket_details.passengers.title')}</p>
                         <div className="space-y-0.5">
                             {selectedSeats.map(id => (
-                                <p key={id} className="font-black text-gray-900 text-sm md:text-base">{passengers[id]?.name || 'KHÁCH HÀNG'}</p>
+                                <p key={id} className="font-black text-gray-900 text-sm md:text-base">{passengers[id]?.name || (t('explore.schedules.table.action') === 'Hành động' ? 'KHÁCH HÀNG' : 'CUSTOMER')}</p>
                             ))}
                         </div>
                     </div>
                     <div className="space-y-1">
-                        <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em]">Toa / Chỗ</p>
+                        <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em]">{t('ticket_details.car.label')} / {t('explore.schedules.status.economy') === 'Phổ thông' ? 'Chỗ' : 'Seat'}</p>
                         <div className="space-y-0.5">
                             {selectedSeats.map(id => (
-                                <p key={id} className="font-black text-gray-900 text-sm md:text-base">Toa {id.split('-')[0]} - Số {id.split('-')[1]}</p>
+                                <p key={id} className="font-black text-gray-900 text-sm md:text-base">{t('ticket_details.car.label')} {id.split('-')[0]} - {t('explore.schedules.status.economy') === 'Phổ thông' ? 'Số' : 'No'} {id.split('-')[1]}</p>
                             ))}
                         </div>
                     </div>
@@ -511,7 +516,7 @@ const TicketDetails = () => {
                 <div className="pt-6 md:pt-8 flex flex-col items-center gap-4 relative z-10">
                     <div className="p-3 bg-gray-50 rounded-[1.5rem] md:rounded-[2rem] border border-gray-100">
                         <div className="w-32 h-32 md:w-44 md:h-44 bg-white rounded-xl md:rounded-2xl flex items-center justify-center border border-dashed border-gray-100">
-                            <span className="text-[8px] font-black text-gray-300 tracking-[0.2em] uppercase">QR Code</span>
+                            <span className="text-[8px] font-black text-gray-300 tracking-[0.2em] uppercase">{t('ticket_details.success.qr_code')}</span>
                         </div>
                     </div>
                     <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.4em]">VETAU2026-X89J</p>
@@ -522,7 +527,7 @@ const TicketDetails = () => {
                 onClick={() => navigate('/')}
                 className="inline-flex items-center gap-2 text-tet-red font-black text-lg hover:underline transition-all"
             >
-                Quay về trang chủ <ChevronRight />
+                {t('ticket_details.success.back_home')} <ChevronRight />
             </button>
         </motion.div>
     );
@@ -530,8 +535,8 @@ const TicketDetails = () => {
     return (
         <main className="min-h-screen bg-[#FDFDFD] flex flex-col">
             <Helmet>
-                <title>{`Vé Tàu ${ticket.trainId}: ${ticket.from} - ${ticket.to} | Vé Tàu Việt Nam`}</title>
-                <meta name="description" content={`Đặt vé tàu ${ticket.trainId} từ ${ticket.from} đi ${ticket.to} ngày ${ticket.date}. Giá vé ưu đãi, thủ tục nhanh chóng.`} />
+                <title>{t('ticket_details.seo_title', { train: ticket.trainId, from: ticket.from, to: ticket.to })}</title>
+                <meta name="description" content={t('ticket_details.seo_desc', { train: ticket.trainId, from: ticket.from, to: ticket.to, date: ticket.date })} />
             </Helmet>
             <div className="flex-grow">
                 <Header />
@@ -543,14 +548,14 @@ const TicketDetails = () => {
                             onClick={() => step === 1 ? navigate(-1) : prevStep()}
                             className="flex items-center gap-1.5 text-gray-400 hover:text-tet-red transition-all font-bold group bg-white px-2.5 py-1.5 md:px-3 md:py-1.5 rounded-lg border border-gray-100 shadow-sm text-[10px] md:text-[11px] uppercase tracking-wider"
                         >
-                            <ChevronLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" /> <span className="hidden xs:inline">Quay lại</span>
+                            <ChevronLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" /> <span className="hidden xs:inline">{t('ticket_details.steps.back')}</span>
                         </button>
 
                         <div className="flex items-center gap-2 md:gap-4">
                             {[
-                                { s: 1, n: 'Chọn chỗ' },
-                                { s: 2, n: 'Thông tin' },
-                                { s: 3, n: 'Thanh toán' }
+                                { s: 1, n: t('ticket_details.steps.select_seat') },
+                                { s: 2, n: t('ticket_details.steps.info') },
+                                { s: 3, n: t('ticket_details.steps.payment') }
                             ].map((item, i) => (
                                 <React.Fragment key={item.s}>
                                     <div className={cn(

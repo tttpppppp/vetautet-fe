@@ -1,0 +1,23 @@
+{
+    "footer": {
+        "brand_desc": "Elevating the Vietnamese railway travel experience. We are committed to providing absolute convenience and safety for every customer journey.",
+        "explore_title": "Explore",
+        "contact_title": "Contact",
+        "newsletter_title": "Newsletter",
+        "newsletter_desc": "Subscribe to receive schedules and early bird offers.",
+        "newsletter_placeholder": "Your email",
+        "copyright": "© 2026 Vietnam Train. Copyright by Senior Frontend Dev Antigravity.",
+        "links": {
+            "about": "About Us",
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Use",
+            "guide": "Booking Guide",
+            "faq": "FAQ"
+        },
+        "contact": {
+            "address": "123 Nam Ky Khoi Nghia St, Dist 1, Ho Chi Minh City",
+            "hotline": "Hotline: 1900 1234",
+            "email": "support@vetau.vn"
+        }
+    }
+}

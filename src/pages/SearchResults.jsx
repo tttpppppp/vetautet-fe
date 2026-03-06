@@ -8,91 +8,94 @@ import { LayoutGrid, ListFilter, ChevronRight, ChevronLeft, Train, Clock, Credit
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Helmet } from 'react-helmet-async';
-
-const dummyTickets = [
-    {
-        id: 1,
-        trainName: 'SE1 Express',
-        from: 'Hà Nội',
-        to: 'Sài Gòn',
-        departureTime: '19:30',
-        arrivalTime: '05:30',
-        duration: '34h 00m',
-        seatType: 'Giường nằm khoang 4',
-        price: 1550000,
-        remainingSeats: 24,
-        popular: true
-    },
-    {
-        id: 2,
-        trainName: 'SE3 Express',
-        from: 'Hà Nội',
-        to: 'Sài Gòn',
-        departureTime: '18:00',
-        arrivalTime: '04:00',
-        duration: '34h 00m',
-        seatType: 'Ghế ngồi mềm ĐH',
-        price: 980000,
-        remainingSeats: 12,
-        popular: false
-    },
-    {
-        id: 3,
-        trainName: 'SE2 Express',
-        from: 'Sài Gòn',
-        to: 'Hà Nội',
-        departureTime: '21:00',
-        arrivalTime: '07:30',
-        duration: '34h 30m',
-        seatType: 'Giường nằm khoang 6',
-        price: 1250000,
-        remainingSeats: 45,
-        popular: true
-    },
-    {
-        id: 4,
-        trainName: 'SE4 Express',
-        from: 'Đà Nẵng',
-        to: 'Sài Gòn',
-        departureTime: '14:20',
-        arrivalTime: '08:15',
-        duration: '18h 00m',
-        seatType: 'Giường nằm khoang 4',
-        price: 850000,
-        remainingSeats: 8,
-        popular: false
-    },
-    {
-        id: 5,
-        trainName: 'SE7 Express',
-        from: 'Vinh',
-        to: 'Đà Nẵng',
-        departureTime: '06:00',
-        arrivalTime: '14:30',
-        duration: '8h 30m',
-        seatType: 'Ghế ngồi mềm ĐH',
-        price: 450000,
-        remainingSeats: 32,
-        popular: false
-    },
-    {
-        id: 6,
-        trainName: 'TN1 Express',
-        from: 'Hà Nội',
-        to: 'Nha Trang',
-        departureTime: '10:00',
-        arrivalTime: '09:00',
-        duration: '23h 00m',
-        seatType: 'Giường nằm khoang 6',
-        price: 1100000,
-        remainingSeats: 18,
-        popular: true
-    }
-];
+import { useTranslation } from 'react-i18next';
 
 const SearchResults = () => {
-    const fromGa = "Hà Nội";
-    const toGa = "Sài Gòn";
+    const { t } = useTranslation();
+
+    const dummyTickets = [
+        {
+            id: 1,
+            trainName: 'SE1 Express',
+            from: t('search.stations.hanoi'),
+            to: t('search.stations.saigon'),
+            departureTime: '19:30',
+            arrivalTime: '05:30',
+            duration: '34h 00m',
+            seatType: t('tickets.seat_types.sleeper_4'),
+            price: 1550000,
+            remainingSeats: 24,
+            popular: true
+        },
+        {
+            id: 2,
+            trainName: 'SE3 Express',
+            from: t('search.stations.hanoi'),
+            to: t('search.stations.saigon'),
+            departureTime: '18:00',
+            arrivalTime: '04:00',
+            duration: '34h 00m',
+            seatType: t('tickets.seat_types.soft_seat'),
+            price: 980000,
+            remainingSeats: 12,
+            popular: false
+        },
+        {
+            id: 3,
+            trainName: 'SE2 Express',
+            from: t('search.stations.saigon'),
+            to: t('search.stations.hanoi'),
+            departureTime: '21:00',
+            arrivalTime: '07:30',
+            duration: '34h 30m',
+            seatType: t('tickets.seat_types.sleeper_6'),
+            price: 1250000,
+            remainingSeats: 45,
+            popular: true
+        },
+        {
+            id: 4,
+            trainName: 'SE4 Express',
+            from: t('search.stations.danang'),
+            to: t('search.stations.saigon'),
+            departureTime: '14:20',
+            arrivalTime: '08:15',
+            duration: '18h 00m',
+            seatType: t('tickets.seat_types.sleeper_4'),
+            price: 850000,
+            remainingSeats: 8,
+            popular: false
+        },
+        {
+            id: 5,
+            trainName: 'SE7 Express',
+            from: t('search.stations.vinh'),
+            to: t('search.stations.danang'),
+            departureTime: '06:00',
+            arrivalTime: '14:30',
+            duration: '8h 30m',
+            seatType: t('tickets.seat_types.soft_seat'),
+            price: 450000,
+            remainingSeats: 32,
+            popular: false
+        },
+        {
+            id: 6,
+            trainName: 'TN1 Express',
+            from: t('search.stations.hanoi'),
+            to: t('search.stations.nhatrang'),
+            departureTime: '10:00',
+            arrivalTime: '09:00',
+            duration: '23h 00m',
+            seatType: t('tickets.seat_types.sleeper_6'),
+            price: 1100000,
+            remainingSeats: 18,
+            popular: true
+        }
+    ];
+
+    const fromGa = t('search.stations.hanoi');
+    const toGa = t('search.stations.saigon');
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [viewType, setViewType] = useState('list');
     const [selectedTrains, setSelectedTrains] = useState([]);
@@ -138,8 +141,8 @@ const SearchResults = () => {
     return (
         <main className="min-h-screen bg-white">
             <Helmet>
-                <title>{`Tìm vé tàu từ ${fromGa} đi ${toGa} | Vé Tàu Việt Nam`}</title>
-                <meta name="description" content={`Danh sách các chuyến tàu từ ${fromGa} đi ${toGa}. Xem lịch trình, giá vé và đặt chỗ trực tuyến ngay hôm nay.`} />
+                <title>{t('search_results.seo_title', { from: fromGa, to: toGa })}</title>
+                <meta name="description" content={t('search_results.seo_desc', { from: fromGa, to: toGa })} />
             </Helmet>
             <Header />
 
@@ -152,10 +155,10 @@ const SearchResults = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                     >
-                        <h1 className="text-xl md:text-3xl font-black text-white mb-2 tracking-tighter">Kết quả tìm kiếm</h1>
+                        <h1 className="text-xl md:text-3xl font-black text-white mb-2 tracking-tighter">{t('search_results.title')}</h1>
                         <div className="flex items-center gap-2">
-                            <span className="px-2 py-0.5 bg-tet-red/20 text-tet-red rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-widest border border-tet-red/30">Chuyến tàu</span>
-                            <p className="text-gray-400 font-bold text-[10px] md:text-xs">Tìm thấy {dummyTickets.length} chuyến tàu phù hợp</p>
+                            <span className="px-2 py-0.5 bg-tet-red/20 text-tet-red rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-widest border border-tet-red/30">{t('explore.schedules.table.train')}</span>
+                            <p className="text-gray-400 font-bold text-[10px] md:text-xs">{t('search_results.found', { count: dummyTickets.length })}</p>
                         </div>
                     </motion.div>
                 </div>
@@ -174,7 +177,7 @@ const SearchResults = () => {
                             isFilterOpen ? "fixed inset-0 z-50 bg-white p-6 overflow-y-auto" : "hidden"
                         )}>
                             <div className="flex items-center justify-between lg:hidden mb-8">
-                                <h3 className="text-xl font-black">Bộ lọc</h3>
+                                <h3 className="text-xl font-black">{t('search_results.filters.title')}</h3>
                                 <button onClick={() => setIsFilterOpen(false)} className="p-2 bg-gray-100 rounded-full">
                                     <X size={20} />
                                 </button>
@@ -182,31 +185,34 @@ const SearchResults = () => {
 
                             <div className="bg-white rounded-2xl p-4 shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100/50">
                                 <h4 className="flex items-center gap-2 text-[9px] font-black text-gray-900 uppercase tracking-widest mb-4">
-                                    <Train size={12} className="text-tet-red" /> Loại tàu
+                                    <Train size={12} className="text-tet-red" /> {t('search_results.filters.train_type')}
                                 </h4>
                                 <div className="space-y-3">
-                                    {['Tàu SE (Express)', 'Tàu TN (Thống Nhất)', 'Tàu 5 Sao'].map((type) => (
-                                        <label key={type} className="flex items-center gap-2 cursor-pointer group" onClick={() => toggleTrain(type)}>
-                                            <div className={cn(
-                                                "w-4 h-4 rounded flex items-center justify-center transition-all",
-                                                selectedTrains.includes(type)
-                                                    ? "bg-tet-red border-tet-red"
-                                                    : "border-gray-200 group-hover:border-tet-red/50"
-                                            )}>
-                                                {selectedTrains.includes(type) && <Check size={12} className="text-white" />}
-                                            </div>
-                                            <span className={cn(
-                                                "text-xs font-bold transition-colors",
-                                                selectedTrains.includes(type) ? "text-gray-900" : "text-gray-500 group-hover:text-gray-900"
-                                            )}>{type}</span>
-                                        </label>
-                                    ))}
+                                    {['se', 'tn', 'luxury'].map((typeKey) => {
+                                        const type = t(`search_results.filters.train_types.${typeKey}`);
+                                        return (
+                                            <label key={typeKey} className="flex items-center gap-2 cursor-pointer group" onClick={() => toggleTrain(type)}>
+                                                <div className={cn(
+                                                    "w-4 h-4 rounded flex items-center justify-center transition-all",
+                                                    selectedTrains.includes(type)
+                                                        ? "bg-tet-red border-tet-red"
+                                                        : "border-gray-200 group-hover:border-tet-red/50"
+                                                )}>
+                                                    {selectedTrains.includes(type) && <Check size={12} className="text-white" />}
+                                                </div>
+                                                <span className={cn(
+                                                    "text-xs font-bold transition-colors",
+                                                    selectedTrains.includes(type) ? "text-gray-900" : "text-gray-500 group-hover:text-gray-900"
+                                                )}>{type}</span>
+                                            </label>
+                                        );
+                                    })}
                                 </div>
                             </div>
 
                             <div className="bg-white rounded-2xl p-4 shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100/50">
                                 <h4 className="flex items-center gap-2 text-[9px] font-black text-gray-900 uppercase tracking-widest mb-4">
-                                    <Clock size={12} className="text-tet-red" /> Thời gian đi
+                                    <Clock size={12} className="text-tet-red" /> {t('search_results.filters.time')}
                                 </h4>
                                 <div className="grid grid-cols-2 gap-1.5">
                                     {['00:00 - 06:00', '06:00 - 12:00', '12:00 - 18:00', '18:00 - 00:00'].map((time) => (
@@ -219,7 +225,7 @@ const SearchResults = () => {
 
                             <div className="bg-white rounded-2xl p-4 shadow-[0_10px_40px_rgba(0,0,0,0.03)] border border-gray-100/50">
                                 <h4 className="flex items-center gap-2 text-[9px] font-black text-gray-900 uppercase tracking-widest mb-4">
-                                    <CreditCard size={12} className="text-tet-red" /> Khoảng giá
+                                    <CreditCard size={12} className="text-tet-red" /> {t('search_results.filters.price')}
                                 </h4>
                                 <div className="px-1">
                                     <div className="h-1.5 w-full bg-gray-100 rounded-full relative mb-4">
@@ -236,12 +242,12 @@ const SearchResults = () => {
 
                             <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
                                 <h4 className="flex items-center gap-2 text-[9px] font-black text-gray-900 uppercase tracking-widest mb-4">
-                                    <Star size={12} className="text-tet-red" /> Tiện ích
+                                    <Star size={12} className="text-tet-red" /> {t('search_results.filters.amenities')}
                                 </h4>
                                 <div className="flex flex-wrap gap-1.5">
-                                    {['Wifi', 'Ăn uống', 'Điều hòa', 'Sạc pin'].map((s) => (
-                                        <button key={s} className="px-3 py-1.5 bg-gray-50 rounded-md text-[10px] font-bold text-gray-500 hover:bg-gray-900 hover:text-white transition-all">
-                                            {s}
+                                    {['wifi', 'food', 'ac', 'charging'].map((amenityKey) => (
+                                        <button key={amenityKey} className="px-3 py-1.5 bg-gray-50 rounded-md text-[10px] font-bold text-gray-500 hover:bg-gray-900 hover:text-white transition-all">
+                                            {t(`search_results.filters.amenity_list.${amenityKey}`)}
                                         </button>
                                     ))}
                                 </div>
@@ -253,12 +259,14 @@ const SearchResults = () => {
                             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 px-2">
                                 <div className="flex items-center gap-3">
                                     <div className="w-1.5 h-6 bg-tet-red rounded-full" />
-                                    <p className="text-xs font-black text-gray-900 uppercase tracking-widest">Hiển thị {startItem}-{endItem} / {dummyTickets.length} kết quả</p>
+                                    <p className="text-xs font-black text-gray-900 uppercase tracking-widest">
+                                        {t('search_results.view.showing', { start: startItem, end: endItem, total: dummyTickets.length })}
+                                    </p>
                                     <button
                                         onClick={() => setIsFilterOpen(!isFilterOpen)}
                                         className="lg:hidden flex items-center gap-2 px-3 py-1.5 bg-gray-900 text-white rounded-lg text-[10px] font-black"
                                     >
-                                        <Filter size={12} /> Bộ lọc
+                                        <Filter size={12} /> {t('search_results.filters.title')}
                                     </button>
                                 </div>
                                 <div className="bg-gray-50/80 backdrop-blur-sm p-1 rounded-xl border border-gray-100 flex items-center gap-1">
@@ -269,7 +277,7 @@ const SearchResults = () => {
                                             viewType === 'list' ? "bg-white text-gray-900 shadow-sm" : "text-gray-400 hover:text-gray-600"
                                         )}
                                     >
-                                        <ListFilter size={14} /> Xem ngang
+                                        <ListFilter size={14} /> {t('search_results.view.list')}
                                     </button>
                                     <button
                                         onClick={() => setViewType('grid')}
@@ -278,7 +286,7 @@ const SearchResults = () => {
                                             viewType === 'grid' ? "bg-white text-gray-900 shadow-sm" : "text-gray-400 hover:text-gray-600"
                                         )}
                                     >
-                                        <LayoutGrid size={14} /> Xem dọc
+                                        <LayoutGrid size={14} /> {t('search_results.view.grid')}
                                     </button>
                                 </div>
                             </div>
@@ -349,7 +357,7 @@ const SearchResults = () => {
 
                                     {/* Page Info */}
                                     <p className="text-[9px] font-bold text-gray-300 uppercase tracking-[0.2em]">
-                                        Trang {currentPage} / {totalPages} — {startItem}-{endItem} trên {dummyTickets.length} chuyến
+                                        {t('search_results.pagination.page_info', { current: currentPage, total: totalPages, start: startItem, end: endItem, count: dummyTickets.length })}
                                     </p>
                                 </div>
                             )}

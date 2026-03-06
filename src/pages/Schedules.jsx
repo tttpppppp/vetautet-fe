@@ -3,179 +3,181 @@ const { useState } = React;
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TicketCard from '@/components/TicketCard';
-import { Train, MapPin, Clock, ChevronLeft, ChevronRight, Search, SlidersHorizontal, ArrowUpDown } from 'lucide-react';
+import { Train, MapPin, Search, ChevronLeft, ChevronRight, ArrowUpDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-
-const allSchedules = [
-    {
-        id: 1,
-        trainName: 'SE1 Express',
-        from: 'Hà Nội',
-        to: 'Sài Gòn',
-        departureTime: '19:30',
-        arrivalTime: '05:30',
-        duration: '34h 00m',
-        seatType: 'Giường nằm khoang 4',
-        price: 1550000,
-        remainingSeats: 24,
-        popular: true
-    },
-    {
-        id: 2,
-        trainName: 'SE3 Express',
-        from: 'Hà Nội',
-        to: 'Sài Gòn',
-        departureTime: '18:00',
-        arrivalTime: '04:00',
-        duration: '34h 00m',
-        seatType: 'Ghế ngồi mềm ĐH',
-        price: 980000,
-        remainingSeats: 12,
-        popular: false
-    },
-    {
-        id: 3,
-        trainName: 'SE2 Express',
-        from: 'Sài Gòn',
-        to: 'Hà Nội',
-        departureTime: '21:00',
-        arrivalTime: '07:30',
-        duration: '34h 30m',
-        seatType: 'Giường nằm khoang 6',
-        price: 1250000,
-        remainingSeats: 45,
-        popular: true
-    },
-    {
-        id: 4,
-        trainName: 'SE4 Express',
-        from: 'Đà Nẵng',
-        to: 'Sài Gòn',
-        departureTime: '14:20',
-        arrivalTime: '08:15',
-        duration: '18h 00m',
-        seatType: 'Giường nằm khoang 4',
-        price: 850000,
-        remainingSeats: 8,
-        popular: false
-    },
-    {
-        id: 5,
-        trainName: 'SE7 Express',
-        from: 'Vinh',
-        to: 'Đà Nẵng',
-        departureTime: '06:00',
-        arrivalTime: '14:30',
-        duration: '8h 30m',
-        seatType: 'Ghế ngồi mềm ĐH',
-        price: 450000,
-        remainingSeats: 32,
-        popular: false
-    },
-    {
-        id: 6,
-        trainName: 'TN1 Express',
-        from: 'Hà Nội',
-        to: 'Nha Trang',
-        departureTime: '10:00',
-        arrivalTime: '09:00',
-        duration: '23h 00m',
-        seatType: 'Giường nằm khoang 6',
-        price: 1100000,
-        remainingSeats: 18,
-        popular: true
-    },
-    {
-        id: 7,
-        trainName: 'TN3 Express',
-        from: 'Sài Gòn',
-        to: 'Nha Trang',
-        departureTime: '08:00',
-        arrivalTime: '16:30',
-        duration: '8h 30m',
-        seatType: 'Ghế ngồi mềm ĐH',
-        price: 520000,
-        remainingSeats: 40,
-        popular: false
-    },
-    {
-        id: 8,
-        trainName: 'SE5 Express',
-        from: 'Hà Nội',
-        to: 'Đà Nẵng',
-        departureTime: '06:00',
-        arrivalTime: '22:30',
-        duration: '16h 30m',
-        seatType: 'Giường nằm khoang 4',
-        price: 780000,
-        remainingSeats: 15,
-        popular: true
-    },
-    {
-        id: 9,
-        trainName: 'SE6 Express',
-        from: 'Đà Nẵng',
-        to: 'Hà Nội',
-        departureTime: '11:00',
-        arrivalTime: '03:30',
-        duration: '16h 30m',
-        seatType: 'Giường nằm khoang 6',
-        price: 720000,
-        remainingSeats: 22,
-        popular: false
-    },
-    {
-        id: 10,
-        trainName: 'TN5 Express',
-        from: 'Huế',
-        to: 'Sài Gòn',
-        departureTime: '15:00',
-        arrivalTime: '08:00',
-        duration: '17h 00m',
-        seatType: 'Ghế ngồi mềm ĐH',
-        price: 650000,
-        remainingSeats: 28,
-        popular: false
-    },
-    {
-        id: 11,
-        trainName: 'SE8 Express',
-        from: 'Sài Gòn',
-        to: 'Đà Nẵng',
-        departureTime: '20:00',
-        arrivalTime: '12:30',
-        duration: '16h 30m',
-        seatType: 'Giường nằm khoang 4',
-        price: 800000,
-        remainingSeats: 10,
-        popular: true
-    },
-    {
-        id: 12,
-        trainName: 'TN7 Express',
-        from: 'Hải Phòng',
-        to: 'Sài Gòn',
-        departureTime: '12:00',
-        arrivalTime: '06:00',
-        duration: '42h 00m',
-        seatType: 'Giường nằm khoang 6',
-        price: 1800000,
-        remainingSeats: 5,
-        popular: false
-    },
-];
-
-// Get unique routes
-const routes = [...new Set(allSchedules.map(s => s.from))].sort();
+import { useTranslation } from 'react-i18next';
 
 const Schedules = () => {
+    const { t } = useTranslation();
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedRoute, setSelectedRoute] = useState('all');
     const [sortBy, setSortBy] = useState('default');
     const ITEMS_PER_PAGE = 6;
+
+    const allSchedules = [
+        {
+            id: 1,
+            trainName: 'SE1 Express',
+            from: t('search.stations.hanoi'),
+            to: t('search.stations.saigon'),
+            departureTime: '19:30',
+            arrivalTime: '05:30',
+            duration: '34h 00m',
+            seatType: t('tickets.seat_types.sleeper_4'),
+            price: 1550000,
+            remainingSeats: 24,
+            popular: true
+        },
+        {
+            id: 2,
+            trainName: 'SE3 Express',
+            from: t('search.stations.hanoi'),
+            to: t('search.stations.saigon'),
+            departureTime: '18:00',
+            arrivalTime: '04:00',
+            duration: '34h 00m',
+            seatType: t('tickets.seat_types.soft_seat'),
+            price: 980000,
+            remainingSeats: 12,
+            popular: false
+        },
+        {
+            id: 3,
+            trainName: 'SE2 Express',
+            from: t('search.stations.saigon'),
+            to: t('search.stations.hanoi'),
+            departureTime: '21:00',
+            arrivalTime: '07:30',
+            duration: '34h 30m',
+            seatType: t('tickets.seat_types.sleeper_6'),
+            price: 1250000,
+            remainingSeats: 45,
+            popular: true
+        },
+        {
+            id: 4,
+            trainName: 'SE4 Express',
+            from: t('search.stations.danang'),
+            to: t('search.stations.saigon'),
+            departureTime: '14:20',
+            arrivalTime: '08:15',
+            duration: '18h 00m',
+            seatType: t('tickets.seat_types.sleeper_4'),
+            price: 850000,
+            remainingSeats: 8,
+            popular: false
+        },
+        {
+            id: 5,
+            trainName: 'SE7 Express',
+            from: t('search.stations.vinh'),
+            to: t('search.stations.danang'),
+            departureTime: '06:00',
+            arrivalTime: '14:30',
+            duration: '8h 30m',
+            seatType: t('tickets.seat_types.soft_seat'),
+            price: 450000,
+            remainingSeats: 32,
+            popular: false
+        },
+        {
+            id: 6,
+            trainName: 'TN1 Express',
+            from: t('search.stations.hanoi'),
+            to: t('search.stations.nhatrang'),
+            departureTime: '10:00',
+            arrivalTime: '09:00',
+            duration: '23h 00m',
+            seatType: t('tickets.seat_types.sleeper_6'),
+            price: 1100000,
+            remainingSeats: 18,
+            popular: true
+        },
+        {
+            id: 7,
+            trainName: 'TN3 Express',
+            from: t('search.stations.saigon'),
+            to: t('search.stations.nhatrang'),
+            departureTime: '08:00',
+            arrivalTime: '16:30',
+            duration: '8h 30m',
+            seatType: t('tickets.seat_types.soft_seat'),
+            price: 520000,
+            remainingSeats: 40,
+            popular: false
+        },
+        {
+            id: 8,
+            trainName: 'SE5 Express',
+            from: t('search.stations.hanoi'),
+            to: t('search.stations.danang'),
+            departureTime: '06:00',
+            arrivalTime: '22:30',
+            duration: '16h 30m',
+            seatType: t('tickets.seat_types.sleeper_4'),
+            price: 780000,
+            remainingSeats: 15,
+            popular: true
+        },
+        {
+            id: 9,
+            trainName: 'SE6 Express',
+            from: t('search.stations.danang'),
+            to: t('search.stations.hanoi'),
+            departureTime: '11:00',
+            arrivalTime: '03:30',
+            duration: '16h 30m',
+            seatType: t('tickets.seat_types.sleeper_6'),
+            price: 720000,
+            remainingSeats: 22,
+            popular: false
+        },
+        {
+            id: 10,
+            trainName: 'TN5 Express',
+            from: t('search.stations.hue'),
+            to: t('search.stations.saigon'),
+            departureTime: '15:00',
+            arrivalTime: '08:00',
+            duration: '17h 00m',
+            seatType: t('tickets.seat_types.soft_seat'),
+            price: 650000,
+            remainingSeats: 28,
+            popular: false
+        },
+        {
+            id: 11,
+            trainName: 'SE8 Express',
+            from: t('search.stations.saigon'),
+            to: t('search.stations.danang'),
+            departureTime: '20:00',
+            arrivalTime: '12:30',
+            duration: '16h 30m',
+            seatType: t('tickets.seat_types.sleeper_4'),
+            price: 800000,
+            remainingSeats: 10,
+            popular: true
+        },
+        {
+            id: 12,
+            trainName: 'TN7 Express',
+            from: t('search.stations.haiphong'),
+            to: t('search.stations.saigon'),
+            departureTime: '12:00',
+            arrivalTime: '06:00',
+            duration: '42h 00m',
+            seatType: t('tickets.seat_types.sleeper_6'),
+            price: 1800000,
+            remainingSeats: 5,
+            popular: false
+        },
+    ];
+
+    // Get unique routes from translated values
+    const routes = [...new Set(allSchedules.map(s => s.from))].sort();
 
     // Filter
     let filtered = selectedRoute === 'all'
@@ -221,8 +223,8 @@ const Schedules = () => {
     return (
         <main className="min-h-screen bg-white">
             <Helmet>
-                <title>Lịch trình tàu hỏa toàn quốc - Vé Tàu Việt Nam</title>
-                <meta name="description" content="Tra cứu toàn bộ lịch trình các chuyến tàu Bắc - Nam, xem giờ khởi hành, giá vé và tình trạng chỗ ngồi thời gian thực." />
+                <title>{t('schedules_page.seo_title')}</title>
+                <meta name="description" content={t('schedules_page.seo_desc')} />
             </Helmet>
             <Header />
 
@@ -237,17 +239,17 @@ const Schedules = () => {
                     >
                         <div className="flex items-center gap-2 mb-3">
                             <span className="px-2 py-0.5 bg-tet-red/20 text-tet-red rounded-full text-[9px] font-black uppercase tracking-widest border border-tet-red/30">
-                                Tất cả lịch trình
+                                {t('schedules_page.tag')}
                             </span>
                             <span className="text-gray-500 text-[9px] font-bold uppercase tracking-wider">
-                                {filtered.length} chuyến tàu
+                                {t('schedules_page.train_count', { count: filtered.length })}
                             </span>
                         </div>
                         <h1 className="text-2xl md:text-3xl font-black text-white mb-2 tracking-tighter">
-                            Lịch Trình Tàu Hỏa
+                            {t('schedules_page.title')}
                         </h1>
                         <p className="text-gray-400 font-medium text-sm max-w-lg">
-                            Xem tất cả các chuyến tàu đang hoạt động trên toàn quốc. Tìm chuyến tàu phù hợp và đặt vé ngay.
+                            {t('schedules_page.desc')}
                         </p>
                     </motion.div>
                 </div>
@@ -261,7 +263,7 @@ const Schedules = () => {
                         {/* Route Filter */}
                         <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
                             <MapPin size={12} className="text-tet-red shrink-0" />
-                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest shrink-0">Tuyến:</span>
+                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest shrink-0">{t('schedules_page.route_label')}</span>
                             <div className="flex items-center gap-1.5">
                                 <button
                                     onClick={() => { setSelectedRoute('all'); setCurrentPage(1); }}
@@ -272,7 +274,7 @@ const Schedules = () => {
                                             : "bg-gray-50 text-gray-500 hover:bg-gray-100"
                                     )}
                                 >
-                                    Tất cả
+                                    {t('schedules_page.all_routes')}
                                 </button>
                                 {routes.map(route => (
                                     <button
@@ -297,12 +299,12 @@ const Schedules = () => {
                             <select
                                 value={sortBy}
                                 onChange={(e) => { setSortBy(e.target.value); setCurrentPage(1); }}
-                                className="text-[10px] font-bold text-gray-600 bg-gray-50 border border-gray-100 rounded-lg px-3 py-1.5 outline-none cursor-pointer hover:border-tet-red/30 transition-all"
+                                className="text-[10px] font-bold text-gray-600 bg-gray-50 border border-gray-100 rounded-lg px-3 py-1.5 outline-none cursor-pointer hover:border-tet-red/30 transition-all font-sans"
                             >
-                                <option value="default">Mặc định</option>
-                                <option value="price-asc">Giá tăng dần</option>
-                                <option value="price-desc">Giá giảm dần</option>
-                                <option value="time">Giờ khởi hành</option>
+                                <option value="default">{t('schedules_page.sort.label')}</option>
+                                <option value="price-asc">{t('schedules_page.sort.price_asc')}</option>
+                                <option value="price-desc">{t('schedules_page.sort.price_desc')}</option>
+                                <option value="time">{t('schedules_page.sort.time')}</option>
                             </select>
                         </div>
                     </div>
@@ -317,15 +319,15 @@ const Schedules = () => {
                         <div className="flex items-center gap-2">
                             <div className="w-1 h-5 bg-tet-red rounded-full" />
                             <p className="text-[10px] font-black text-gray-900 uppercase tracking-widest">
-                                Hiển thị {startItem}-{endItem} / {filtered.length} chuyến
+                                {t('schedules_page.showing', { start: startItem, end: endItem, total: filtered.length })}
                             </p>
                         </div>
                         <Link
-                            to="/search"
+                            to="/"
                             className="flex items-center gap-1.5 text-[10px] font-bold text-tet-red hover:text-red-700 transition-colors"
                         >
                             <Search size={12} />
-                            Tìm kiếm nâng cao
+                            {t('schedules_page.advanced_search')}
                         </Link>
                     </div>
 
@@ -340,12 +342,12 @@ const Schedules = () => {
                     {filtered.length === 0 && (
                         <div className="text-center py-20">
                             <Train size={40} className="text-gray-200 mx-auto mb-4" />
-                            <p className="text-sm font-bold text-gray-400">Không tìm thấy chuyến tàu nào</p>
+                            <p className="text-sm font-bold text-gray-400">{t('schedules_page.not_found')}</p>
                             <button
                                 onClick={() => { setSelectedRoute('all'); setCurrentPage(1); }}
                                 className="mt-3 text-xs font-bold text-tet-red hover:underline"
                             >
-                                Xem tất cả
+                                {t('schedules_page.view_all')}
                             </button>
                         </div>
                     )}
@@ -403,7 +405,7 @@ const Schedules = () => {
                             </div>
 
                             <p className="text-[9px] font-bold text-gray-300 uppercase tracking-[0.2em]">
-                                Trang {currentPage} / {totalPages} — {startItem}-{endItem} trên {filtered.length} chuyến
+                                {t('schedules_page.pagination', { current: currentPage, total: totalPages, start: startItem, end: endItem, count: filtered.length })}
                             </p>
                         </div>
                     )}

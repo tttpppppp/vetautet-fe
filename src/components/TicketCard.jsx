@@ -1,9 +1,16 @@
 import React from 'react';
 import { Train, Clock, Armchair, BadgePercent, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const TicketCard = ({ ticket, viewType = 'grid' }) => {
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+
+    // Utility for currency formatting (could stay as is or be more dynamic)
+    const formatPrice = (price) => {
+        return price.toLocaleString(i18n.language === 'en' ? 'en-US' : 'vi-VN');
+    };
 
     if (viewType === 'list') {
         return (
@@ -11,17 +18,17 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
                 {/* Popular Badge */}
                 {ticket.popular && (
                     <div className="absolute top-0 left-0 bg-tet-yellow text-red-900 text-[8px] font-black px-2 py-0.5 rounded-br-lg uppercase tracking-widest shadow-sm z-10">
-                        Bán chạy
+                        {t('tickets.popular_badge')}
                     </div>
                 )}
 
                 {/* Left: Train Icon & Price */}
                 <div className="flex flex-row sm:flex-col items-center justify-between sm:justify-center p-3 sm:p-4 bg-gray-50/50 rounded-xl sm:min-w-[120px]">
                     <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white text-tet-red rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-tet-red group-hover:text-white transition-colors duration-500 shadow-sm">
-                        <Train size={18} />
+                        < Train size={18} />
                     </div>
                     <span className="text-base sm:text-lg font-black text-tet-red mt-0 sm:mt-3">
-                        {ticket.price.toLocaleString('vi-VN')}
+                        {formatPrice(ticket.price)}
                         <span className="text-[10px] font-bold ml-0.5">đ</span>
                     </span>
                 </div>
@@ -36,11 +43,11 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
                         <div className="flex items-center gap-3 sm:gap-4">
                             <div className="flex items-center gap-1.5 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
                                 <Armchair size={12} className="text-tet-red" />
-                                <span className="text-[10px] font-black text-gray-700">{ticket.remainingSeats} chỗ</span>
+                                <span className="text-[10px] font-black text-gray-700">{ticket.remainingSeats} {t('tickets.seats_left')}</span>
                             </div>
                             <div className="flex items-center gap-1.5 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
                                 <BadgePercent size={12} className="text-tet-yellow" />
-                                <span className="text-[10px] font-black text-gray-700">Giảm 10%</span>
+                                <span className="text-[10px] font-black text-gray-700">{t('tickets.discount')} 10%</span>
                             </div>
                         </div>
                     </div>
@@ -68,7 +75,7 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
                                 onClick={() => navigate(`/ticket/${ticket.id}`)}
                                 className="w-full sm:w-auto bg-gray-900 text-white px-6 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-tet-red transition-all shadow-lg shadow-gray-200 flex items-center justify-center gap-2"
                             >
-                                Chọn vé <ChevronRight size={14} />
+                                {t('tickets.select')} <ChevronRight size={14} />
                             </button>
                         </div>
                     </div>
@@ -83,7 +90,7 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
             {/* Popular Badge */}
             {ticket.popular && (
                 <div className="absolute top-0 right-0 bg-tet-yellow text-red-900 text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-tighter shadow-sm">
-                    Bán chạy
+                    {t('tickets.popular_badge')}
                 </div>
             )}
 
@@ -101,7 +108,7 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
                     </div>
                     <div className="text-right">
                         <span className="text-xl font-black text-tet-red">
-                            {ticket.price.toLocaleString('vi-VN')}
+                            {formatPrice(ticket.price)}
                             <span className="text-sm font-bold ml-1">đ</span>
                         </span>
                     </div>
@@ -134,11 +141,11 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
                     <div className="flex items-center gap-4">
                         <div className="flex items-center gap-1.5 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
                             <Armchair size={14} className="text-tet-red" />
-                            <span className="text-[11px] font-bold text-gray-700">{ticket.remainingSeats} chỗ</span>
+                            <span className="text-[11px] font-bold text-gray-700">{ticket.remainingSeats} {t('tickets.seats_left')}</span>
                         </div>
                         <div className="flex items-center gap-1.5 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
                             <BadgePercent size={14} className="text-tet-yellow" />
-                            <span className="text-[11px] font-bold text-gray-700">Giảm 10%</span>
+                            <span className="text-[11px] font-bold text-gray-700">{t('tickets.discount')} 10%</span>
                         </div>
                     </div>
 
@@ -146,7 +153,7 @@ const TicketCard = ({ ticket, viewType = 'grid' }) => {
                         onClick={() => navigate(`/ticket/${ticket.id}`)}
                         className="bg-gray-900 text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-tet-red transition-all transform hover:scale-105 active:scale-95 flex items-center gap-1 shadow-lg shadow-gray-200"
                     >
-                        Chọn <ChevronRight size={14} />
+                        {t('tickets.select')} <ChevronRight size={14} />
                     </button>
                 </div>
             </div>

@@ -1,0 +1,23 @@
+{
+    "footer": {
+        "brand_desc": "Nâng tầm trải nghiệm di chuyển bằng đường sắt Việt Nam. Chúng tôi cam kết mang lại sự thuận tiện và an toàn tuyệt đối cho mọi hành trình của khách hàng.",
+        "explore_title": "Khám phá",
+        "contact_title": "Liên hệ",
+        "newsletter_title": "Bản tin",
+        "newsletter_desc": "Đăng ký để nhận thông tin lịch tàu và ưu đãi sớm nhất.",
+        "newsletter_placeholder": "Email của bạn",
+        "copyright": "© 2026 Vé Tàu Việt Nam. Bản quyền thuộc về Senior Frontend Dev Antigravity.",
+        "links": {
+            "about": "Về chúng tôi",
+            "privacy": "Chính sách bảo mật",
+            "terms": "Điều khoản sử dụng",
+            "guide": "Hướng dẫn đặt vé",
+            "faq": "Câu hỏi thường gặp"
+        },
+        "contact": {
+            "address": "123 Đường Nam Kỳ Khởi Nghĩa, Quận 1, TP. Hồ Chí Minh",
+            "hotline": "Hotline: 1900 1234",
+            "email": "support@vetau.vn"
+        }
+    }
+}

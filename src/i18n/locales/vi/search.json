@@ -1,0 +1,54 @@
+{
+    "search": {
+        "from_label": "Ga đi",
+        "to_label": "Ga đến",
+        "date_label": "Ngày đi",
+        "passengers_label": "HK",
+        "from_placeholder": "Chọn ga đi",
+        "to_placeholder": "Chọn ga đến",
+        "cta": "Tìm kiếm",
+        "suggestions": "Gợi ý:",
+        "stations": {
+            "saigon": "Sài Gòn",
+            "hanoi": "Hà Nội",
+            "danang": "Đà Nẵng",
+            "nhatrang": "Nha Trang",
+            "hue": "Huế",
+            "vinh": "Vinh",
+            "haiphong": "Hải Phòng",
+            "laocai": "Lào Cai (Sapa)"
+        }
+    },
+    "search_results": {
+        "seo_title": "Tìm vé tàu từ {{from}} đi {{to}} | Vé Tàu Việt Nam",
+        "seo_desc": "Danh sách các chuyến tàu từ {{from}} đi {{to}}. Xem lịch trình, giá vé và đặt chỗ trực tuyến ngay hôm nay.",
+        "title": "Kết quả tìm kiếm",
+        "found": "Tìm thấy {{count}} chuyến tàu phù hợp",
+        "filters": {
+            "title": "Bộ lọc",
+            "train_type": "Loại tàu",
+            "train_types": {
+                "se": "Tàu SE (Express)",
+                "tn": "Tàu TN (Thống Nhất)",
+                "luxury": "Tàu 5 Sao"
+            },
+            "time": "Thời gian đi",
+            "price": "Khoảng giá",
+            "amenities": "Tiện ích",
+            "amenity_list": {
+                "wifi": "Wifi",
+                "food": "Ăn uống",
+                "ac": "Điều hòa",
+                "charging": "Sạc pin"
+            }
+        },
+        "view": {
+            "showing": "Hiển thị {{start}}-{{end}} / {{total}} kết quả",
+            "list": "Xem ngang",
+            "grid": "Xem dọc"
+        },
+        "pagination": {
+            "page_info": "Trang {{current}} / {{total}} — {{start}}-{{end}} trên {{count}} chuyến"
+        }
+    }
+}

@@ -6,12 +6,15 @@ import {
     ShoppingBag, Search, Filter, Calendar,
     Train, ChevronRight, Clock, CheckCircle2,
     XCircle, AlertCircle, Ticket, MapPin,
-    ArrowRight, MoreHorizontal, Download
+    ArrowRight, Download
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const Orders = () => {
+    const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -20,8 +23,8 @@ const Orders = () => {
             id: 'VT2026-X89J',
             date: '25/01/2026',
             train: 'SE1',
-            from: 'Hà Nội',
-            to: 'Sài Gòn',
+            from: t('search.stations.hanoi'),
+            to: t('search.stations.saigon'),
             departureTime: '21:30',
             arrivalTime: '05:45 (+1)',
             seats: ['T01-05', 'T01-06'],
@@ -33,8 +36,8 @@ const Orders = () => {
             id: 'VT2026-P42K',
             date: '15/02/2026',
             train: 'SE3',
-            from: 'Sài Gòn',
-            to: 'Đà Nẵng',
+            from: t('search.stations.saigon'),
+            to: t('search.stations.danang'),
             departureTime: '19:25',
             arrivalTime: '11:45',
             seats: ['T04-12'],
@@ -46,8 +49,8 @@ const Orders = () => {
             id: 'VT2026-C11M',
             date: '10/01/2026',
             train: 'TN1',
-            from: 'Hải Phòng',
-            to: 'Hà Nội',
+            from: t('search.stations.haiphong'),
+            to: t('search.stations.hanoi'),
             departureTime: '13:10',
             arrivalTime: '15:20',
             seats: ['T02-22'],
@@ -64,16 +67,16 @@ const Orders = () => {
     });
 
     const statusConfig = {
-        active: { icon: Clock, color: 'text-tet-red', bg: 'bg-red-50', label: 'Chờ thanh toán', border: 'border-red-100' },
-        completed: { icon: CheckCircle2, color: 'text-green-500', bg: 'bg-green-50', label: 'Đã hoàn tất', border: 'border-green-100' },
-        cancelled: { icon: XCircle, color: 'text-gray-400', bg: 'bg-gray-50', label: 'Đã hủy', border: 'border-gray-200' }
+        active: { icon: Clock, color: 'text-tet-red', bg: 'bg-red-50', label: t('orders.status.active'), border: 'border-red-100' },
+        completed: { icon: CheckCircle2, color: 'text-green-500', bg: 'bg-green-50', label: t('orders.status.completed'), border: 'border-green-100' },
+        cancelled: { icon: XCircle, color: 'text-gray-400', bg: 'bg-gray-50', label: t('orders.status.cancelled'), border: 'border-gray-200' }
     };
 
     return (
         <main className="min-h-screen bg-[#FDFDFD] flex flex-col">
             <Helmet>
-                <title>Lịch sử đơn hàng - Vé Tàu Việt Nam</title>
-                <meta name="description" content="Quản lý các vé tàu đã đặt, theo dõi lịch trình và tải vé điện tử của bạn tại hệ thống Vé Tàu Việt Nam." />
+                <title>{t('orders.seo_title')}</title>
+                <meta name="description" content={t('orders.seo_desc')} />
             </Helmet>
             <Header />
 
@@ -82,10 +85,10 @@ const Orders = () => {
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                         <div className="space-y-4">
                             <span className="inline-flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full text-[10px] font-black text-tet-red uppercase tracking-widest">
-                                <ShoppingBag size={14} /> Quản lý đơn hàng
+                                <ShoppingBag size={14} /> {t('orders.manage_label')}
                             </span>
-                            <h1 className="text-5xl font-black text-gray-900 tracking-tight">Vé tàu của bạn</h1>
-                            <p className="text-gray-400 font-bold max-w-md">Theo dõi lịch trình, tải vé điện tử hoặc quản lý các yêu cầu hoàn/hủy vé tại đây.</p>
+                            <h1 className="text-5xl font-black text-gray-900 tracking-tight">{t('orders.title')}</h1>
+                            <p className="text-gray-400 font-bold max-w-md">{t('orders.desc')}</p>
                         </div>
 
                         {/* Search Bar */}
@@ -95,7 +98,7 @@ const Orders = () => {
                             </div>
                             <input
                                 type="text"
-                                placeholder="Tìm mã đơn hàng..."
+                                placeholder={t('orders.search_placeholder')}
                                 className="w-full pl-14 pr-6 py-4 bg-white rounded-2xl border border-gray-100 focus:border-tet-red focus:bg-white focus:ring-4 focus:ring-tet-red/5 outline-none font-bold text-gray-800 transition-all shadow-sm group-hover:shadow-md"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -106,10 +109,10 @@ const Orders = () => {
                     {/* Filter Tabs */}
                     <div className="flex items-center gap-2 mb-10 overflow-x-auto pb-4 scrollbar-hide">
                         {[
-                            { id: 'all', label: 'Tất cả đơn' },
-                            { id: 'active', label: 'Chờ thanh toán' },
-                            { id: 'completed', label: 'Đã hoàn tất' },
-                            { id: 'cancelled', label: 'Đã hủy' }
+                            { id: 'all', label: t('orders.tabs.all') },
+                            { id: 'active', label: t('orders.tabs.active') },
+                            { id: 'completed', label: t('orders.tabs.completed') },
+                            { id: 'cancelled', label: t('orders.tabs.cancelled') }
                         ].map(tab => (
                             <button
                                 key={tab.id}
@@ -128,105 +131,113 @@ const Orders = () => {
 
                     {/* Orders List */}
                     <div className="space-y-6 min-h-[400px]">
-                        {filteredOrders.length === 0 ? (
-                            <div className="py-24 text-center bg-gray-50/50 rounded-[3rem] border-2 border-dashed border-gray-100">
-                                <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mx-auto shadow-sm mb-6">
-                                    <AlertCircle size={40} className="text-gray-200" />
-                                </div>
-                                <h3 className="text-xl font-black text-gray-900 mb-2">Không tìm thấy đơn hàng</h3>
-                                <p className="text-gray-400 font-bold mb-8">Bạn chưa có đơn hàng nào trong mục này.</p>
-                                <Link to="/explore" className="bg-tet-red text-white px-10 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-black transition-all shadow-lg active:scale-95 inline-block">
-                                    Tìm chuyến ngay
-                                </Link>
-                            </div>
-                        ) : (
-                            filteredOrders.map((order, index) => {
-                                const Config = statusConfig[order.status];
-                                return (
-                                    <motion.div
-                                        key={order.id}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className="group bg-white rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] transition-all relative overflow-hidden"
-                                    >
-                                        <div className="absolute top-0 right-0 w-32 h-full bg-gray-50/50 -skew-x-12 translate-x-20 group-hover:scale-110 transition-transform duration-700" />
+                        <AnimatePresence mode="popLayout">
+                            {filteredOrders.length === 0 ? (
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.95 }}
+                                    className="py-24 text-center bg-gray-50/50 rounded-[3rem] border-2 border-dashed border-gray-100 w-full"
+                                >
+                                    <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mx-auto shadow-sm mb-6">
+                                        <AlertCircle size={40} className="text-gray-200" />
+                                    </div>
+                                    <h3 className="text-xl font-black text-gray-900 mb-2">{t('orders.not_found')}</h3>
+                                    <p className="text-gray-400 font-bold mb-8">{t('orders.not_found_desc')}</p>
+                                    <Link to="/explore" className="bg-tet-red text-white px-10 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-black transition-all shadow-lg active:scale-95 inline-block">
+                                        {t('orders.find_now')}
+                                    </Link>
+                                </motion.div>
+                            ) : (
+                                filteredOrders.map((order, index) => {
+                                    const Config = statusConfig[order.status];
+                                    return (
+                                        <motion.div
+                                            key={order.id}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: 20 }}
+                                            transition={{ delay: index * 0.1 }}
+                                            className="group bg-white rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] transition-all relative overflow-hidden"
+                                        >
+                                            <div className="absolute top-0 right-0 w-32 h-full bg-gray-50/50 -skew-x-12 translate-x-20 group-hover:scale-110 transition-transform duration-700" />
 
-                                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-10 relative z-10">
-                                            {/* Route Info */}
-                                            <div className="flex items-center gap-8">
-                                                <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-tet-red shrink-0 shadow-inner group-hover:scale-110 transition-transform duration-500">
-                                                    <Train size={32} />
+                                            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-10 relative z-10">
+                                                {/* Route Info */}
+                                                <div className="flex items-center gap-8">
+                                                    <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center text-tet-red shrink-0 shadow-inner group-hover:scale-110 transition-transform duration-500">
+                                                        <Train size={32} />
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        <div className="flex items-center gap-3">
+                                                            <h3 className="text-2xl font-black text-gray-900 group-hover:text-tet-red transition-colors">{order.train}</h3>
+                                                            {order.isTet && (
+                                                                <span className="bg-red-50 text-tet-red text-[8px] font-black px-2 py-0.5 rounded-lg uppercase tracking-widest border border-red-100">{t('orders.priority')}</span>
+                                                            )}
+                                                        </div>
+                                                        <div className="flex items-center gap-3 text-lg font-bold text-gray-700">
+                                                            <span>{order.from}</span>
+                                                            <ArrowRight size={18} className="text-gray-300" />
+                                                            <span>{order.to}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div className="space-y-2">
+
+                                                {/* Time & Seat */}
+                                                <div className="grid grid-cols-2 md:grid-cols-3 gap-10">
+                                                    <div>
+                                                        <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest mb-2 flex items-center gap-2">
+                                                            <Calendar size={12} /> {t('orders.date')}
+                                                        </p>
+                                                        <p className="font-black text-gray-900 text-lg">{order.date}</p>
+                                                        <p className="text-sm font-bold text-gray-400">{order.departureTime} - {order.arrivalTime}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest mb-2 flex items-center gap-2">
+                                                            <Ticket size={12} /> {t('orders.seat')}
+                                                        </p>
+                                                        <p className="font-black text-gray-900 text-lg">{order.seats.join(', ')}</p>
+                                                        <p className="text-sm font-bold text-gray-400">{t('orders.passenger_count', { count: order.seats.length })}</p>
+                                                    </div>
+                                                    <div className="hidden md:block">
+                                                        <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest mb-2 ">
+                                                            {t('orders.total_price')}
+                                                        </p>
+                                                        <p className="font-black text-tet-red text-xl">{order.total}</p>
+                                                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{t('orders.vat_included')}</p>
+                                                    </div>
+                                                </div>
+
+                                                {/* Status & Actions */}
+                                                <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between gap-6 border-t lg:border-t-0 lg:border-l border-gray-100 pt-6 lg:pt-0 lg:pl-10">
+                                                    <div className={cn(
+                                                        "flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest",
+                                                        Config.bg, Config.color, Config.border, "border"
+                                                    )}>
+                                                        <Config.icon size={14} />
+                                                        {Config.label}
+                                                    </div>
                                                     <div className="flex items-center gap-3">
-                                                        <h3 className="text-2xl font-black text-gray-900 group-hover:text-tet-red transition-colors">{order.train}</h3>
-                                                        {order.isTet && (
-                                                            <span className="bg-red-50 text-tet-red text-[8px] font-black px-2 py-0.5 rounded-lg uppercase tracking-widest border border-red-100">Ưu tiên</span>
-                                                        )}
-                                                    </div>
-                                                    <div className="flex items-center gap-3 text-lg font-bold text-gray-700">
-                                                        <span>{order.from}</span>
-                                                        <ArrowRight size={18} className="text-gray-300" />
-                                                        <span>{order.to}</span>
+                                                        <button className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-gray-400 hover:bg-tet-red hover:text-white transition-all shadow-sm">
+                                                            <Download size={20} />
+                                                        </button>
+                                                        <button className="bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-lg active:scale-95">
+                                                            {t('orders.details_cta')}
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            {/* Time & Seat */}
-                                            <div className="grid grid-cols-2 md:grid-cols-3 gap-10">
-                                                <div>
-                                                    <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest mb-2 flex items-center gap-2">
-                                                        <Calendar size={12} /> Ngày đi
-                                                    </p>
-                                                    <p className="font-black text-gray-900 text-lg">{order.date}</p>
-                                                    <p className="text-sm font-bold text-gray-400">{order.departureTime} - {order.arrivalTime}</p>
-                                                </div>
-                                                <div>
-                                                    <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest mb-2 flex items-center gap-2">
-                                                        <Ticket size={12} /> Chỗ ngồi
-                                                    </p>
-                                                    <p className="font-black text-gray-900 text-lg">{order.seats.join(', ')}</p>
-                                                    <p className="text-sm font-bold text-gray-400">{order.seats.length} Hành khách</p>
-                                                </div>
-                                                <div className="hidden md:block">
-                                                    <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest mb-2 ">
-                                                        Tổng tiền
-                                                    </p>
-                                                    <p className="font-black text-tet-red text-xl">{order.total}</p>
-                                                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Đã bao gồm VAT</p>
-                                                </div>
+                                            {/* Bottom Mobile View Extra */}
+                                            <div className="flex md:hidden items-center justify-between mt-6 pt-6 border-t border-gray-50">
+                                                <span className="text-sm font-bold text-gray-400 tracking-wider">CODE: {order.id}</span>
+                                                <span className="text-xl font-black text-tet-red">{order.total}</span>
                                             </div>
-
-                                            {/* Status & Actions */}
-                                            <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between gap-6 border-t lg:border-t-0 lg:border-l border-gray-100 pt-6 lg:pt-0 lg:pl-10">
-                                                <div className={cn(
-                                                    "flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest",
-                                                    Config.bg, Config.color, Config.border, "border"
-                                                )}>
-                                                    <Config.icon size={14} />
-                                                    {Config.label}
-                                                </div>
-                                                <div className="flex items-center gap-3">
-                                                    <button className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-gray-400 hover:bg-tet-red hover:text-white transition-all shadow-sm">
-                                                        <Download size={20} />
-                                                    </button>
-                                                    <button className="bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-lg active:scale-95">
-                                                        Chi tiết
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Bottom Mobile View Extra */}
-                                        <div className="flex md:hidden items-center justify-between mt-6 pt-6 border-t border-gray-50">
-                                            <span className="text-sm font-bold text-gray-400 tracking-wider">CODE: {order.id}</span>
-                                            <span className="text-xl font-black text-tet-red">{order.total}</span>
-                                        </div>
-                                    </motion.div>
-                                );
-                            })
-                        )}
+                                        </motion.div>
+                                    );
+                                })
+                            )}
+                        </AnimatePresence>
                     </div>
                 </div>
             </section>

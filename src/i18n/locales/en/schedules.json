@@ -1,0 +1,23 @@
+{
+    "schedules_page": {
+        "seo_title": "Nationwide Train Schedules - Vietnam Train",
+        "seo_desc": "Search all North-South train schedules, view departure times, ticket prices and real-time seat availability.",
+        "tag": "All Schedules",
+        "train_count": "{{count}} trains",
+        "title": "Train Schedules",
+        "desc": "View all active train trips nationwide. Find the right train and book now.",
+        "route_label": "Route:",
+        "all_routes": "All",
+        "sort": {
+            "label": "Default",
+            "price_asc": "Price: Low to High",
+            "price_desc": "Price: High to Low",
+            "time": "Departure Time"
+        },
+        "showing": "Showing {{start}}-{{end}} / {{total}} trips",
+        "advanced_search": "Advanced Search",
+        "not_found": "No train trips found",
+        "view_all": "View All",
+        "pagination": "Page {{current}} / {{total}} — {{start}}-{{end}} of {{count}} trips"
+    }
+}

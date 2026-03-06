@@ -6,17 +6,18 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { cn } from '@/lib/utils';
-
-const registerSchema = yup.object({
-    fullname: yup.string().required('Vui lòng nhập họ và tên'),
-    email: yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
-    password: yup.string().min(6, 'Mật khẩu phải ít nhất 6 ký tự').required('Vui lòng nhập mật khẩu'),
-}).required();
-
+import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
+
+    const registerSchema = yup.object({
+        fullname: yup.string().required(t('register.validation.fullname_required')),
+        email: yup.string().email(t('login.validation.email_invalid')).required(t('login.validation.email_required')),
+        password: yup.string().min(6, t('login.validation.password_min')).required(t('login.validation.password_required')),
+    }).required();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(registerSchema)
@@ -30,8 +31,8 @@ const Register = () => {
     return (
         <div className="min-h-screen w-full flex items-center justify-center relative overflow-hidden bg-white">
             <Helmet>
-                <title>Đăng ký tài khoản - Vé Tàu Việt Nam</title>
-                <meta name="description" content="Tạo tài khoản mới tại Vé Tàu Việt Nam để trải nghiệm dịch vụ đặt vé tàu trực tuyến hiện đại, nhanh chóng và an toàn." />
+                <title>{t('register.seo_title')}</title>
+                <meta name="description" content={t('register.seo_desc')} />
             </Helmet>
             {/* Background Decorative Elements */}
             <div className="absolute top-0 left-0 w-full h-full z-0">
@@ -45,7 +46,7 @@ const Register = () => {
                 onClick={() => navigate('/')}
                 className="absolute top-8 left-8 z-50 flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors font-bold group"
             >
-                <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> Quay lại trang chủ
+                <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> {t('login.back_to_home')}
             </button>
 
             <div className="container max-w-6xl mx-auto px-4 relative z-10 flex flex-col lg:flex-row items-center gap-16">
@@ -64,11 +65,11 @@ const Register = () => {
                             <h1 className="text-3xl font-black text-gray-900 tracking-tighter">VÉ <span className="text-tet-red">TÀU</span></h1>
                         </div>
                         <h2 className="text-5xl font-black text-gray-900 leading-tight mb-6">
-                            Hành trình về quê <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-tet-red via-tet-yellow to-tet-red bg-[length:200%_auto] animate-gradient whitespace-nowrap">Sum họp & Bình an</span>
+                            {t('login.branding.title')} <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-tet-red via-tet-yellow to-tet-red bg-[length:200%_auto] animate-gradient whitespace-nowrap">{t('login.branding.highlight')}</span>
                         </h2>
                         <p className="text-xl text-gray-500 font-medium leading-relaxed max-w-md">
-                            Tham gia cùng hàng triệu hành khách trên khắp Việt Nam. Đặt vé nhanh chóng, an toàn và bảo mật.
+                            {t('login.branding.desc')}
                         </p>
                     </motion.div>
 
@@ -80,17 +81,17 @@ const Register = () => {
                     >
                         <div className="text-center">
                             <p className="text-3xl font-black text-gray-900">1M+</p>
-                            <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">Hành khách</p>
+                            <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{t('login.branding.stats.passengers')}</p>
                         </div>
                         <div className="w-px h-10 bg-gray-100" />
                         <div className="text-center">
                             <p className="text-3xl font-black text-gray-900">99%</p>
-                            <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">Hài lòng</p>
+                            <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{t('login.branding.stats.satisfied')}</p>
                         </div>
                         <div className="w-px h-10 bg-gray-100" />
                         <div className="text-center">
                             <p className="text-3xl font-black text-gray-900">24/7</p>
-                            <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">Hỗ trợ</p>
+                            <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">{t('login.branding.stats.support')}</p>
                         </div>
                     </motion.div>
                 </div>
@@ -108,16 +109,16 @@ const Register = () => {
 
                         <div className="mb-10 text-center lg:text-left">
                             <h3 className="text-3xl font-black text-gray-900 mb-2">
-                                Tạo tài khoản mới
+                                {t('register.form.title')}
                             </h3>
                             <p className="text-gray-500 font-medium">
-                                Bắt đầu trải nghiệm đặt vé tàu hiện đại ngay hôm nay.
+                                {t('register.form.subtitle')}
                             </p>
                         </div>
 
                         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
                             <div className="space-y-2">
-                                <label className="text-xs font-black text-gray-500 uppercase tracking-widest px-1">Họ và tên</label>
+                                <label className="text-xs font-black text-gray-500 uppercase tracking-widest px-1">{t('register.form.fullname_label')}</label>
                                 <div className="relative group">
                                     <User className={cn("absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-tet-red transition-colors", errors.fullname && "text-red-500")} size={20} />
                                     <input
@@ -138,7 +139,7 @@ const Register = () => {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-xs font-black text-gray-500 uppercase tracking-widest px-1">Email / Số điện thoại</label>
+                                <label className="text-xs font-black text-gray-500 uppercase tracking-widest px-1">{t('register.form.email_label')}</label>
                                 <div className="relative group">
                                     <Mail className={cn("absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-tet-red transition-colors", errors.email && "text-red-500")} size={20} />
                                     <input
@@ -160,7 +161,7 @@ const Register = () => {
 
                             <div className="space-y-2">
                                 <div className="flex justify-between items-center px-1">
-                                    <label className="text-xs font-black text-gray-500 uppercase tracking-widest">Mật khẩu</label>
+                                    <label className="text-xs font-black text-gray-500 uppercase tracking-widest">{t('register.form.password_label')}</label>
                                 </div>
                                 <div className="relative group">
                                     <Lock className={cn("absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-tet-red transition-colors", errors.password && "text-red-500")} size={20} />
@@ -182,14 +183,14 @@ const Register = () => {
                             </div>
 
                             <button className="w-full bg-tet-red hover:bg-tet-red-dark text-white font-black py-4 rounded-2xl shadow-xl shadow-tet-red/20 transition-all flex items-center justify-center gap-2 group mt-4 transform active:scale-[0.98]">
-                                Tạo tài khoản <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                {t('register.form.submit')} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                             </button>
                         </form>
 
                         <div className="mt-8">
                             <div className="relative flex items-center justify-center mb-8">
                                 <div className="border-t border-gray-100 w-full" />
-                                <span className="bg-white px-4 text-xs font-bold text-gray-400 uppercase tracking-widest absolute">Hoặc tiếp tục với</span>
+                                <span className="bg-white px-4 text-xs font-bold text-gray-400 uppercase tracking-widest absolute">{t('login.form.or_continue')}</span>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
@@ -205,12 +206,12 @@ const Register = () => {
                         </div>
 
                         <p className="mt-10 text-center text-gray-500 font-bold">
-                            Đã có tài khoản?{' '}
+                            {t('register.form.has_account')}{' '}
                             <Link
                                 to="/login"
                                 className="text-tet-red hover:underline decoration-2 underline-offset-4 decoration-tet-red/30 transition-all"
                             >
-                                Đăng nhập ngay
+                                {t('register.form.login_now')}
                             </Link>
                         </p>
                     </div>

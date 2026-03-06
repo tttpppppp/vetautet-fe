@@ -1,0 +1,52 @@
+{
+    "explore": {
+        "seo_title": "Khám phá hành trình - Vé Tàu Việt Nam",
+        "seo_desc": "Tìm kiếm lịch trình các tuyến tàu phổ biến: Sài Gòn - Đà Nẵng, Hà Nội - Lào Cai, Huế và nhiều điểm đến du lịch hấp dẫn khác.",
+        "hero_tag": "Khám phá hành trình",
+        "hero_title_1": "Tìm kiếm",
+        "hero_title_accent": "Hành trình",
+        "hero_title_2": "Yêu thích của bạn",
+        "hero_desc": "Khám phá hàng trăm tuyến đường từ Bắc chí Nam. Check lịch tàu, giá vé và các điểm dừng chân tuyệt đẹp trên dải đất hình chữ S.",
+        "search_placeholder": "Tìm kiếm ga đi, ga đến...",
+        "search_cta": "Tìm ngay",
+        "popular_title": "Tuyến đường phổ biến",
+        "popular_subtitle": "Hành trình được lựa chọn nhiều nhất",
+        "regions": {
+            "all": "Tất cả",
+            "north": "Bắc",
+            "central": "Trung",
+            "south": "Nam"
+        },
+        "tags": {
+            "most_popular": "Phổ biến nhất",
+            "favorite": "Yêu thích",
+            "scenic": "Cảnh đẹp",
+            "weekend": "Cuối tuần"
+        },
+        "schedules": {
+            "title": "Tất cả lịch trình hôm nay",
+            "subtitle": "Cập nhật thời gian thực từ hệ thống",
+            "filter": "Lọc theo trạm ga",
+            "table": {
+                "train": "Chuyến tàu",
+                "route": "Lộ trình",
+                "departure": "Xuất phát",
+                "arrival": "Đến nơi",
+                "status": "Trạng thái",
+                "action": "Hành động"
+            },
+            "status": {
+                "on_time": "Đúng giờ",
+                "delayed": "Trễ"
+            },
+            "express": "Tốc hành",
+            "normal": "Thường",
+            "economy": "Phổ thông"
+        },
+        "newsletter": {
+            "title": "Ghé thăm những miền di sản",
+            "desc": "Khám phá vẻ đẹp truyền thống Việt Nam qua khung cửa sổ toa tàu. Bắt đầu cuộc hành trình xuân ý nghĩa ngay hôm nay.",
+            "cta": "Quay lại trang chủ"
+        }
+    }
+}

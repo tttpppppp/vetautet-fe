@@ -3,6 +3,7 @@ import { MapPin, Calendar as CalendarIcon, Users, Search, ArrowRightLeft, Chevro
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 const CustomSelect = ({ value, onChange, options, placeholder, icon: Icon, label }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -77,15 +78,29 @@ const CustomSelect = ({ value, onChange, options, placeholder, icon: Icon, label
 };
 
 const SearchForm = () => {
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
     const [date, setDate] = useState('');
     const [passengers, setPassengers] = useState(1);
 
-    const fromOptions = ["Sài Gòn", "Hà Nội", "Đà Nẵng", "Nha Trang", "Huế"];
-    const toOptions = ["Hà Nội", "Sài Gòn", "Đà Nẵng", "Vinh", "Hải Phòng"];
+    const fromOptions = [
+        t('search.stations.saigon'),
+        t('search.stations.hanoi'),
+        t('search.stations.danang'),
+        t('search.stations.nhatrang'),
+        t('search.stations.hue')
+    ];
 
-    const navigate = useNavigate();
+    const toOptions = [
+        t('search.stations.hanoi'),
+        t('search.stations.saigon'),
+        t('search.stations.danang'),
+        t('search.stations.vinh'),
+        t('search.stations.haiphong')
+    ];
 
     const swapStations = () => {
         setFrom(to);
@@ -93,7 +108,6 @@ const SearchForm = () => {
     };
 
     const handleSearch = () => {
-        // Here you would normally pass from, to, date, passengers as query params
         navigate('/search');
     };
 
@@ -109,9 +123,9 @@ const SearchForm = () => {
                     {/* From Station */}
                     <div className="lg:col-span-3">
                         <CustomSelect
-                            label="Ga đi"
+                            label={t('search.from_label')}
                             icon={MapPin}
-                            placeholder="Chọn ga đi"
+                            placeholder={t('search.from_placeholder')}
                             value={from}
                             onChange={setFrom}
                             options={fromOptions}
@@ -131,9 +145,9 @@ const SearchForm = () => {
                     {/* To Station */}
                     <div className="lg:col-span-3">
                         <CustomSelect
-                            label="Ga đến"
+                            label={t('search.to_label')}
                             icon={MapPin}
-                            placeholder="Chọn ga đến"
+                            placeholder={t('search.to_placeholder')}
                             value={to}
                             onChange={setTo}
                             options={toOptions}
@@ -143,7 +157,7 @@ const SearchForm = () => {
                     {/* Date Picker */}
                     <div className="md:col-span-1 lg:col-span-2 space-y-1">
                         <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1.5 px-1">
-                            <CalendarIcon size={11} className="text-tet-red" /> Ngày đi
+                            <CalendarIcon size={11} className="text-tet-red" /> {t('search.date_label')}
                         </label>
                         <div className="relative group">
                             <input
@@ -159,7 +173,7 @@ const SearchForm = () => {
                     {/* Passengers */}
                     <div className="md:col-span-1 lg:col-span-1 space-y-1">
                         <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1.5 px-1">
-                            <Users size={11} className="text-tet-red" /> HK
+                            <Users size={11} className="text-tet-red" /> {t('search.passengers_label')}
                         </label>
                         <input
                             type="number"
@@ -177,16 +191,20 @@ const SearchForm = () => {
                             onClick={handleSearch}
                             className="w-full bg-tet-yellow hover:bg-[#FFB300] text-red-900 font-black py-3 md:py-2 rounded-lg flex items-center justify-center gap-2 shadow-[0_8px_24px_-4px_rgba(255,193,7,0.3)] transition-all transform hover:scale-[1.02] active:scale-[0.98] text-xs md:text-[11px] uppercase tracking-tight"
                         >
-                            <Search size={14} className="stroke-[3]" /> Tìm kiếm
+                            <Search size={14} className="stroke-[3]" /> {t('search.cta')}
                         </button>
                     </div>
                 </div>
 
                 {/* Quick Filters / Popular Routes */}
                 <div className="mt-6 md:mt-4 flex flex-wrap items-center gap-2 border-t border-gray-50 pt-4 md:pt-3">
-                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-wider block w-full md:w-auto mb-1 md:mb-0">Gợi ý:</span>
+                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-wider block w-full md:w-auto mb-1 md:mb-0">{t('search.suggestions')}</span>
                     <div className="flex flex-wrap gap-2">
-                        {['Sài Gòn → Hà Nội', 'Sài Gòn → Đà Nẵng', 'Hà Nội → Vinh'].map((route) => (
+                        {[
+                            `${t('search.stations.saigon')} → ${t('search.stations.hanoi')}`,
+                            `${t('search.stations.saigon')} → ${t('search.stations.danang')}`,
+                            `${t('search.stations.hanoi')} → ${t('search.stations.vinh')}`
+                        ].map((route) => (
                             <button
                                 key={route}
                                 onClick={() => {

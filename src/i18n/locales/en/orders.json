@@ -1,0 +1,31 @@
+{
+    "orders": {
+        "seo_title": "Order History - Vietnam Train",
+        "seo_desc": "Manage your booked train tickets, track schedules, and download your e-tickets at the Vietnam Train system.",
+        "manage_label": "Order Management",
+        "title": "Your Train Tickets",
+        "desc": "Track schedules, download e-tickets or manage refund/cancellation requests here.",
+        "search_placeholder": "Find booking code...",
+        "tabs": {
+            "all": "All Orders",
+            "active": "Awaiting Payment",
+            "completed": "Completed",
+            "cancelled": "Cancelled"
+        },
+        "status": {
+            "active": "Awaiting Payment",
+            "completed": "Completed",
+            "cancelled": "Cancelled"
+        },
+        "not_found": "No orders found",
+        "not_found_desc": "You have no orders in this category.",
+        "find_now": "Find Trips Now",
+        "priority": "Priority",
+        "date": "Departure",
+        "seat": "Seat",
+        "passenger_count": "{{count}} Passengers",
+        "total_price": "Total Amount",
+        "vat_included": "VAT Included",
+        "details_cta": "Details"
+    }
+}

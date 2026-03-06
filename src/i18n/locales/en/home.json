@@ -1,0 +1,57 @@
+{
+    "hero": {
+        "title_1": "Book Train Tickets Online",
+        "title_2": "Connecting Every Corner",
+        "title_3": "Peaceful Journeys",
+        "subtitle_1": "Quick, safe, and full of offers for all your journeys.",
+        "subtitle_2": "Smart booking system helps you find the perfect trip in just a few clicks.",
+        "subtitle_3": "Experience modern, comfortable, and attentive train services all the way.",
+        "highlight_1": "Reunion",
+        "highlight_2": "Smart",
+        "highlight_3": "Peaceful",
+        "cta_book": "Book Now",
+        "cta_schedule": "See Schedule",
+        "system_tag": "Train Booking System",
+        "year_badge": "Year of Horse 2026"
+    },
+    "tickets": {
+        "tag": "Explore Now",
+        "title_main": "Train",
+        "title_highlight": "Most Popular",
+        "title_end": "Tickets",
+        "subtitle": "The most selected train trips today.",
+        "view_all": "View all schedules",
+        "popular_badge": "Popular",
+        "seats_left": "seats",
+        "discount": "Off",
+        "select": "Select",
+        "seat_types": {
+            "sleeper_4": "4-Berth Sleeper",
+            "sleeper_6": "6-Berth Sleeper",
+            "soft_seat": "Soft AC Seat",
+            "sleeper_4_vip": "4-Berth VIP",
+            "sleeper_6_normal": "6-Berth Normal",
+            "soft_seat_ac": "Soft AC Seat"
+        }
+    },
+    "promotions": {
+        "title_1": "20% OFF",
+        "highlight_1": "Early Tickets",
+        "desc_1": "Enter code \"VETAUSOM\" to get early bird offers when booking before Dec 15.",
+        "cta_1": "Get offer now",
+        "flash_sale": "Flash Sale",
+        "title_2": "Pay via App",
+        "desc_2": "Cashback up to 100k for each transaction",
+        "stats_1_val": "2M+",
+        "stats_1_label": "Bookings per year",
+        "stats_2_val": "99%",
+        "stats_2_label": "Satisfied clients"
+    },
+    "home": {
+        "cta_section": {
+            "title": "Ready for your journey?",
+            "desc": "Thousands of train tickets are waiting for you. Book now to enjoy a great journey at the best price.",
+            "button": "Book Ticket Now"
+        }
+    }
+}

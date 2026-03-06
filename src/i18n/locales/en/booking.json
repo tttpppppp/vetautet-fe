@@ -1,0 +1,66 @@
+{
+    "ticket_details": {
+        "seo_title": "Train {{train}}: {{from}} - {{to}} | Vietnam Train",
+        "seo_desc": "Book train {{train}} from {{from}} to {{to}} on {{date}}. Best prices, quick procedure.",
+        "steps": {
+            "back": "Back",
+            "select_seat": "Pick Seat",
+            "info": "Info",
+            "payment": "Payment",
+            "success": "Success"
+        },
+        "car": {
+            "title": "Select Carriage",
+            "label": "T"
+        },
+        "seats": {
+            "admin_cabin": "Admin Cabin / Locomotive",
+            "empty": "Empty",
+            "occupied": "Booked",
+            "selected": "Selected"
+        },
+        "summary": {
+            "title": "Booking Details",
+            "please_select": "Please select a seat",
+            "total": "Total",
+            "continue": "Continue Booking",
+            "trip_summary": "Trip Summary",
+            "ticket_count": "{{count}} Persons",
+            "total_price": "Total Price",
+            "continue_payment": "Continue to Payment",
+            "back_to_seats": "Back to Seats"
+        },
+        "passengers": {
+            "title": "Passenger Info",
+            "fullname": "Full Name",
+            "id_card": "ID Card",
+            "id_placeholder": "ID / Passport",
+            "note": "Passenger info must match your identity documents."
+        },
+        "payment": {
+            "title": "Payment Method",
+            "free_fee": "Transaction fee: Free",
+            "safe_payment": "Safe Payment",
+            "safe_desc": "International standard 256-bit encryption.",
+            "instant": "Instant Handling",
+            "instant_desc": "Receive ticket immediately after payment.",
+            "summary_title": "Payment Summary",
+            "price_for": "Ticket Price ({{count}} persons)",
+            "service_fee": "Service Fee",
+            "free": "Free",
+            "pay_now": "Pay Now"
+        },
+        "success": {
+            "title": "Booking Successful!",
+            "booking_code": "Your booking code is:",
+            "e_ticket": "E-Ticket",
+            "departure_date": "Date",
+            "qr_code": "QR Code",
+            "back_home": "Back to Home"
+        },
+        "notes": {
+            "title": "Note",
+            "text": "Max 04 tickets/guest. Payment within 15min."
+        }
+    }
+}

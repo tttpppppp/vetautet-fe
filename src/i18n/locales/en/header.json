@@ -1,0 +1,11 @@
+{
+    "header": {
+        "home": "Home",
+        "explore": "Explore",
+        "promotions": "Promotions",
+        "contact": "Contact",
+        "book_now": "Book Now",
+        "online_booking": "Online Booking",
+        "login_register": "Login / Register"
+    }
+}

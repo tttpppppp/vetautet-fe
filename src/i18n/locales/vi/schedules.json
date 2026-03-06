@@ -1,0 +1,23 @@
+{
+    "schedules_page": {
+        "seo_title": "Lịch trình tàu hỏa toàn quốc - Vé Tàu Việt Nam",
+        "seo_desc": "Tra cứu toàn bộ lịch trình các chuyến tàu Bắc - Nam, xem giờ khởi hành, giá vé và tình trạng chỗ ngồi thời gian thực.",
+        "tag": "Tất cả lịch trình",
+        "train_count": "{{count}} chuyến tàu",
+        "title": "Lịch Trình Tàu Hỏa",
+        "desc": "Xem tất cả các chuyến tàu đang hoạt động trên toàn quốc. Tìm chuyến tàu phù hợp và đặt vé ngay.",
+        "route_label": "Tuyến:",
+        "all_routes": "Tất cả",
+        "sort": {
+            "label": "Mặc định",
+            "price_asc": "Giá tăng dần",
+            "price_desc": "Giá giảm dần",
+            "time": "Giờ khởi hành"
+        },
+        "showing": "Hiển thị {{start}}-{{end}} / {{total}} chuyến",
+        "advanced_search": "Tìm kiếm nâng cao",
+        "not_found": "Không tìm thấy chuyến tàu nào",
+        "view_all": "Xem tất cả",
+        "pagination": "Trang {{current}} / {{total}} — {{start}}-{{end}} trên {{count}} chuyến"
+    }
+}

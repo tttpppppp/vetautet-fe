@@ -1,0 +1,52 @@
+{
+    "explore": {
+        "seo_title": "Explore Journeys - Train Tickets Vietnam",
+        "seo_desc": "Search schedules for popular routes: Saigon - Da Nang, Hanoi - Lao Cai, Hue and many other attractive travel destinations.",
+        "hero_tag": "Explore journeys",
+        "hero_title_1": "Find your",
+        "hero_title_accent": "Favorite",
+        "hero_title_2": "Route",
+        "hero_desc": "Explore hundreds of routes from North to South. Check schedules, prices and beautiful stops on the S-shaped land.",
+        "search_placeholder": "Search stations...",
+        "search_cta": "Find now",
+        "popular_title": "Popular Routes",
+        "popular_subtitle": "Most selected journeys",
+        "regions": {
+            "all": "All",
+            "north": "North",
+            "central": "Central",
+            "south": "South"
+        },
+        "tags": {
+            "most_popular": "Most Popular",
+            "favorite": "Favorite",
+            "scenic": "Scenic View",
+            "weekend": "Weekend"
+        },
+        "schedules": {
+            "title": "All Schedules Today",
+            "subtitle": "Real-time updates from system",
+            "filter": "Filter by station",
+            "table": {
+                "train": "Train",
+                "route": "Route",
+                "departure": "Departure",
+                "arrival": "Arrival",
+                "status": "Status",
+                "action": "Action"
+            },
+            "status": {
+                "on_time": "On Time",
+                "delayed": "Delayed"
+            },
+            "express": "Express",
+            "normal": "Normal",
+            "economy": "Economy"
+        },
+        "newsletter": {
+            "title": "Visit Heritage Lands",
+            "desc": "Explore the traditional beauty of Vietnam through the train window. Start your meaningful spring journey today.",
+            "cta": "Back to Home"
+        }
+    }
+}

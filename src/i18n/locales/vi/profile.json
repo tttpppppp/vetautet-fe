@@ -1,0 +1,59 @@
+{
+    "profile": {
+        "seo_title": "Trang cá nhân - Vé Tàu Việt Nam",
+        "seo_desc": "Quản lý thông tin tài khoản, điểm thưởng và các cài đặt cá nhân của bạn tại hệ thống đặt vé tàu trực tuyến.",
+        "level": "Thành viên Kim Cương",
+        "stats": {
+            "points": "Điểm thưởng",
+            "trips": "Chuyến đi"
+        },
+        "sidebar": {
+            "profile": "Thông tin cá nhân",
+            "profile_desc": "Quản lý thông tin định danh",
+            "orders": "Đơn hàng của bạn",
+            "orders_desc": "Lịch trình & Lịch sử",
+            "security": "Bảo mật",
+            "security_desc": "Mật khẩu & Xác thực",
+            "notifications": "Thông báo",
+            "notifications_desc": "Cài đặt nhắc nhở",
+            "payment": "Thanh toán",
+            "payment_desc": "Quản lý thẻ & Ví",
+            "logout": "Đăng xuất"
+        },
+        "features": {
+            "active_tickets": "Vé đang dùng",
+            "active_tickets_desc": "Bạn có {{count}} vé sắp tới",
+            "membership": "Hạng thành viên",
+            "membership_desc": "Tận hưởng ưu đãi VIP"
+        },
+        "sections": {
+            "identity": {
+                "title": "Thông tin định danh",
+                "desc": "Tài khoản chính chủ, quản lý định danh số.",
+                "edit": "Chỉnh sửa"
+            },
+            "orders": {
+                "title": "Đơn hàng của bạn",
+                "desc": "Theo dõi vé & lịch trình di chuyển"
+            }
+        },
+        "labels": {
+            "fullname": "Họ và tên",
+            "email": "Địa chỉ Email",
+            "phone": "Số điện thoại",
+            "address": "Địa chỉ thường trú",
+            "join_date": "Ngày tham gia",
+            "nationality": "Quốc tịch",
+            "vietnam": "Việt Nam"
+        },
+        "verification": {
+            "title": "Xác thực chính chủ",
+            "desc": "Đã liên kết với định danh v2.0.",
+            "cta": "Chi tiết E-ID"
+        },
+        "development": {
+            "title": "Đang phát triển",
+            "desc": "Tính năng này đang được cập nhật. Vui lòng quay lại sau."
+        }
+    }
+}

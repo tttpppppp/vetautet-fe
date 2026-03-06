@@ -1,0 +1,66 @@
+{
+    "ticket_details": {
+        "seo_title": "Vé Tàu {{train}}: {{from}} - {{to}} | Vé Tàu Việt Nam",
+        "seo_desc": "Đặt vé tàu {{train}} từ {{from}} đi {{to}} ngày {{date}}. Giá vé ưu đãi, thủ tục nhanh chóng.",
+        "steps": {
+            "back": "Quay lại",
+            "select_seat": "Chọn chỗ",
+            "info": "Thông tin",
+            "payment": "Thanh toán",
+            "success": "Hoàn tất"
+        },
+        "car": {
+            "title": "Chọn toa tàu",
+            "label": "Toa"
+        },
+        "seats": {
+            "admin_cabin": "Phòng Điều Hành / Đầu Tàu",
+            "empty": "Trống",
+            "occupied": "Đã đặt",
+            "selected": "Đang chọn"
+        },
+        "summary": {
+            "title": "Chi tiết đặt chỗ",
+            "please_select": "Vui lòng chọn chỗ ngồi",
+            "total": "Tổng cộng",
+            "continue": "Tiếp tục đặt vé",
+            "trip_summary": "Tóm tắt chuyến đi",
+            "ticket_count": "{{count}} Người",
+            "total_price": "Tổng tiền",
+            "continue_payment": "Tiếp tục thanh toán",
+            "back_to_seats": "Quay về chọn chỗ"
+        },
+        "passengers": {
+            "title": "Thông tin hành khách",
+            "fullname": "Họ và tên",
+            "id_card": "Số định danh",
+            "id_placeholder": "CCCD / Hộ chiếu",
+            "note": "Thông tin hành khách phải trùng khớp với giấy tờ tùy thân."
+        },
+        "payment": {
+            "title": "Phương thức thanh toán",
+            "free_fee": "Miễn phí giao dịch",
+            "safe_payment": "Thanh toán an toàn",
+            "safe_desc": "Mã hóa 256-bit chuẩn quốc tế.",
+            "instant": "Xử lý tức thì",
+            "instant_desc": "Nhận vé ngay sau khi thanh toán.",
+            "summary_title": "Tổng kết thanh toán",
+            "price_for": "Giá vé ({{count}} người)",
+            "service_fee": "Phí dịch vụ",
+            "free": "Miễn phí",
+            "pay_now": "Thanh toán ngay"
+        },
+        "success": {
+            "title": "Đặt vé thành công!",
+            "booking_code": "Mã đặt chỗ của bạn là:",
+            "e_ticket": "Vé điện tử",
+            "departure_date": "Ngày đi",
+            "qr_code": "QR Code",
+            "back_home": "Quay về trang chủ"
+        },
+        "notes": {
+            "title": "Lưu ý",
+            "text": "Tối đa 04 vé/khách. Thanh toán trong 15ph."
+        }
+    }
+}

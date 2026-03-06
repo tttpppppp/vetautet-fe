@@ -1,0 +1,15 @@
+{
+    "seo": {
+        "home_title": "Vietnam Train - Official Train Booking Home",
+        "home_desc": "Explore schedules, ticket prices and book tickets online easily. Secure payment across multiple channels.",
+        "sr_only_h1": "Vietnam Online Train Booking System"
+    },
+    "common": {
+        "vi": "Tiếng Việt",
+        "en": "English",
+        "search": "Search",
+        "loading": "Loading...",
+        "error": "Error occurred",
+        "success": "Success"
+    }
+}

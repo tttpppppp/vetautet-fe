@@ -4,74 +4,87 @@ import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
 import { motion } from 'framer-motion';
 import { ChevronRight, Train } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
-const slides = [
-    {
-        image: 'https://images.unsplash.com/photo-1590490333550-617882208035?auto=format&fit=crop&q=80&w=2000', // Vietnam train
-        title: 'Đặt Vé Tàu Trực Tuyến',
-        subtitle: 'Nhanh chóng, an toàn và ngập tràn ưu đãi cho mọi hành trình của bạn.',
-        highlight: 'Sum họp'
-    },
-    {
-        image: 'https://images.unsplash.com/photo-1562232537-88d447f5a502?auto=format&fit=crop&q=80&w=2000', // Vietnam scenery
-        title: 'Kết Nối Mọi Miền Tổ Quốc',
-        subtitle: 'Hệ thống đặt vé thông minh giúp bạn tìm được chuyến đi ưng ý nhất chỉ trong vài cú click.',
-        highlight: 'Thông minh'
-    },
-    {
-        image: 'https://images.unsplash.com/photo-1542171221-874288034bf0?auto=format&fit=crop&q=80&w=2000', // Train station
-        title: 'Hành Trình Bình An',
-        subtitle: 'Trải nghiệm dịch vụ tàu hỏa hiện đại, tiện nghi và chu đáo suốt cả chặng đường.',
-        highlight: 'Bình an'
-    }
-];
+const HORSE_SVG_PATH = "M13 18c0 0 .5 1 2 1s2-1 2-1v3c0 0-2 1-4 0s-2-3-2-3M7 18c0 0 .5 1 2 1s2-1 2-1v3c0 0-2 1-4 0s-2-3-2-3m14-9s-2 3-5 3c-3 0-5-3-5-3l-2 2s-2 2-5 1c-3-1-3-4-3-4s2-1 4-1 3 2 3 2l3-3s2-2 5-2 5 2 5 2M16 6s1-2 3-2 3 2 3 2l-1 3";
 
 const HeroSlider = () => {
+    const { t } = useTranslation();
+
+    const slides = [
+        {
+            image: 'https://images.unsplash.com/photo-1590490333550-617882208035?auto=format&fit=crop&q=80&w=2000',
+            title: t('hero.title_1'),
+            subtitle: t('hero.subtitle_1'),
+            highlight: t('hero.highlight_1')
+        },
+        {
+            image: 'https://images.unsplash.com/photo-1562232537-88d447f5a502?auto=format&fit=crop&q=80&w=2000',
+            title: t('hero.title_2'),
+            subtitle: t('hero.subtitle_2'),
+            highlight: t('hero.highlight_2')
+        },
+        {
+            image: 'https://images.unsplash.com/photo-1542171221-874288034bf0?auto=format&fit=crop&q=80&w=2000',
+            title: t('hero.title_3'),
+            subtitle: t('hero.subtitle_3'),
+            highlight: t('hero.highlight_3')
+        }
+    ];
+
     return (
         <section className="relative h-[80vh] md:h-[95vh] w-full overflow-hidden bg-gray-900">
             {/* Ambient Background Glows */}
             <div className="absolute top-0 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-tet-red/20 rounded-full blur-[120px] -z-10 animate-pulse" />
             <div className="absolute bottom-0 right-1/4 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-tet-yellow/10 rounded-full blur-[100px] -z-10" />
 
-            {/* Continuous Falling Petals */}
+            {/* Continuous Falling Petals & Horses */}
             <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-                {[...Array(10)].map((_, i) => ( // Reduced for mobile performance
+                {[...Array(12)].map((_, i) => (
                     <motion.div
                         key={i}
                         initial={{ y: -50, opacity: 0, rotate: 0 }}
                         animate={{
                             y: [0, 1000],
-                            x: [0, Math.sin(i) * 100],
-                            opacity: [0, 0.7, 0.4, 0],
+                            x: [0, Math.sin(i) * 150 * (i % 2 === 0 ? 1 : -1)],
+                            opacity: [0, 0.8, 0.5, 0],
                             rotate: [0, 360 * (i % 2 === 0 ? 1 : -1)],
-                            scale: [0.8, 1.2, 0.9]
+                            scale: [0.6, 1.2, 0.8]
                         }}
                         transition={{
-                            duration: 12 + (i % 5) * 3,
+                            duration: 10 + (i % 5) * 4,
                             repeat: Infinity,
-                            delay: i * 0.8,
+                            delay: i * 0.7,
                             ease: "linear"
                         }}
                         className="absolute"
-                        style={{ left: `${(i * 10) % 100}%`, top: "-10%" }}
+                        style={{ left: `${(i * 9) % 100}%`, top: "-10%" }}
                     >
-                        <div
-                            className={cn(
-                                "w-3 h-4 md:w-4 md:h-5 rounded-[40%_60%_70%_30%] blur-[0.3px] transform shadow-sm",
-                                i % 2 === 0
-                                    ? "bg-gradient-to-br from-[#FFD54F] to-[#FBC02D]" // Yellow Mai
-                                    : "bg-gradient-to-br from-[#FF80AB] to-[#F48FB1]" // Pink Đào
-                            )}
-                            style={{
-                                rotate: `${i * 45}deg`,
-                                boxShadow: `0 0 10px ${i % 2 === 0 ? 'rgba(255,213,79,0.2)' : 'rgba(255,128,171,0.2)'}`
-                            }}
-                        />
+                        {i % 4 === 0 ? (
+                            <div className="text-tet-yellow opacity-40">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d={HORSE_SVG_PATH} />
+                                </svg>
+                            </div>
+                        ) : (
+                            <div
+                                className={cn(
+                                    "w-3 h-4 md:w-4 md:h-5 rounded-[40%_60%_70%_30%] blur-[0.3px] transform shadow-sm",
+                                    i % 2 === 0
+                                        ? "bg-gradient-to-br from-[#FFD54F] to-[#FBC02D]" // Yellow Mai
+                                        : "bg-gradient-to-br from-[#FF80AB] to-[#F48FB1]" // Pink Đào
+                                )}
+                                style={{
+                                    rotate: `${i * 45}deg`,
+                                    boxShadow: `0 0 10px ${i % 2 === 0 ? 'rgba(255,213,79,0.2)' : 'rgba(255,128,171,0.2)'}`
+                                }}
+                            />
+                        )}
                     </motion.div>
                 ))}
             </div>
@@ -116,7 +129,7 @@ const HeroSlider = () => {
                                             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg border border-white/20 px-3 py-1 md:px-4 md:py-1.5 rounded-full mb-4 md:mb-6"
                                         >
                                             <span className="w-1.5 h-1.5 rounded-full bg-tet-yellow shadow-[0_0_8px_#FFC107]" />
-                                            <span className="text-white font-bold uppercase tracking-widest text-[9px] md:text-[10px]">Hệ thống đặt vé tàu</span>
+                                            <span className="text-white font-bold uppercase tracking-widest text-[9px] md:text-[10px]">{t('hero.system_tag')}</span>
                                         </motion.div>
 
                                         <motion.h1
@@ -152,11 +165,11 @@ const HeroSlider = () => {
                                             transition={{ duration: 0.8, delay: 0.9 }}
                                             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 md:gap-5"
                                         >
-                                            <button className="bg-tet-red hover:bg-tet-red-dark text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-sm md:text-lg flex items-center justify-center gap-3 shadow-xl shadow-tet-red/30 transition-all transform hover:scale-105 active:scale-95 group">
-                                                Đặt vé ngay <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+                                            <button className="bg-tet-red hover:bg-tet-red-dark text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-sm md:text-lg flex items-center justify-center gap-3 shadow-xl shadow-tet-red/20 transition-all transform hover:scale-105 active:scale-95 group">
+                                                {t('hero.cta_book')} <ChevronRight className="group-hover:translate-x-1 transition-transform" />
                                             </button>
                                             <button className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-sm md:text-lg flex items-center justify-center gap-3 transition-all">
-                                                <Train size={18} /> Xem lịch trình
+                                                <Train size={18} /> {t('hero.cta_schedule')}
                                             </button>
                                         </motion.div>
                                     </div>
@@ -167,7 +180,8 @@ const HeroSlider = () => {
                 ))}
             </Swiper>
 
-            {/* Branch Decoration */}
+
+            {/* Branch & Horse Decoration */}
             <div className="absolute top-0 right-0 z-30 pointer-events-none opacity-40 mix-blend-screen scale-75 md:scale-100 origin-top-right">
                 <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M400 0C320 40 220 120 180 320" stroke="#FFC107" strokeWidth="1.5" strokeDasharray="10 10" />
@@ -181,6 +195,38 @@ const HeroSlider = () => {
                     ))}
                 </svg>
             </div>
+
+            {/* Year of Horse 2026 Badge */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 1.2, delay: 1 }}
+                className="absolute top-24 right-6 md:top-32 md:right-12 z-40 group pointer-events-auto"
+            >
+                <div className="relative w-24 h-24 md:w-32 md:h-32">
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-tet-yellow/30 rounded-full blur-2xl animate-pulse" />
+
+                    {/* Rotating Border */}
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        className="absolute inset-0 border-2 border-dashed border-tet-yellow/50 rounded-full"
+                    />
+
+                    {/* Main Image */}
+                    <img
+                        src="/horse_2026.png"
+                        alt="Bính Ngọ 2026"
+                        className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,193,7,0.5)] transform transition-transform group-hover:scale-110"
+                    />
+
+                    {/* Badge Text */}
+                    <div className="absolute -bottom-2 -right-2 bg-gradient-to-br from-tet-red to-tet-red-dark text-white px-2 py-1 rounded-lg text-[8px] md:text-[10px] font-black uppercase tracking-tighter shadow-lg border border-white/20 transform rotate-12">
+                        {t('hero.year_badge')}
+                    </div>
+                </div>
+            </motion.div>
 
             {/* Bottom Scrim */}
             <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-transparent to-transparent z-25 pointer-events-none" />

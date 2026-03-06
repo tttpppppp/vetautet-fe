@@ -1,0 +1,15 @@
+{
+    "seo": {
+        "home_title": "Vé Tàu Việt Nam - Trang chủ đặt vé tàu chính thức",
+        "home_desc": "Khám phá lịch trình, giá vé tàu hỏa và đặt vé trực tuyến dễ dàng. Hệ thống hỗ trợ thanh toán đa kênh, an toàn và nhanh chóng.",
+        "sr_only_h1": "Hệ thống đặt vé tàu hỏa trực tuyến Việt Nam"
+    },
+    "common": {
+        "vi": "Tiếng Việt",
+        "en": "English",
+        "search": "Tìm kiếm",
+        "loading": "Đang tải...",
+        "error": "Có lỗi xảy ra",
+        "success": "Thành công"
+    }
+}

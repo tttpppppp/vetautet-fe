@@ -1,0 +1,54 @@
+{
+    "search": {
+        "from_label": "From",
+        "to_label": "To",
+        "date_label": "Date",
+        "passengers_label": "PS",
+        "from_placeholder": "Select departure",
+        "to_placeholder": "Select arrival",
+        "cta": "Search",
+        "suggestions": "Suggestions:",
+        "stations": {
+            "saigon": "Saigon",
+            "hanoi": "Hanoi",
+            "danang": "Da Nang",
+            "nhatrang": "Nha Trang",
+            "hue": "Hue",
+            "vinh": "Vinh",
+            "haiphong": "Hai Phong",
+            "laocai": "Lào Cai (Sapa)"
+        }
+    },
+    "search_results": {
+        "seo_title": "Train tickets from {{from}} to {{to}} | Vietnam Train",
+        "seo_desc": "List of train trips from {{from}} to {{to}}. View schedule, price and book online today.",
+        "title": "Search Results",
+        "found": "Found {{count}} suitable train trips",
+        "filters": {
+            "title": "Filters",
+            "train_type": "Train Type",
+            "train_types": {
+                "se": "SE Train (Express)",
+                "tn": "TN Train (Thong Nhat)",
+                "luxury": "5-Star Train"
+            },
+            "time": "Departure Time",
+            "price": "Price Range",
+            "amenities": "Amenities",
+            "amenity_list": {
+                "wifi": "Wifi",
+                "food": "Dining",
+                "ac": "AC",
+                "charging": "Charging"
+            }
+        },
+        "view": {
+            "showing": "Showing {{start}}-{{end}} / {{total}} results",
+            "list": "List View",
+            "grid": "Grid View"
+        },
+        "pagination": {
+            "page_info": "Page {{current}} / {{total}} — {{start}}-{{end}} of {{count}} trips"
+        }
+    }
+}

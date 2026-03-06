@@ -1,0 +1,59 @@
+{
+    "profile": {
+        "seo_title": "User Profile - Vietnam Train",
+        "seo_desc": "Manage your account info, rewards points, and personal settings at our online train booking system.",
+        "level": "Diamond Member",
+        "stats": {
+            "points": "Reward Points",
+            "trips": "Trips"
+        },
+        "sidebar": {
+            "profile": "Personal Info",
+            "profile_desc": "Manage Identity Info",
+            "orders": "Your Orders",
+            "orders_desc": "Schedules & History",
+            "security": "Security",
+            "security_desc": "Password & Auth",
+            "notifications": "Notifications",
+            "notifications_desc": "Reminder Settings",
+            "payment": "Payment",
+            "payment_desc": "Manage Cards & Wallet",
+            "logout": "Logout"
+        },
+        "features": {
+            "active_tickets": "Active Tickets",
+            "active_tickets_desc": "You have {{count}} upcoming tickets",
+            "membership": "Membership Rank",
+            "membership_desc": "Enjoy VIP benefits"
+        },
+        "sections": {
+            "identity": {
+                "title": "Identity Information",
+                "desc": "Official account, manage digital identity.",
+                "edit": "Edit Info"
+            },
+            "orders": {
+                "title": "Your Orders",
+                "desc": "Track tickets & trip schedules"
+            }
+        },
+        "labels": {
+            "fullname": "Full Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "address": "Resident Address",
+            "join_date": "Join Date",
+            "nationality": "Nationality",
+            "vietnam": "Vietnam"
+        },
+        "verification": {
+            "title": "Identity Verified",
+            "desc": "Linked with Identity v2.0.",
+            "cta": "E-ID Details"
+        },
+        "development": {
+            "title": "Under Development",
+            "desc": "This feature is being updated. Please come back later."
+        }
+    }
+}
