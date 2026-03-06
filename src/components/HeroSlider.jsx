@@ -43,48 +43,62 @@ const HeroSlider = () => {
             <div className="absolute top-0 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-tet-red/20 rounded-full blur-[120px] -z-10 animate-pulse" />
             <div className="absolute bottom-0 right-1/4 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-tet-yellow/10 rounded-full blur-[100px] -z-10" />
 
+            {/* Flower Gradients Definition */}
+            <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+                <defs>
+                    <radialGradient id="maiGradient">
+                        <stop offset="0%" stopColor="#FFFDE7" />
+                        <stop offset="40%" stopColor="#FFF176" />
+                        <stop offset="100%" stopColor="#FBC02D" />
+                    </radialGradient>
+                    <radialGradient id="daoGradient">
+                        <stop offset="0%" stopColor="#FCE4EC" />
+                        <stop offset="40%" stopColor="#F48FB1" />
+                        <stop offset="100%" stopColor="#E91E63" />
+                    </radialGradient>
+                </defs>
+            </svg>
+
             {/* Continuous Falling Petals & Horses */}
             <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-                {[...Array(12)].map((_, i) => (
+                {[...Array(16)].map((_, i) => (
                     <motion.div
                         key={i}
                         initial={{ y: -50, opacity: 0, rotate: 0 }}
                         animate={{
                             y: [0, 1000],
-                            x: [0, Math.sin(i) * 150 * (i % 2 === 0 ? 1 : -1)],
-                            opacity: [0, 0.8, 0.5, 0],
-                            rotate: [0, 360 * (i % 2 === 0 ? 1 : -1)],
-                            scale: [0.6, 1.2, 0.8]
+                            x: [0, Math.sin(i) * 200 * (i % 2 === 0 ? 1 : -1)],
+                            opacity: [0, 1, 0.8, 0],
+                            rotate: [0, 720 * (i % 2 === 0 ? 1 : -1)],
+                            scale: [0.5, 1.2, 0.7]
                         }}
                         transition={{
-                            duration: 10 + (i % 5) * 4,
+                            duration: 12 + (i % 6) * 5,
                             repeat: Infinity,
-                            delay: i * 0.7,
+                            delay: i * 0.8,
                             ease: "linear"
                         }}
                         className="absolute"
-                        style={{ left: `${(i * 9) % 100}%`, top: "-10%" }}
+                        style={{ left: `${(i * 7) % 100}%`, top: "-10%" }}
                     >
-                        {i % 4 === 0 ? (
-                            <div className="text-tet-yellow opacity-40">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d={HORSE_SVG_PATH} />
-                                </svg>
-                            </div>
-                        ) : (
-                            <div
-                                className={cn(
-                                    "w-3 h-4 md:w-4 md:h-5 rounded-[40%_60%_70%_30%] blur-[0.3px] transform shadow-sm",
-                                    i % 2 === 0
-                                        ? "bg-gradient-to-br from-[#FFD54F] to-[#FBC02D]" // Yellow Mai
-                                        : "bg-gradient-to-br from-[#FF80AB] to-[#F48FB1]" // Pink Đào
-                                )}
-                                style={{
-                                    rotate: `${i * 45}deg`,
-                                    boxShadow: `0 0 10px ${i % 2 === 0 ? 'rgba(255,213,79,0.2)' : 'rgba(255,128,171,0.2)'}`
-                                }}
-                            />
-                        )}
+                        {/* Realistic Blossom (Mai or Dao) */}
+                        <svg width={i % 3 === 0 ? "32" : "22"} height={i % 3 === 0 ? "32" : "22"} viewBox="0 0 24 24" className="drop-shadow-md">
+                            <g transform="translate(12,12)">
+                                {/* 5 Petals with realistic heart-shape */}
+                                {[0, 72, 144, 216, 288].map((angle) => (
+                                    <path
+                                        key={angle}
+                                        d="M0,0 C-3,-6 -6,-10 0,-11 C6,-10 3,-6 0,0"
+                                        fill={i % 2 === 0 ? "url(#maiGradient)" : "url(#daoGradient)"}
+                                        transform={`rotate(${angle})`}
+                                        className="opacity-95"
+                                    />
+                                ))}
+                                {/* Center of the flower */}
+                                <circle r="1.8" fill={i % 2 === 0 ? "#E65100" : "#880E4F"} />
+                                <circle r="0.6" fill="#FFF" className="animate-pulse" />
+                            </g>
+                        </svg>
                     </motion.div>
                 ))}
             </div>
