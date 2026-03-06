@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Train, User, ChevronRight, Languages, Check } from 'lucide-react';
+import { Menu, X, Train, User, ChevronRight, Languages, Check, Bell } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,7 +10,9 @@ const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isLangOpen, setIsLangOpen] = useState(false);
+    const [isNotiOpen, setIsNotiOpen] = useState(false);
     const langRef = useRef(null);
+    const notiRef = useRef(null);
 
     const currentLang = i18n.language.includes('en') ? 'EN' : 'VI';
 
@@ -22,6 +24,9 @@ const Header = () => {
             if (langRef.current && !langRef.current.contains(event.target)) {
                 setIsLangOpen(false);
             }
+            if (notiRef.current && !notiRef.current.contains(event.target)) {
+                setIsNotiOpen(false);
+            }
         };
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('mousedown', handleClickOutside);
@@ -30,6 +35,12 @@ const Header = () => {
             window.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+
+    const notifications = [
+        { id: 1, title: 'Vé của bạn đã sẵn sàng', time: '5 phút trước', type: 'ticket', icon: '🎫' },
+        { id: 2, title: 'Khuyến mãi 20% cho Tết', time: '1 giờ trước', type: 'promo', icon: '🎁' },
+        { id: 3, title: 'Lịch trình tàu SE3 thay đổi', time: '3 giờ trước', type: 'alert', icon: '⚠️' }
+    ];
 
     const navLinks = [
         { name: t('header.home'), href: '/' },
@@ -96,19 +107,20 @@ const Header = () => {
 
                 {/* Right Actions */}
                 <div className="flex items-center gap-2 md:gap-4">
-                    <div className="flex items-center gap-2 md:gap-4" ref={langRef}>
-                        {/* Language Selector Dropdown */}
-                        <div className="relative">
+                    {/* Always visible: Language & Notifications */}
+                    <div className="flex items-center gap-1 md:gap-2">
+                        {/* Language Selector */}
+                        <div className="relative" ref={langRef}>
                             <button
                                 onClick={() => setIsLangOpen(!isLangOpen)}
                                 className={cn(
-                                    "flex items-center gap-1.5 px-2 md:px-3 py-1.5 rounded-full border transition-all text-[11px] md:text-[12px] font-black group",
+                                    "flex items-center gap-1.5 px-2 py-1.5 rounded-full border transition-all text-[10px] md:text-[12px] font-bold group",
                                     isScrolled
                                         ? "bg-gray-50 border-gray-100 text-gray-600 hover:bg-red-50 hover:text-tet-red"
                                         : "bg-white/10 border-white/20 text-white hover:bg-white/20"
                                 )}
                             >
-                                <div className="w-4 h-4 rounded-full overflow-hidden border border-white/20">
+                                <div className="w-3.5 h-3.5 md:w-4 md:h-4 rounded-full overflow-hidden border border-white/20">
                                     <img
                                         src={currentLang === 'VI' ? "https://flagcdn.com/w40/vn.png" : "https://flagcdn.com/w40/gb.png"}
                                         alt={currentLang}
@@ -124,7 +136,7 @@ const Header = () => {
                                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                        className="absolute top-full right-0 mt-3 w-40 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-2xl p-2 overflow-hidden z-[110]"
+                                        className="absolute top-full right-0 mt-3 w-40 bg-white rounded-2xl border border-gray-100 shadow-2xl p-2 overflow-hidden z-[110]"
                                     >
                                         <button
                                             onClick={() => changeLanguage('vi')}
@@ -151,26 +163,75 @@ const Header = () => {
                             </AnimatePresence>
                         </div>
 
-                        <div className="w-px h-4 md:h-6 bg-gray-200/50 hidden md:block" />
+                        {/* Notifications */}
+                        <div className="relative" ref={notiRef}>
+                            <button
+                                onClick={() => setIsNotiOpen(!isNotiOpen)}
+                                className={cn(
+                                    "relative p-2 rounded-full transition-all group",
+                                    isScrolled ? "text-gray-500 hover:text-tet-red hover:bg-red-50" : "text-white/80 hover:text-white hover:bg-white/10"
+                                )}
+                            >
+                                <Bell size={18} className="group-hover:rotate-12 transition-transform" />
+                                <span className="absolute -top-0.5 right-0.5 w-3.5 h-3.5 md:w-4 md:h-4 bg-tet-red text-white text-[8px] md:text-[9px] font-black flex items-center justify-center rounded-full border border-white shadow-sm group-hover:scale-110 transition-transform">
+                                    {notifications.length}
+                                </span>
+                            </button>
 
-                        <Link to="/profile" className="flex items-center gap-2 text-[12px] md:text-[13px] font-black text-gray-500 hover:text-tet-red transition-all group">
-                            <div className="w-8 h-8 bg-gray-50 rounded-full flex items-center justify-center group-hover:bg-red-50 group-hover:shadow-md transition-all">
+                            <AnimatePresence>
+                                {isNotiOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        className="absolute top-full right-0 mt-3 w-72 bg-white rounded-2xl border border-gray-100 shadow-2xl overflow-hidden z-[110]"
+                                    >
+                                        <div className="p-4 border-b border-gray-50 flex justify-between items-center bg-gray-50/50">
+                                            <span className="text-xs font-black text-gray-900 uppercase tracking-wider">Thông báo</span>
+                                            <span className="text-[10px] font-bold text-tet-red cursor-pointer hover:underline">Đã đọc tất cả</span>
+                                        </div>
+                                        <div className="max-h-[320px] overflow-y-auto">
+                                            {notifications.map((noti) => (
+                                                <div key={noti.id} className="p-4 border-b border-gray-50 hover:bg-red-50/30 transition-colors cursor-pointer flex gap-3 group">
+                                                    <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition-transform">
+                                                        {noti.icon}
+                                                    </div>
+                                                    <div className="flex flex-col gap-0.5">
+                                                        <span className="text-xs font-bold text-gray-900 line-clamp-2">{noti.title}</span>
+                                                        <span className="text-[10px] text-gray-400 font-medium">{noti.time}</span>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="p-3 text-center bg-gray-50/50 hover:bg-gray-100/50 transition-colors cursor-pointer">
+                                            <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest text-center w-full block">Xem tất cả thông báo</span>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </div>
+
+                    {/* Desktop Only: Profile Link */}
+                    <div className="hidden md:flex items-center">
+                        <Link to="/profile" className={cn(
+                            "flex items-center gap-2 text-[12px] md:text-[13px] font-bold transition-all group px-2 py-1 rounded-full",
+                            isScrolled ? "text-gray-600 hover:text-tet-red hover:bg-red-50" : "text-white/90 hover:text-white hover:bg-white/10"
+                        )}>
+                            <div className={cn(
+                                "w-7 h-7 rounded-full flex items-center justify-center transition-all",
+                                isScrolled ? "bg-gray-100 group-hover:bg-white" : "bg-white/10 group-hover:bg-white/20"
+                            )}>
                                 <User size={14} className="group-hover:scale-110 transition-transform" />
                             </div>
-                            <span className="hidden sm:inline">Phạm Kỳ Anh</span>
+                            <span className="hidden xl:inline">Phạm Kỳ Anh</span>
                         </Link>
-                        <button className="hidden sm:flex bg-gradient-to-r from-tet-red to-red-600 text-white pl-5 pr-3 py-1.5 md:pl-6 md:pr-4 md:py-2 rounded-full font-black text-[10px] md:text-xs uppercase tracking-wider items-center gap-2 md:gap-3 hover:translate-x-1 transition-all shadow-lg shadow-tet-red/20 active:scale-95 group">
-                            {t('header.book_now')}
-                            <div className="w-4 h-4 md:w-5 md:h-5 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-tet-red transition-all">
-                                <ChevronRight size={10} />
-                            </div>
-                        </button>
                     </div>
 
                     {/* Mobile Menu Toggle */}
                     <button
                         className={cn(
-                            "lg:hidden p-2 rounded-xl transition-colors",
+                            "lg:hidden p-2 rounded-xl transition-colors shrink-0",
                             isScrolled ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-white/10"
                         )}
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -203,20 +264,43 @@ const Header = () => {
                                 </Link>
                             ))}
                             <div className="h-px bg-gray-100 my-4" />
+
+                            {/* Mobile Actions: Notifications & Language */}
+                            <div className="grid grid-cols-2 gap-3 mb-4">
+                                <div className="bg-gray-50 rounded-2xl p-4 flex flex-col gap-2">
+                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('header.notifications') || 'NOTIFICATIONS'}</span>
+                                    <div className="flex items-center gap-2 text-tet-red font-bold">
+                                        <Bell size={18} />
+                                        <span>3 {t('header.new') || 'New'}</span>
+                                    </div>
+                                </div>
+                                <div className="bg-gray-50 rounded-2xl p-4 flex flex-col gap-2">
+                                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('header.language') || 'LANGUAGE'}</span>
+                                    <div className="flex items-center gap-3">
+                                        <button
+                                            onClick={() => changeLanguage('vi')}
+                                            className={cn("w-7 h-5 rounded-sm overflow-hidden border-2 transition-all", currentLang === 'VI' ? "border-tet-red scale-110 shadow-sm" : "border-transparent opacity-50")}
+                                        >
+                                            <img src="https://flagcdn.com/w40/vn.png" alt="VI" className="w-full h-full object-cover" />
+                                        </button>
+                                        <button
+                                            onClick={() => changeLanguage('en')}
+                                            className={cn("w-7 h-5 rounded-sm overflow-hidden border-2 transition-all", currentLang === 'EN' ? "border-tet-red scale-110 shadow-sm" : "border-transparent opacity-50")}
+                                        >
+                                            <img src="https://flagcdn.com/w40/gb.png" alt="EN" className="w-full h-full object-cover" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className="space-y-3">
                                 <Link
                                     to="/login"
-                                    className="w-full bg-gray-50 text-gray-800 font-bold py-4 rounded-2xl hover:bg-gray-100 transition-all flex items-center justify-center gap-2 border border-gray-100"
+                                    className="w-full bg-tet-red text-white font-black py-4 rounded-2xl shadow-lg shadow-tet-red/20 transition-all flex items-center justify-center gap-2"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     <User size={20} /> {t('header.login_register')}
                                 </Link>
-                                <button
-                                    className="w-full bg-tet-red text-white font-black py-4 rounded-2xl hover:bg-tet-red-dark transition-all flex items-center justify-center gap-2 shadow-lg shadow-tet-red/20"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    {t('header.book_now')} <ChevronRight size={18} />
-                                </button>
                             </div>
                         </nav>
                     </motion.div>
