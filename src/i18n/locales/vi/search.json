@@ -17,6 +17,12 @@
             "vinh": "Vinh",
             "haiphong": "Hải Phòng",
             "laocai": "Lào Cai (Sapa)"
+        },
+        "quick_filters": {
+            "all": "Tất cả",
+            "se_tn": "Tàu SE/TN",
+            "clc": "Tàu CLC",
+            "suburban": "Tàu Ngoại ô"
         }
     },
     "search_results": {

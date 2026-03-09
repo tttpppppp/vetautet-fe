@@ -1,8 +1,9 @@
 import React from 'react';
 import Header from '@/components/Header';
-import HeroSlider from '@/components/HeroSlider';
-import SearchForm from '@/components/SearchForm';
+import HeroSection from '@/components/HeroSection';
 import TicketList from '@/components/TicketList';
+import ReasonsToBookSection from '@/components/ReasonsToBookSection';
+import DestinationsSection from '@/components/DestinationsSection';
 import PromotionSection from '@/components/PromotionSection';
 import Footer from '@/components/Footer';
 import { useTranslation } from 'react-i18next';
@@ -22,15 +23,16 @@ const Home = () => {
             <Header />
 
             {/* Hero & Search Combined for Layout */}
-            <div className="relative">
-                <HeroSlider />
-                <div className="-mt-20 relative z-30">
-                    <SearchForm />
-                </div>
-            </div>
+            <HeroSection />
 
             {/* Ticket Listing */}
             <TicketList />
+
+            {/* Explore Destinations */}
+            <DestinationsSection />
+
+            {/* Reasons to Book */}
+            <ReasonsToBookSection />
 
             {/* Promotions & Stats */}
             <PromotionSection />

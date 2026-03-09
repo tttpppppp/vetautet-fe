@@ -17,6 +17,12 @@
             "vinh": "Vinh",
             "haiphong": "Hai Phong",
             "laocai": "Lào Cai (Sapa)"
+        },
+        "quick_filters": {
+            "all": "All",
+            "se_tn": "SE/TN Trains",
+            "clc": "High-Quality",
+            "suburban": "Suburban"
         }
     },
     "search_results": {

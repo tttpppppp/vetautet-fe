@@ -146,26 +146,23 @@ const SearchResults = () => {
             </Helmet>
             <Header />
 
-            <div className="pt-24 md:pt-28 pb-8 md:pb-12 bg-gray-900 relative overflow-hidden transition-all duration-300">
-                <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-red-950/40 to-black" />
-
+            <div className="pt-32 md:pt-40 pb-6 relative transition-all duration-300">
                 <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                     >
-                        <h1 className="text-xl md:text-3xl font-black text-white mb-2 tracking-tighter">{t('search_results.title')}</h1>
+                        <h1 className="text-xl md:text-3xl font-black text-gray-900 mb-2 tracking-tighter">{t('search_results.title')}</h1>
                         <div className="flex items-center gap-2">
-                            <span className="px-2 py-0.5 bg-tet-red/20 text-tet-red rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-widest border border-tet-red/30">{t('explore.schedules.table.train')}</span>
-                            <p className="text-gray-400 font-bold text-[10px] md:text-xs">{t('search_results.found', { count: dummyTickets.length })}</p>
+                            <span className="px-2 py-0.5 bg-red-50 text-tet-red rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-widest border border-red-100">{t('explore.schedules.table.train')}</span>
+                            <p className="text-gray-500 font-bold text-[10px] md:text-xs">{t('search_results.found', { count: dummyTickets.length })}</p>
                         </div>
                     </motion.div>
                 </div>
             </div>
 
-            <div className="relative -mt-6 md:mt-4 mb-6 md:mb-8 px-2 md:px-4">
-                <SearchForm />
+            <div className="relative mb-6 md:mb-8 px-2 md:px-4">
+                <SearchForm variant="light" />
             </div>
 
             <section className="pb-16 bg-white">
@@ -191,20 +188,27 @@ const SearchResults = () => {
                                     {['se', 'tn', 'luxury'].map((typeKey) => {
                                         const type = t(`search_results.filters.train_types.${typeKey}`);
                                         return (
-                                            <label key={typeKey} className="flex items-center gap-2 cursor-pointer group" onClick={() => toggleTrain(type)}>
+                                            <button
+                                                key={typeKey}
+                                                className="w-full flex items-center gap-2 cursor-pointer group text-left outline-none"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    toggleTrain(type);
+                                                }}
+                                            >
                                                 <div className={cn(
-                                                    "w-4 h-4 rounded flex items-center justify-center transition-all",
+                                                    "w-4 h-4 rounded flex items-center justify-center transition-all shrink-0",
                                                     selectedTrains.includes(type)
-                                                        ? "bg-tet-red border-tet-red"
-                                                        : "border-gray-200 group-hover:border-tet-red/50"
+                                                        ? "bg-tet-red border border-tet-red"
+                                                        : "border border-gray-300 group-hover:border-tet-red/50 bg-white"
                                                 )}>
-                                                    {selectedTrains.includes(type) && <Check size={12} className="text-white" />}
+                                                    {selectedTrains.includes(type) && <Check size={12} className="text-white" strokeWidth={3} />}
                                                 </div>
                                                 <span className={cn(
-                                                    "text-xs font-bold transition-colors",
+                                                    "text-xs font-bold transition-colors truncate",
                                                     selectedTrains.includes(type) ? "text-gray-900" : "text-gray-500 group-hover:text-gray-900"
                                                 )}>{type}</span>
-                                            </label>
+                                            </button>
                                         );
                                     })}
                                 </div>

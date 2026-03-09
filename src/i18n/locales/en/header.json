@@ -6,6 +6,13 @@
         "contact": "Contact",
         "book_now": "Book Now",
         "online_booking": "Online Booking",
-        "login_register": "Login / Register"
+        "login_register": "Login / Register",
+        "my_bookings": "My Bookings",
+        "login": "Login",
+        "register": "Register",
+        "train_se_tn": "SE/TN Trains",
+        "train_tet": "Tet Trains",
+        "schedule": "Schedule",
+        "support": "Support"
     }
 }

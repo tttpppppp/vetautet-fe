@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MapPin, Calendar as CalendarIcon, Users, Search, ArrowRightLeft, ChevronDown, Check } from 'lucide-react';
+import { MapPin, Calendar as CalendarIcon, Users, Search, ArrowRightLeft, ChevronDown, Check, Plane, Hotel, Bus, Car, Ticket, MoreHorizontal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 
-const CustomSelect = ({ value, onChange, options, placeholder, icon: Icon, label }) => {
+const CustomSelect = ({ value, onChange, options, placeholder, icon: Icon, label, variant = 'dark' }) => {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef(null);
 
@@ -23,15 +23,18 @@ const CustomSelect = ({ value, onChange, options, placeholder, icon: Icon, label
 
     return (
         <div className="lg:col-span-3 space-y-1" ref={containerRef}>
-            <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1.5 px-1">
-                {Icon && <Icon size={11} className="text-tet-red" />} {label}
+            <label className={cn("text-[9px] font-black uppercase tracking-widest flex items-center gap-1.5 px-1 drop-shadow-sm", variant === 'dark' ? "text-white/90" : "text-gray-500")}>
+                {Icon && <Icon size={11} className={variant === 'dark' ? "text-tet-yellow" : "text-tet-red"} />} {label}
             </label>
             <div className="relative group">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     className={cn(
-                        "w-full bg-white border border-gray-200 rounded-lg py-2 px-3 outline-none transition-all flex items-center justify-between group-hover:border-tet-red/30",
-                        isOpen && "border-tet-red ring-2 ring-tet-red/10 shadow-md"
+                        "w-full rounded-lg py-2 px-3 outline-none transition-all flex items-center justify-between",
+                        variant === 'dark'
+                            ? "bg-white/90 backdrop-blur-sm border border-white/50 group-hover:border-white"
+                            : "bg-white border border-gray-200 group-hover:border-gray-300 shadow-sm",
+                        isOpen && (variant === 'dark' ? "border-white ring-2 ring-white/30 shadow-md bg-white" : "border-tet-red ring-2 ring-red-100 shadow-md bg-white")
                     )}
                 >
                     <span className={cn("font-bold text-sm transition-colors", value ? "text-gray-900" : "text-gray-400")}>
@@ -77,14 +80,25 @@ const CustomSelect = ({ value, onChange, options, placeholder, icon: Icon, label
     );
 };
 
-const SearchForm = () => {
+const SearchForm = ({ variant = 'dark' }) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
+    const [activeTab, setActiveTab] = useState('Khách sạn');
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
     const [date, setDate] = useState('');
     const [passengers, setPassengers] = useState(1);
+
+    const categories = [
+        { name: 'Khách sạn', icon: <Hotel size={20} /> },
+        { name: 'Vé máy bay', icon: <Plane size={20} /> },
+        { name: 'Vé xe khách', icon: <Bus size={20} /> },
+        { name: 'Đưa đón sân bay', icon: <Plane size={20} className="rotate-45" /> },
+        { name: 'Cho thuê xe', icon: <Car size={20} /> },
+        { name: 'Hoạt động & Vui chơi', icon: <Ticket size={20} /> },
+        { name: 'Khác', icon: <MoreHorizontal size={20} /> },
+    ];
 
     const fromOptions = [
         t('search.stations.saigon'),
@@ -112,57 +126,95 @@ const SearchForm = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-30">
+        <div className="max-w-7xl mx-auto px-0 sm:px-4 relative z-30">
+
+
             <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="bg-white/95 backdrop-blur-2xl border border-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.08)] rounded-2xl p-4 md:p-6"
+                className="rounded-2xl p-3 sm:p-4 md:p-6 lg:p-8"
             >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-3 items-end">
-
-                    {/* From Station */}
-                    <div className="lg:col-span-3">
-                        <CustomSelect
-                            label={t('search.from_label')}
-                            icon={MapPin}
-                            placeholder={t('search.from_placeholder')}
-                            value={from}
-                            onChange={setFrom}
-                            options={fromOptions}
-                        />
-                    </div>
-
-                    {/* Swap Button */}
-                    <div className="flex lg:col-span-1 justify-center pb-0 md:pb-1">
-                        <button
-                            onClick={swapStations}
-                            className="w-10 h-10 md:w-8 md:h-8 bg-red-50 hover:bg-tet-red text-tet-red hover:text-white rounded-full transition-all transform hover:rotate-180 duration-500 shadow-sm border border-red-100 flex items-center justify-center group"
-                        >
-                            <ArrowRightLeft size={14} className="group-hover:scale-110 transition-transform rotate-90 lg:rotate-0" />
+                {/* Secondary Filters - scrollable on mobile */}
+                <div className="flex gap-1.5 sm:gap-2 md:gap-3 mb-3 sm:mb-4 md:mb-6 overflow-x-auto scrollbar-hide pb-1 justify-center sm:justify-start">
+                    {[
+                        { key: 'all', label: t('search.quick_filters.all') },
+                        { key: 'se_tn', label: t('search.quick_filters.se_tn') },
+                        { key: 'clc', label: t('search.quick_filters.clc') },
+                        { key: 'suburban', label: t('search.quick_filters.suburban') }
+                    ].map(filter => (
+                        <button key={filter.key} className={cn(
+                            "px-3 md:px-4 py-1.5 rounded-full text-xs md:text-sm font-bold border transition-all backdrop-blur-sm whitespace-nowrap shrink-0",
+                            filter.key === 'all'
+                                ? "bg-tet-red border-tet-red text-white shadow-md"
+                                : variant === 'dark'
+                                    ? "border-white/40 text-white/90 hover:bg-white/20 hover:border-white/60 bg-white/10"
+                                    : "border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-900 bg-white shadow-sm"
+                        )}>
+                            {filter.label}
                         </button>
-                    </div>
+                    ))}
+                </div>
 
-                    {/* To Station */}
-                    <div className="lg:col-span-3">
-                        <CustomSelect
-                            label={t('search.to_label')}
-                            icon={MapPin}
-                            placeholder={t('search.to_placeholder')}
-                            value={to}
-                            onChange={setTo}
-                            options={toOptions}
-                        />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-2.5 sm:gap-3 md:gap-4 items-end">
+
+                    {/* Location Group */}
+                    <div className="sm:col-span-2 lg:col-span-7 relative flex flex-col sm:flex-row items-end gap-5 sm:gap-3 md:gap-4">
+                        {/* From Station */}
+                        <div className="w-full sm:flex-1 relative z-10">
+                            <CustomSelect
+                                label={t('search.from_label')}
+                                icon={MapPin}
+                                placeholder={t('search.from_placeholder')}
+                                value={from}
+                                onChange={setFrom}
+                                options={fromOptions}
+                                variant={variant}
+                            />
+                        </div>
+
+                        {/* Swap Button */}
+                        <div className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 sm:static sm:translate-x-0 sm:translate-y-0 z-20 flex items-center justify-center shrink-0 sm:pb-1">
+                            <button
+                                onClick={swapStations}
+                                className={cn(
+                                    "w-8 h-8 rounded-full transition-all transform hover:-rotate-180 duration-500 flex items-center justify-center group shadow-md border-2",
+                                    variant === 'dark'
+                                        ? "bg-white hover:bg-tet-red border-white/50 text-tet-red hover:text-white"
+                                        : "bg-white hover:bg-tet-red border-gray-100 text-tet-red hover:text-white"
+                                )}
+                            >
+                                <ArrowRightLeft size={14} className="group-hover:scale-110 transition-transform rotate-90 sm:rotate-0 stroke-[2.5]" />
+                            </button>
+                        </div>
+
+                        {/* To Station */}
+                        <div className="w-full sm:flex-1 relative z-10">
+                            <CustomSelect
+                                label={t('search.to_label')}
+                                icon={MapPin}
+                                placeholder={t('search.to_placeholder')}
+                                value={to}
+                                onChange={setTo}
+                                options={toOptions}
+                                variant={variant}
+                            />
+                        </div>
                     </div>
 
                     {/* Date Picker */}
-                    <div className="md:col-span-1 lg:col-span-2 space-y-1">
-                        <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1.5 px-1">
-                            <CalendarIcon size={11} className="text-tet-red" /> {t('search.date_label')}
+                    <div className="sm:col-span-1 lg:col-span-2 space-y-1">
+                        <label className={cn("text-[9px] font-black uppercase tracking-widest flex items-center gap-1.5 px-1 drop-shadow-sm", variant === 'dark' ? "text-white/90" : "text-gray-500")}>
+                            <CalendarIcon size={11} className={variant === 'dark' ? "text-tet-yellow" : "text-tet-red"} /> {t('search.date_label')}
                         </label>
                         <div className="relative group">
                             <input
                                 type="date"
-                                className="w-full bg-white border border-gray-200 focus:border-tet-red focus:ring-2 focus:ring-tet-red/10 rounded-lg py-2.5 px-3 md:py-2 outline-none font-bold text-sm text-gray-900 transition-all cursor-pointer group-hover:border-tet-red/30 [&::-webkit-calendar-picker-indicator]:opacity-0"
+                                className={cn(
+                                    "w-full rounded-lg py-2 px-3 outline-none font-bold text-sm text-gray-900 transition-all cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-0",
+                                    variant === 'dark'
+                                        ? "bg-white/90 backdrop-blur-sm border border-white/50 focus:border-white focus:ring-2 focus:ring-white/30 group-hover:border-white"
+                                        : "bg-white border border-gray-200 focus:border-tet-red focus:ring-2 focus:ring-red-100 group-hover:border-gray-300 shadow-sm"
+                                )}
                                 value={date}
                                 onChange={(e) => setDate(e.target.value)}
                             />
@@ -171,9 +223,9 @@ const SearchForm = () => {
                     </div>
 
                     {/* Passengers */}
-                    <div className="md:col-span-1 lg:col-span-1 space-y-1">
-                        <label className="text-[9px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1.5 px-1">
-                            <Users size={11} className="text-tet-red" /> {t('search.passengers_label')}
+                    <div className="sm:col-span-1 lg:col-span-1 space-y-1">
+                        <label className={cn("text-[9px] font-black uppercase tracking-widest flex items-center gap-1.5 px-1 drop-shadow-sm", variant === 'dark' ? "text-white/90" : "text-gray-500")}>
+                            <Users size={11} className={variant === 'dark' ? "text-tet-yellow" : "text-tet-red"} /> {t('search.passengers_label')}
                         </label>
                         <input
                             type="number"
@@ -181,24 +233,29 @@ const SearchForm = () => {
                             max="4"
                             value={passengers}
                             onChange={(e) => setPassengers(e.target.value)}
-                            className="w-full bg-white border border-gray-200 focus:border-tet-red focus:ring-2 focus:ring-tet-red/10 rounded-lg py-2.5 px-2 pr-1 md:py-2 outline-none font-black text-sm text-center text-gray-900 transition-all hover:border-tet-red/30"
+                            className={cn(
+                                "w-full rounded-lg py-2 px-2 outline-none font-black text-sm text-center text-gray-900 transition-all",
+                                variant === 'dark'
+                                    ? "bg-white/90 backdrop-blur-sm border border-white/50 focus:border-white focus:ring-2 focus:ring-white/30 hover:border-white"
+                                    : "bg-white border border-gray-200 focus:border-tet-red focus:ring-2 focus:ring-red-100 hover:border-gray-300 shadow-sm"
+                            )}
                         />
                     </div>
 
                     {/* Search Button */}
-                    <div className="md:col-span-2 lg:col-span-2">
+                    <div className="sm:col-span-2 lg:col-span-2 mt-1 sm:mt-0">
                         <button
                             onClick={handleSearch}
-                            className="w-full bg-tet-yellow hover:bg-[#FFB300] text-red-900 font-black py-3 md:py-2 rounded-lg flex items-center justify-center gap-2 shadow-[0_8px_24px_-4px_rgba(255,193,7,0.3)] transition-all transform hover:scale-[1.02] active:scale-[0.98] text-xs md:text-[11px] uppercase tracking-tight"
+                            className="w-full h-10 lg:h-[38px] bg-tet-yellow hover:bg-[#FFB300] text-red-900 font-black rounded-lg flex items-center justify-center gap-2 shadow-lg shadow-tet-yellow/20 transition-all transform hover:scale-[1.02] active:scale-[0.98] text-sm uppercase tracking-tight"
                         >
-                            <Search size={14} className="stroke-[3]" /> {t('search.cta')}
+                            <Search size={16} className="stroke-[3]" /> {t('search.cta')}
                         </button>
                     </div>
                 </div>
 
                 {/* Quick Filters / Popular Routes */}
-                <div className="mt-6 md:mt-4 flex flex-wrap items-center gap-2 border-t border-gray-50 pt-4 md:pt-3">
-                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-wider block w-full md:w-auto mb-1 md:mb-0">{t('search.suggestions')}</span>
+                <div className={cn("mt-3 sm:mt-4 md:mt-4 flex flex-wrap items-center gap-1.5 sm:gap-2 border-t pt-2.5 sm:pt-3", variant === 'dark' ? "border-white/20" : "border-gray-100")}>
+                    <span className={cn("text-[9px] font-black uppercase tracking-wider block w-full md:w-auto mb-1 md:mb-0 drop-shadow-sm", variant === 'dark' ? "text-white/70" : "text-gray-500")}>{t('search.suggestions')}</span>
                     <div className="flex flex-wrap gap-2">
                         {[
                             `${t('search.stations.saigon')} → ${t('search.stations.hanoi')}`,
@@ -212,7 +269,12 @@ const SearchForm = () => {
                                     setFrom(parts[0]);
                                     setTo(parts[parts.length - 1]);
                                 }}
-                                className="text-[9px] font-bold px-3 py-1.5 bg-gray-50 text-gray-600 hover:bg-tet-red/5 hover:text-tet-red rounded-md transition-all border border-transparent hover:border-tet-red/20"
+                                className={cn(
+                                    "text-[9px] font-bold px-3 py-1.5 rounded-md transition-all border",
+                                    variant === 'dark'
+                                        ? "bg-white/20 backdrop-blur-sm text-white/90 hover:bg-white/30 hover:text-white border-white/20 hover:border-white/40"
+                                        : "bg-gray-50 text-gray-600 hover:bg-gray-100 hover:text-gray-900 border-gray-200"
+                                )}
                             >
                                 {route}
                             </button>

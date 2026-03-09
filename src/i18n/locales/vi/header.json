@@ -6,6 +6,13 @@
         "contact": "Liên hệ",
         "book_now": "Đặt ngay",
         "online_booking": "Đặt vé trực tuyến",
-        "login_register": "Đăng nhập / Đăng ký"
+        "login_register": "Đăng nhập / Đăng ký",
+        "my_bookings": "Đặt chỗ của tôi",
+        "login": "Đăng nhập",
+        "register": "Đăng ký",
+        "train_se_tn": "Vé Tàu SE/TN",
+        "train_tet": "Vé Tàu Tết",
+        "schedule": "Lịch trình",
+        "support": "Hỗ trợ"
     }
 }
